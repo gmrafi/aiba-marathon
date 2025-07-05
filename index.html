@@ -341,42 +341,65 @@
             </p>
             <div class="flex flex-col md:flex-row items-center justify-center gap-12 mb-16">
                 <!-- Interactive Map Card -->
-                <div class="bg-white rounded-3xl shadow-2xl border-4 border-blue-200 p-8 flex-1 flex flex-col items-center hover:scale-105 transition-transform duration-300">
-                    <h3 class="text-3xl font-bold text-blue-700 mb-6 flex items-center gap-2">
+                <div class="relative bg-gradient-to-br from-blue-100 via-white to-blue-50 rounded-3xl shadow-2xl border-4 border-blue-200 p-8 flex-1 flex flex-col items-center hover:scale-[1.03] transition-transform duration-300 overflow-hidden group">
+                    <span class="absolute top-0 right-0 m-4 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce z-20">Live Map</span>
+                    <h3 class="text-3xl font-bold text-blue-700 mb-6 flex items-center gap-2 drop-shadow-lg">
                         <span>🗺️</span> Interactive Route Map
                     </h3>
-                    <iframe 
-                        src="https://www.google.com/maps/d/embed?mid=1w6wK9n8wQwQwQwQwQwQwQwQwQwQwQwQ&ehbc=2E312F" 
-                        width="100%" height="350" class="rounded-2xl border-2 border-blue-300 shadow-lg mb-4"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                        title="Race Route Map"></iframe>
-                    <a href="https://www.google.com/maps/d/edit..." target="_blank" class="btn-primary text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg mt-2 hover:scale-105 transition">View Full Map</a>
+                    <div class="relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-blue-300 mb-4 group-hover:ring-4 group-hover:ring-blue-200 transition">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2751.0603321220665!2d91.98030180957866!3d24.937762777786613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505287698fbc6f%3A0xae6eb5f58ca5e83!2sArmy%20Institute%20of%20Business%20Administration!5e1!3m2!1sen!2sbd!4v1751718177372!5m2!1sen!2sbd"
+                            width="100%" height="400" style="border:0"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            title="Race Route Map"
+                            class="rounded-2xl transition-all duration-300 group-hover:scale-105"
+                        ></iframe>
+                        <!-- Floating action buttons -->
+                        <div class="absolute bottom-4 right-4 flex flex-col gap-3 z-10">
+                            <a href="https://maps.app.goo.gl/y2SZeyvAgVkXLymE6" target="_blank"
+                               class="bg-blue-600 hover:bg-blue-800 text-white px-5 py-2 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all duration-200 text-base group-hover:scale-105">
+                                <span>🌐</span> Full Map
+                            </a>
+                            <a href="https://earth.google.com/web/" target="_blank"
+                               class="bg-green-500 hover:bg-green-700 text-white px-5 py-2 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all duration-200 text-base group-hover:scale-105">
+                                <span>🌍</span> 3D View
+                            </a>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=Army+IBA+Sylhet&destination=Gotatikor+Point" target="_blank"
+                               class="bg-yellow-400 hover:bg-yellow-600 text-white px-5 py-2 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all duration-200 text-base group-hover:scale-105">
+                                <span>🚩</span> Navigate
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-blue-700 text-lg mt-2 text-center font-medium animate-pulse">Zoom & interact with the map above!</p>
                 </div>
                 <!-- Route Steps Card -->
-                <div class="bg-white rounded-3xl shadow-2xl border-4 border-yellow-200 p-8 flex-1 flex flex-col items-center hover:scale-105 transition-transform duration-300">
-                    <h3 class="text-3xl font-bold text-yellow-700 mb-6 flex items-center gap-2">
+                <div class="relative bg-gradient-to-br from-yellow-50 via-white to-yellow-100 rounded-3xl shadow-2xl border-4 border-yellow-200 p-8 flex-1 flex flex-col items-center hover:scale-[1.03] transition-transform duration-300 overflow-hidden">
+                    <span class="absolute top-0 left-0 m-4 bg-yellow-400 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce z-20">Route Steps</span>
+                    <h3 class="text-3xl font-bold text-yellow-700 mb-6 flex items-center gap-2 drop-shadow-lg">
                         <span>📍</span> Route Highlights
                     </h3>
-                    <ol class="relative border-l-4 border-blue-200 pl-8 space-y-8 text-left w-full max-w-xs mx-auto">
-                        <li>
-                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-8 h-8 bg-blue-500 text-white rounded-full shadow-lg font-bold text-xl">1</span>
+                    <ol class="relative border-l-4 border-blue-200 pl-8 space-y-12 text-left w-full max-w-xs mx-auto">
+                        <li class="group">
+                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-10 h-10 bg-blue-500 text-white rounded-full shadow-lg font-bold text-2xl group-hover:bg-blue-700 transition">1</span>
                             <span class="font-semibold text-blue-800">Start: Army IBA Sylhet</span>
                             <p class="text-gray-600 text-base">Warm-up & check-in zone</p>
                         </li>
-                        <li>
-                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-8 h-8 bg-yellow-400 text-white rounded-full shadow-lg font-bold text-xl">2</span>
+                        <li class="group">
+                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-10 h-10 bg-yellow-400 text-white rounded-full shadow-lg font-bold text-2xl group-hover:bg-yellow-600 transition">2</span>
                             <span class="font-semibold text-yellow-700">Gotatikor Point</span>
                             <p class="text-gray-600 text-base">Scenic checkpoint & hydration</p>
                         </li>
-                        <li>
-                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-8 h-8 bg-green-500 text-white rounded-full shadow-lg font-bold text-xl">3</span>
+                        <li class="group">
+                            <span class="absolute -left-5 top-1.5 flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full shadow-lg font-bold text-2xl group-hover:bg-green-700 transition">3</span>
                             <span class="font-semibold text-green-700">Return: Army IBA Sylhet</span>
                             <p class="text-gray-600 text-base">Finish line & celebration</p>
                         </li>
                     </ol>
-                    <div class="mt-8 flex flex-col items-center">
+                    <div class="mt-10 flex flex-col items-center">
                         <span class="text-lg text-gray-700 mb-2">See the route in 3D:</span>
-                        <a href="https://earth.google.com/web/" target="_blank" class="btn-secondary px-6 py-3 rounded-full text-lg font-semibold border-blue-400 text-blue-700 hover:bg-blue-100 transition">View in Google Earth</a>
+                        <a href="https://earth.google.com/web/" target="_blank" class="btn-secondary px-6 py-3 rounded-full text-lg font-semibold border-blue-400 text-blue-700 hover:bg-blue-100 transition flex items-center gap-2">
+                            <span>🌍</span> Google Earth
+                        </a>
                     </div>
                 </div>
             </div>
