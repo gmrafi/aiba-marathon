@@ -11,27 +11,62 @@
     </style>
 </head>
 <body class="antialiased">
-    <header class="bg-white shadow-2xl py-4 sticky top-0 z-50 rounded-b-3xl border-b-4 border-blue-200/60">
-        <div class="container max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-2">
-            <div class="flex items-center gap-4">
-                <a href="index.html">
-                    <img src="https://placehold.co/60x60/10b981/ffffff?text=EVENT" alt="Event Logo" class="h-12 w-12 rounded-full border-2 border-green-400 shadow">
-                </a>
-                <span class="text-2xl font-extrabold text-blue-700">Justice Half Marathon 2025</span>
+    <header class="bg-white shadow-2xl py-4 sticky top-0 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-blue-200/60">
+        <div class="container mx-auto px-3 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-2">
+            <!-- Logo & Title Row -->
+            <div class="flex flex-col sm:flex-row items-center w-full md:w-auto gap-2 sm:gap-6">
+                <div class="flex items-center justify-center w-full sm:w-auto gap-2 sm:gap-4">
+                    <!-- Event Logo -->
+                    <div class="bg-gradient-to-br from-green-200 to-green-400 rounded-full p-1 shadow-xl border-2 border-green-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 transition-transform hover:scale-105">
+                        <img src="https://placehold.co/60x60/10b981/ffffff?text=EVENT" alt="Event Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                    </div>
+                    <!-- AIBA Logo -->
+                    <div class="bg-gradient-to-br from-blue-200 to-blue-400 rounded-full p-1 shadow-xl border-2 border-blue-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 transition-transform hover:scale-105">
+                        <img src="https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/278532794_5085432114874717_3862006818247521526_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFTAJfXhTCVYhALKAcWaijDQu_ubkdh0mZC7-5uR2HSZqCzNsGY6h7Uype4N8kfFDlV-SKhVjoUUrERMVvZ5Qjo&_nc_ohc=awqcbuD-K18Q7kNvwGu8YHl&_nc_oc=AdlPJd-rlMyhIX0vHZ6CiucGeXxDEPCB3dRStBr50LQNxVq_OhrlVddQqEKGdXOFbgs&_nc_zt=23&_nc_ht=scontent.fdac138-1.fna&_nc_gid=kPQJD9E-hTFYckL-uDSdRQ&oh=00_AfOFlfrLeVeskQhe9eb0ZvrSSmBZlA9iAiuKqExoJoMPmA&oe=686DE8E6" alt="AIBA Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                    </div>
+                    <!-- Club Logo -->
+                    <div class="bg-gradient-to-br from-orange-200 to-orange-400 rounded-full p-1 shadow-xl border-2 border-orange-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 transition-transform hover:scale-105">
+                        <img src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-1/468142413_122096410568646467_8325132574467573472_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeH7ObWg7E62fq2bjV-tfpzirchP8Y3Y38ytyE_xjdjfzKZS42twh8Yhk-sUJxp-BjT4QQhzR-Mjcu2AB1brSLwE&_nc_ohc=gmEWi18gS5IQ7kNvwHIXjcp&_nc_oc=AdnWIpICP32cEf2gCWLwKErjE4O1S0rKe4ISwriqb5oeCj07kvPaq0rLckMzaqnGeIA&_nc_zt=24&_nc_ht=scontent.fdac138-2.fna&_nc_gid=uC2oJyw2DRm2KMKnodPjkQ&oh=00_AfMe53qFdnBZe4YrmP1DzjjX_zY3mQZwTawX4uVQV1V4ow&oe=686DE4B3" alt="Club Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                    </div>
+                </div>
+                <div class="mt-3 sm:mt-0 sm:ml-6 w-full sm:w-auto text-center sm:text-left">
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight">Justice Half Marathon <span class="text-blue-700">2025</span></span>
+                    <span class="block text-xs sm:text-base text-blue-700 font-medium tracking-wide">Army IBA Hiking & Trekking Club, Sylhet</span>
+                </div>
             </div>
-            <nav>
-                <ul class="flex space-x-4 text-gray-800 font-semibold">
-                    <li><a href="index.html#home" class="hover:text-blue-700">Home</a></li>
-                    <li><a href="index.html#about" class="hover:text-blue-700">About</a></li>
-                    <li><a href="registration.html" class="text-blue-700 underline">Register</a></li>
-                    <li><a href="index.html#route" class="hover:text-blue-700">Route</a></li>
-                    <li><a href="team.html" class="hover:text-blue-700">Team</a></li>
-                    <li><a href="index.html#contact" class="hover:text-blue-700">Contact</a></li>
+            <!-- Mobile Nav Toggle Button -->
+            <button id="mobile-nav-toggle" class="md:hidden flex items-center justify-center ml-auto mt-4 md:mt-0 p-2 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 shadow-lg border-2 border-blue-400 text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
+                <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path id="mobile-nav-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16"/>
+                </svg>
+            </button>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex w-full md:w-auto justify-center">
+                <ul class="flex flex-wrap justify-center md:justify-center space-x-2 sm:space-x-6 text-gray-900 font-semibold text-base sm:text-lg">
+                    <li><a href="index.html#home" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition duration-200">Home</a></li>
+                    <li><a href="index.html#about" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition duration-200">About</a></li>
+                    <li><a href="registration.html" class="bg-blue-700 text-white px-4 py-2 rounded-xl transition duration-200">Register</a></li>
+                    <li><a href="index.html#route" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition duration-200">Route</a></li>
+                    <li><a href="team.html" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition duration-200">Team</a></li>
+                    <li><a href="index.html#contact" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition duration-200">Contact</a></li>
                 </ul>
             </nav>
         </div>
+        <!-- Mobile Navigation Drawer -->
+        <nav id="mobile-nav" class="fixed top-0 left-0 w-full h-full bg-white/95 z-50 flex flex-col items-center justify-center space-y-8 text-2xl font-bold text-blue-800 transform -translate-y-full transition-transform duration-300 md:hidden shadow-2xl backdrop-blur-lg">
+            <button id="mobile-nav-close" class="absolute top-6 right-6 text-4xl text-blue-700 hover:text-blue-900 focus:outline-none">
+                &times;
+            </button>
+            <div class="flex flex-col items-center w-full">
+                <a href="index.html#home" class="block hover:bg-blue-100 hover:text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">Home</a>
+                <a href="index.html#about" class="block hover:bg-blue-100 hover:text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">About</a>
+                <a href="registration.html" class="block bg-blue-100 text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">Register</a>
+                <a href="index.html#route" class="block hover:bg-blue-100 hover:text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">Route</a>
+                <a href="team.html" class="block hover:bg-blue-100 hover:text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">Team</a>
+                <a href="index.html#contact" class="block hover:bg-blue-100 hover:text-blue-700 px-10 py-4 rounded-xl transition text-center w-full font-semibold text-xl" onclick="closeMobileNav()">Contact</a>
+            </div>
+        </nav>
     </header>
-
     <main class="container max-w-3xl mx-auto px-4 py-16">
         <div class="bg-white rounded-3xl shadow-2xl border-4 border-blue-200 p-8 md:p-12 flex flex-col items-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-center text-blue-800 mb-6">Register Now</h1>
@@ -57,5 +92,25 @@
             <span class="block mt-2 text-blue-400">Design and developed by <b>MD Golam Mubasshir Rafi</b>.</span>
         </div>
     </footer>
+    <script>
+        // Mobile nav toggle
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNavClose = document.getElementById('mobile-nav-close');
+        function openMobileNav() {
+            mobileNav.style.transform = 'translateY(0)';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileNav() {
+            mobileNav.style.transform = 'translateY(-100%)';
+            document.body.style.overflow = '';
+        }
+        mobileNavToggle.addEventListener('click', openMobileNav);
+        mobileNavClose.addEventListener('click', closeMobileNav);
+        // Close nav on link click (for accessibility)
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
+    </script>
 </body>
 </html>
