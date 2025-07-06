@@ -6,6 +6,17 @@
     <title>Justice Half Marathon 2025</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#005840',
+                    },
+                },
+            },
+        }
+    </script>
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -23,7 +34,7 @@
             z-index: 99; /* Ensure it's above other content */
             border: none; /* Remove borders */
             outline: none; /* Remove outline */
-            background-color: #3b82f6; /* More vibrant blue */
+            background-color: #005840; /* Main green */
             color: white; /* White text */
             cursor: pointer; /* Add a mouse pointer on hover */
             padding: 15px; /* Some padding */
@@ -34,7 +45,7 @@
         }
 
         #scrollToTopBtn:hover {
-            background-color: #2563eb; /* Darker blue on hover */
+            background-color: #003c2c; /* Darker green on hover */
             transform: translateY(-3px); /* Slight lift effect */
         }
 
@@ -52,23 +63,23 @@
 
         /* Custom button styles for a more attractive look */
         .btn-primary {
-            background-image: linear-gradient(to right, #3b82f6 0%, #2563eb 100%);
+            background-image: linear-gradient(to right, #005840 0%, #007a5c 100%);
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
         .btn-primary:hover {
-            background-image: linear-gradient(to right, #2563eb 0%, #1d4ed8 100%);
+            background-image: linear-gradient(to right, #007a5c 0%, #003c2c 100%);
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            border: 2px solid #3b82f6;
-            color: #3b82f6;
+            border: 2px solid #005840;
+            color: #005840;
             transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: #3b82f6;
+            background-color: #005840;
             color: white;
             box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
             transform: translateY(-2px);
@@ -92,45 +103,45 @@
     <button id="scrollToTopBtn" title="Go to top">↑</button>
 
     <!-- Header Section -->
-    <header class="bg-white shadow-2xl py-4 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-blue-200/60">
+    <header class="bg-white shadow-2xl py-4 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-main/60">
         <div class="container mx-auto px-3 sm:px-6">
             <!-- Desktop: All logos, name, and menu in a single row for xl and up -->
-            <div class="hidden xl:flex flex-row items-center justify-between w-full gap-8 fixed top-0 left-0 right-0 z-50 bg-white border-b-4 border-blue-200/60 shadow-2xl rounded-b-3xl transition-all duration-300">
+            <div class="hidden xl:flex flex-row items-center justify-between w-full gap-8 fixed top-0 left-0 right-0 z-50 bg-white border-b-4 border-main/60 shadow-2xl rounded-b-3xl transition-all duration-300">
                 <div class="flex flex-row items-center gap-6">
-                    <img src="photos/mini logo 2.jpg" alt="Event Logo" class="h-20 w-auto object-contain shadow-2xl">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-20 w-auto object-contain shadow-2xl">
                     <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-14 w-14 rounded-full object-cover">
                     <img src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-1/468142413_122096410568646467_8325132574467573472_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeH7ObWg7E62fq2bjV-tfpzirchP8Y3Y38ytyE_xjdjfzKZS42twh8Yhk-sUJxp-BjT4QQhzR-Mjcu2AB1brSLwE&_nc_ohc=gmEWi18gS5IQ7kNvwHIXjcp&_nc_oc=AdnWIpICP32cEf2gCWLwKErjE4O1S0rKe4ISwriqb5oeCj07kvPaq0rLckMzaqnGeIA&_nc_zt=24&_nc_ht=scontent.fdac138-2.fna&_nc_gid=uC2oJyw2DRm2KMKnodPjkQ&oh=00_AfMe53qFdnBZe4YrmP1DzjjX_zY3mQZwTawX4uVQV1V4ow&oe=686DE4B3" alt="Club Logo" class="h-14 w-14 rounded-full object-cover">
                 </div>
                 <div class="flex flex-col items-center min-w-[320px]">
-                    <span class="block text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-blue-700">2025</span></span>
-                    <span class="block text-base text-blue-700 font-medium tracking-wide whitespace-nowrap">Army IBA Hiking & Trekking Club, Sylhet</span>
+                    <span class="block text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-main">2025</span></span>
+                    <span class="block text-base text-main font-medium tracking-wide whitespace-nowrap">Army IBA Hiking & Trekking Club, Sylhet</span>
                 </div>
                 <div class="flex flex-row items-center gap-2 text-gray-900 font-semibold text-base">
-                    <a href="#home" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Home</a>
-                    <a href="#about" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">About</a>
-                    <a href="#registration" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Register</a>
-                    <a href="#route" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Route</a>
-                    <a href="team.html" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Team</a>
-                    <a href="#contact" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                    <a href="#home" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                    <a href="#about" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                    <a href="#registration" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                    <a href="#route" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                    <a href="team.html" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                    <a href="#contact" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
                 </div>
             </div>
             <!-- Mobile & Tablet: show same header for all screens below xl, NOT sticky/fixed -->
             <div class="block xl:hidden">
                 <div class="flex flex-col items-center w-full gap-4 py-4">
-                    <img src="photos/mini logo 2.jpg" alt="Event Logo" class="h-28 w-auto sm:h-32 object-contain mb-3 shadow-2xl">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-28 w-auto sm:h-32 object-contain mb-3 shadow-2xl">
                     <div class="flex flex-row items-center justify-center gap-8 w-full mb-2">
                         <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
                         <img src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-1/468142413_122096410568646467_8325132574467573472_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeH7ObWg7E62fq2bjV-tfpzirchP8Y3Y38ytyE_xjdjfzKZS42twh8Yhk-sUJxp-BjT4QQhzR-Mjcu2AB1brSLwE&_nc_ohc=gmEWi18gS5IQ7kNvwHIXjcp&_nc_oc=AdnWIpICP32cEf2gCWLwKErjE4O1S0rKe4ISwriqb5oeCj07kvPaq0rLckMzaqnGeIA&_nc_zt=24&_nc_ht=scontent.fdac138-2.fna&_nc_gid=uC2oJyw2DRm2KMKnodPjkQ&oh=00_AfMe53qFdnBZe4YrmP1DzjjX_zY3mQZwTawX4uVQV1V4ow&oe=686DE4B3" alt="Club Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
                     </div>
-                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-blue-700">2025</span></span>
-                    <span class="block text-xs sm:text-base text-blue-700 font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-main">2025</span></span>
+                    <span class="block text-xs sm:text-base text-main font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
                     <div class="flex flex-wrap justify-center items-center gap-2 text-gray-900 font-semibold text-sm sm:text-base mt-2">
-                        <a href="#home" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Home</a>
-                        <a href="#about" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">About</a>
-                        <a href="#registration" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Register</a>
-                        <a href="#route" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Route</a>
-                        <a href="team.html" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Team</a>
-                        <a href="#contact" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                        <a href="#home" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                        <a href="#about" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                        <a href="#registration" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                        <a href="#route" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                        <a href="team.html" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                        <a href="#contact" class="hover:bg-main hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
                     </div>
                 </div>
             </div>
@@ -139,7 +150,7 @@
     <!-- Mobile Navigation Drawer (removed as per changes) -->
 
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-16 sm:py-24 md:py-40 overflow-hidden rounded-b-3xl shadow-xl">
+    <section id="home" class="relative bg-gradient-to-br from-main to-main/80 text-white py-16 sm:py-24 md:py-40 overflow-hidden rounded-b-3xl shadow-xl">
         <div class="absolute inset-0 opacity-10">
             <!-- Background pattern/texture -->
             <svg class="w-full h-full" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -186,8 +197,8 @@
     <!-- Video Section (moved here, after Hero, before About) -->
     <section class="py-16 bg-white section-fade-in">
         <div class="container mx-auto px-4 flex flex-col items-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-10">Watch Our Promo</h2>
-            <div class="w-full max-w-5xl rounded-3xl border-4 border-blue-300 shadow-2xl bg-gradient-to-br from-blue-100 via-white to-blue-50 p-4 flex justify-center items-center mx-auto">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center text-main mb-10">Watch Our Promo</h2>
+            <div class="w-full max-w-5xl rounded-3xl border-4 border-main shadow-2xl bg-gradient-to-br from-main/10 via-white to-main/5 p-4 flex justify-center items-center mx-auto">
                 <div class="w-full aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden">
                     <iframe 
                         class="w-full h-[400px] md:h-[600px] rounded-2xl"
@@ -204,7 +215,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 md:py-32 bg-gray-100 rounded-2xl mx-auto my-12 section-fade-in">
+    <section id="about" class="py-20 md:py-32 bg-main/5 rounded-2xl mx-auto my-12 section-fade-in">
         <div class="container mx-auto px-4">
             <h2 class="text-5xl font-extrabold text-center text-gray-800 mb-16">About the Event</h2>
             <p class="text-center text-2xl text-gray-700 mb-20 max-w-4xl mx-auto leading-relaxed">
@@ -283,7 +294,7 @@
                     <!-- Add more sponsors as needed -->
                 </div>
                 <p class="text-center text-gray-500 text-sm mt-8">
-                    Interested in sponsoring? <a href="#contact" class="text-blue-600 underline hover:text-blue-800">Contact us</a> for partnership opportunities.
+                    Interested in sponsoring? <a href="#contact" class="text-main underline hover:text-main/80">Contact us</a> for partnership opportunities.
                 </p>
             </div>
         </div>
@@ -297,8 +308,8 @@
                 Registration links will be open soon. Stay tuned!
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                <div class="bg-blue-50 p-10 rounded-2xl shadow-xl border-4 border-blue-200 flex flex-col">
-                    <h3 class="text-3xl font-bold text-blue-700 mb-4">21 KM Half Marathon</h3>
+                <div class="bg-main/5 p-10 rounded-2xl shadow-xl border-4 border-main flex flex-col">
+                    <h3 class="text-3xl font-bold text-main mb-4">21 KM Half Marathon</h3>
                     <ul class="text-lg text-gray-700 mb-4">
                         <li>Open for all (400 slots)</li>
                         <li>Fee: BDT 1050</li>
@@ -321,14 +332,14 @@
                     <button class="btn-primary text-white px-8 py-4 rounded-full text-xl font-semibold w-full shadow-lg opacity-60 cursor-not-allowed" disabled>Registration Coming Soon</button>
                 </div>
             </div>
-            <p class="text-center text-xl text-gray-700 mt-16 p-6 bg-yellow-100 rounded-xl border border-yellow-300 shadow-md">
-                <span class="font-bold text-yellow-800">Note:</span> This marathon is an <b>on-ground event only</b>. Virtual participation is not allowed.
+            <p class="text-center text-xl text-gray-700 mt-16 p-6 bg-main/10 rounded-xl border border-main/40 shadow-md">
+                <span class="font-bold text-main">Note:</span> This marathon is an <b>on-ground event only</b>. Virtual participation is not allowed.
             </p>
         </div>
     </section>
 
     <!-- Race Route Section -->
-    <section id="route" class="py-20 md:py-32 bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-2xl mx-auto my-12 section-fade-in">
+    <section id="route" class="py-20 md:py-32 bg-gradient-to-br from-main/10 via-white to-main/5 rounded-2xl mx-auto my-12 section-fade-in">
         <div class="container max-w-7xl mx-auto px-4">
             <h2 class="text-5xl font-extrabold text-center text-blue-800 mb-10 drop-shadow-lg">🏁 Race Route</h2>
             <p class="text-center text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -337,12 +348,12 @@
             </p>
             <div class="flex flex-col md:flex-row items-center justify-center gap-12 mb-16">
                 <!-- Interactive Map Card -->
-                <div class="relative bg-gradient-to-br from-blue-100 via-white to-blue-50 rounded-3xl shadow-2xl border-4 border-blue-200 p-8 flex-1 flex flex-col items-center hover:scale-[1.03] transition-transform duration-300 overflow-hidden group">
-                    <span class="absolute top-0 right-0 m-4 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce z-20">Live Map</span>
-                    <h3 class="text-3xl font-bold text-blue-700 mb-6 flex items-center gap-2 drop-shadow-lg">
+                <div class="relative bg-gradient-to-br from-main/10 via-white to-main/5 rounded-3xl shadow-2xl border-4 border-main p-8 flex-1 flex flex-col items-center hover:scale-[1.03] transition-transform duration-300 overflow-hidden group">
+                    <span class="absolute top-0 right-0 m-4 bg-main text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce z-20">Live Map</span>
+                    <h3 class="text-3xl font-bold text-main mb-6 flex items-center gap-2 drop-shadow-lg">
                         <span>🗺️</span> Interactive Route Map
                     </h3>
-                    <div class="relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-blue-300 mb-4 group-hover:ring-4 group-hover:ring-blue-200 transition">
+                    <div class="relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-main mb-4 group-hover:ring-4 group-hover:ring-main/30 transition">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2751.0603321220665!2d91.98030180957866!3d24.937762777786613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505287698fbc6f%3A0xae6eb5f58ca5e83!2sArmy%20Institute%20of%20Business%20Administration!5e1!3m2!1sen!2sbd!4v1751718177372!5m2!1sen!2sbd"
                             width="100%" height="400" style="border:0"
@@ -353,7 +364,7 @@
                         <!-- Floating action buttons -->
                         <div class="absolute bottom-4 right-4 flex flex-col gap-3 z-10">
                             <a href="https://maps.app.goo.gl/y2SZeyvAgVkXLymE6" target="_blank"
-                               class="bg-blue-600 hover:bg-blue-800 text-white px-5 py-2 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all duration-200 text-base group-hover:scale-105">
+                               class="bg-main hover:bg-main/80 text-white px-5 py-2 rounded-full shadow-lg font-semibold flex items-center gap-2 transition-all duration-200 text-base group-hover:scale-105">
                                 <span>🌐</span> Full Map
                             </a>
                             <a href="https://earth.google.com/web/" target="_blank"
@@ -366,7 +377,7 @@
                             </a>
                         </div>
                     </div>
-                    <p class="text-blue-700 text-lg mt-2 text-center font-medium animate-pulse">Zoom & interact with the map above!</p>
+                    <p class="text-main text-lg mt-2 text-center font-medium animate-pulse">Zoom & interact with the map above!</p>
                 </div>
                 <!-- Route Steps Card -->
                 <div class="relative bg-gradient-to-br from-yellow-50 via-white to-yellow-100 rounded-3xl shadow-2xl border-4 border-yellow-200 p-8 flex-1 flex flex-col items-center hover:scale-[1.03] transition-transform duration-300 overflow-hidden">
@@ -393,7 +404,7 @@
                     </ol>
                     <div class="mt-10 flex flex-col items-center">
                         <span class="text-lg text-gray-700 mb-2">See the route in 3D:</span>
-                        <a href="https://earth.google.com/web/" target="_blank" class="btn-secondary px-6 py-3 rounded-full text-lg font-semibold border-blue-400 text-blue-700 hover:bg-blue-100 transition flex items-center gap-2">
+                        <a href="https://earth.google.com/web/" target="_blank" class="btn-secondary px-6 py-3 rounded-full text-lg font-semibold border-main text-main hover:bg-main/10 transition flex items-center gap-2">
                             <span>🌍</span> Google Earth
                         </a>
                     </div>
@@ -498,12 +509,12 @@
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-900 text-gray-300 py-16 rounded-t-3xl shadow-inner">
+    <footer class="bg-main text-gray-100 py-16 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
             <!-- Brand Info -->
             <div>
                 <div class="flex items-center mb-6">
-                    <span class="text-5xl mr-4 text-blue-400">🏃</span>
+                    <span class="text-5xl mr-4 text-main/80">🏃</span>
                     <div class="text-2xl font-bold text-white">
                         <span class="block">Justice Half Marathon 2025</span>
                         <span class="block text-base text-gray-400">Army IBA Hiking & Trekking Club, Sylhet</span>
@@ -516,10 +527,10 @@
             <div>
                 <h4 class="text-white font-bold text-xl mb-6">Quick Links</h4>
                 <ul class="space-y-3 text-base">
-                    <li><a href="#home" class="hover:text-blue-400 transition duration-300">Home</a></li>
-                    <li><a href="#about" class="hover:text-blue-400 transition duration-300">About</a></li>
-                    <li><a href="#registration" class="hover:text-blue-400 transition duration-300">Registration</a></li>
-                    <li><a href="#route" class="hover:text-blue-400 transition duration-300">Route</a></li>
+                    <li><a href="#home" class="hover:text-main transition duration-300">Home</a></li>
+                    <li><a href="#about" class="hover:text-main transition duration-300">About</a></li>
+                    <li><a href="#registration" class="hover:text-main transition duration-300">Registration</a></li>
+                    <li><a href="#route" class="hover:text-main transition duration-300">Route</a></li>
                 </ul>
             </div>
 
@@ -537,15 +548,15 @@
             <div>
                 <h4 class="text-white font-bold text-xl mb-6">Follow Us</h4>
                 <div class="flex space-x-6 text-3xl">
-                    <a href="#" class="hover:text-blue-400 transition duration-300" aria-label="Facebook">📘</a>
-                    <a href="#" class="hover:text-blue-400 transition duration-300" aria-label="Instagram">📷</a>
-                    <a href="#" class="hover:text-blue-400 transition duration-300" aria-label="Twitter">🐦</a>
+                    <a href="#" class="hover:text-main transition duration-300" aria-label="Facebook">📘</a>
+                    <a href="#" class="hover:text-main transition duration-300" aria-label="Instagram">📷</a>
+                    <a href="#" class="hover:text-main transition duration-300" aria-label="Twitter">🐦</a>
                 </div>
             </div>
         </div>
         <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
             © 2025 Army Institute of Business Administration - Hiking & Trekking Club. All rights reserved.<br>
-            <span class="block mt-2 text-blue-400">Design and developed by <b>MD Golam Mubasshir Rafi</b>.</span>
+            <span class="block mt-2 text-main/80">Design and developed by <b>MD Golam Mubasshir Rafi</b>.</span>
         </div>
     </footer>
 
