@@ -95,46 +95,37 @@
     <header class="bg-white shadow-2xl py-4 md:sticky md:top-0 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-blue-200/60">
         <div class="container mx-auto px-3 sm:px-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-4">
-                <!-- Logos -->
-                <div class="flex items-center justify-center gap-2 sm:gap-4 w-full md:w-auto">
-                    <div class="bg-gradient-to-br from-green-200 to-green-400 rounded-full p-1 shadow-xl border-2 border-green-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16">
-                        <img src="https://placehold.co/60x60/10b981/ffffff?text=EVENT" alt="Event Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                <!-- Logos: Responsive, all in one row on desktop, stacked on mobile -->
+                <div class="flex flex-col md:flex-row md:items-center md:gap-8 w-full">
+                    <!-- Mobile: Event logo on top, then two logos below -->
+                    <div class="flex flex-col md:flex-row items-center w-full md:w-auto">
+                        <div class="flex flex-col md:flex-row items-center w-full md:w-auto">
+                            <img src="photos/mini logo 2.jpg" alt="Event Logo" class="h-28 w-auto sm:h-32 sm:w-auto object-contain mb-3 md:mb-0 md:h-20 md:w-auto md:mr-8 shadow-2xl">
+                            <div class="flex flex-row items-center justify-center gap-8 w-full md:w-auto md:gap-6">
+                                <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-16 w-16 sm:h-20 sm:w-20 md:h-14 md:w-14 rounded-full object-cover">
+                                <img src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-1/468142413_122096410568646467_8325132574467573472_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeH7ObWg7E62fq2bjV-tfpzirchP8Y3Y38ytyE_xjdjfzKZS42twh8Yhk-sUJxp-BjT4QQhzR-Mjcu2AB1brSLwE&_nc_ohc=gmEWi18gS5IQ7kNvwHIXjcp&_nc_oc=AdnWIpICP32cEf2gCWLwKErjE4O1S0rKe4ISwriqb5oeCj07kvPaq0rLckMzaqnGeIA&_nc_zt=24&_nc_ht=scontent.fdac138-2.fna&_nc_gid=uC2oJyw2DRm2KMKnodPjkQ&oh=00_AfMe53qFdnBZe4YrmP1DzjjX_zY3mQZwTawX4uVQV1V4ow&oe=686DE4B3" alt="Club Logo" class="h-16 w-16 sm:h-20 sm:w-20 md:h-14 md:w-14 rounded-full object-cover">
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-gradient-to-br from-blue-200 to-blue-400 rounded-full p-1 shadow-xl border-2 border-blue-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16">
-                        <img src="https://scontent.fdac138-1.fna.fbcdn.net/v/t39.30808-6/278532794_5085432114874717_3862006818247521526_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFTAJfXhTCVYhALKAcWaijDQu_ubkdh0mZC7-5uR2HSZqCzNsGY6h7Uype4N8kfFDlV-SKhVjoUUrERMVvZ5Qjo&_nc_ohc=awqcbuD-K18Q7kNvwGu8YHl&_nc_oc=AdlPJd-rlMyhIX0vHZ6CiucGeXxDEPCB3dRStBr50LQNxVq_OhrlVddQqEKGdXOFbgs&_nc_zt=23&_nc_ht=scontent.fdac138-1.fna&_nc_gid=kPQJD9E-hTFYckL-uDSdRQ&oh=00_AfOFlfrLeVeskQhe9eb0ZvrSSmBZlA9iAiuKqExoJoMPmA&oe=686DE8E6" alt="AIBA Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                    <!-- Title & Subtitle -->
+                    <div class="flex flex-col items-center md:items-start md:ml-8 flex-1 min-w-0 mt-4 md:mt-0">
+                        <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-blue-700">2025</span></span>
+                        <span class="block text-xs sm:text-base text-blue-700 font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
                     </div>
-                    <div class="bg-gradient-to-br from-orange-200 to-orange-400 rounded-full p-1 shadow-xl border-2 border-orange-400 flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16">
-                        <img src="https://scontent.fdac138-2.fna.fbcdn.net/v/t39.30808-1/468142413_122096410568646467_8325132574467573472_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeH7ObWg7E62fq2bjV-tfpzirchP8Y3Y38ytyE_xjdjfzKZS42twh8Yhk-sUJxp-BjT4QQhzR-Mjcu2AB1brSLwE&_nc_ohc=gmEWi18gS5IQ7kNvwHIXjcp&_nc_oc=AdnWIpICP32cEf2gCWLwKErjE4O1S0rKe4ISwriqb5oeCj07kvPaq0rLckMzaqnGeIA&_nc_zt=24&_nc_ht=scontent.fdac138-2.fna&_nc_gid=uC2oJyw2DRm2KMKnodPjkQ&oh=00_AfMe53qFdnBZe4YrmP1DzjjX_zY3mQZwTawX4uVQV1V4ow&oe=686DE4B3" alt="Club Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover">
+                    <!-- Menu: always visible, two rows on mobile, one row on desktop -->
+                    <div class="flex flex-col w-full items-center gap-2 mt-4 md:mt-0 md:flex-row md:justify-end md:items-center md:w-auto">
+                        <div class="flex flex-wrap justify-center md:justify-end items-center gap-2 md:gap-2 md:flex-nowrap md:space-x-2 text-gray-900 font-semibold text-sm sm:text-base">
+                            <a href="index.html#home" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                            <a href="index.html#about" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                            <a href="registration.html" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                            <a href="index.html#route" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                            <a href="team.html" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                            <a href="index.html#contact" class="hover:bg-blue-700 hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Title & Subtitle -->
-                <div class="flex flex-col items-center w-full md:w-auto">
-                    <span class="block text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg text-center">Justice Half Marathon 2025</span>
-                    <span class="block text-xs sm:text-base text-blue-700 font-medium tracking-wide text-center">Army IBA Hiking & Trekking Club, Sylhet</span>
-                    <!-- Menu for mobile: two rows, centered -->
-                    <ul class="flex flex-wrap justify-center gap-x-2 gap-y-2 mt-4 md:hidden text-gray-900 font-semibold text-sm sm:text-base">
-                        <li><a href="index.html#home" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Home</a></li>
-                        <li><a href="index.html#about" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">About</a></li>
-                        <li><a href="index.html#registration" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Register</a></li>
-                        <li><a href="index.html#route" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Route</a></li>
-                        <li><a href="team.html" class="bg-blue-700 text-white px-3 py-2 rounded-xl transition">Team</a></li>
-                        <li><a href="index.html#contact" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Contact</a></li>
-                    </ul>
-                </div>
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex w-full md:w-auto justify-center">
-                    <ul class="flex flex-wrap justify-center md:justify-center space-x-2 sm:space-x-6 text-gray-900 font-semibold text-sm sm:text-base">
-                        <li><a href="index.html#home" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Home</a></li>
-                        <li><a href="index.html#about" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">About</a></li>
-                        <li><a href="index.html#registration" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Register</a></li>
-                        <li><a href="index.html#route" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Route</a></li>
-                        <li><a href="team.html" class="bg-blue-700 text-white px-3 py-2 rounded-xl transition">Team</a></li>
-                        <li><a href="index.html#contact" class="hover:bg-blue-700 hover:text-white px-3 py-2 rounded-xl transition">Contact</a></li>
-                    </ul>
-                </nav>
             </div>
-        </div>
-    </header>
+        </header>
     <main class="container mx-auto px-4 py-12">
         <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-10">Meet Our Team</h1>
 
