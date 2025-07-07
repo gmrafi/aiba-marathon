@@ -75,19 +75,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h1 class="text-4xl md:text-5xl font-extrabold text-center text-[#005840] mb-6">Register Now</h1>
             <div class="w-full max-w-2xl mx-auto mb-8 p-6 bg-[#005840] bg-opacity-10 border-2 border-[#005840] rounded-2xl shadow-md">
                 <h2 class="text-2xl font-bold text-[#005840] mb-3">Payment</h2>
-                <p class="text-base text-gray-800 mb-2">Send your registration fee to</p>
-                <ul class="mb-2">
-                    <li class="text-lg font-semibold text-[#005840]">bKash Number: <span class="font-mono">016000000</span> <span class="text-xs text-gray-600">(Personal)</span></li>
-                    <li class="text-lg font-semibold text-[#005840]">Nagad Number: <span class="font-mono">016000000</span> <span class="text-xs text-gray-600">(Personal)</span></li>
-                </ul>
-                <p class="text-sm text-gray-700">After sending money, fill out the form field below with your payment information.<br><span class="font-semibold text-[#005840]">Pay first and then fill up the form.</span></p>
+                <ol class="list-decimal ml-6 text-base text-gray-800 mb-2 space-y-2">
+                    <li>Fill out the Google registration form below with your details.<br><span class="text-sm text-gray-600">নিচের গুগল ফর্মটি সঠিকভাবে পূরণ করুন।</span></li>
+                    <li>After submitting the form, you will be automatically redirected to the payment page.<br><span class="text-sm text-gray-600">ফর্ম সাবমিট করার পর আপনাকে স্বয়ংক্রিয়ভাবে পেমেন্ট পেজে নিয়ে যাওয়া হবে।</span></li>
+                    <li>On the payment page, enter your <b>email</b> and <b>full name</b> exactly as you did in the Google form.<br><span class="text-sm text-gray-600">পেমেন্ট পেজে আপনার <b>ইমেইল</b> ও <b>পূর্ণ নাম</b> গুগল ফর্মে যেভাবে দিয়েছেন, ঠিক সেভাবে লিখুন।</span></li>
+                    <li>Complete your payment to finish your registration.<br><span class="text-sm text-gray-600">পেমেন্ট সম্পন্ন করলেই আপনার রেজিস্ট্রেশন শেষ হবে।</span></li>
+                </ol>
+                <p class="text-sm text-gray-700 mt-2">If you are not redirected, please contact the event organizers for assistance.<br><span class="text-sm text-gray-600">যদি স্বয়ংক্রিয়ভাবে পেমেন্ট পেজে না যান, তাহলে আয়োজকদের সাথে যোগাযোগ করুন।</span></p>
             </div>
             <p class="text-lg text-gray-700 text-center mb-10 max-w-2xl">
                 Secure your spot for the <span class="font-bold text-[#005840]">Justice Half Marathon 2025</span>! Please fill out the registration form below. We look forward to seeing you at the starting line!
             </p>
             <div class="w-full flex justify-center">
-                <div class="w-full" style="min-width:320px;max-width:700px;">
-                    <iframe width="640px" height="1000px" src="https://docs.google.com/forms/d/e/1FAIpQLSeymfaOolfUN8jooc0egbtXh_WRyTkKHf751e5aQKkjEtQdQw/viewform?usp=dialog" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+                <div class="w-full max-w-[700px] min-w-[320px] aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border border-[#005840] bg-white">
+                    <iframe id="gform" class="w-full h-full min-h-[600px]" src="https://docs.google.com/forms/d/e/1FAIpQLSeymfaOolfUN8jooc0egbtXh_WRyTkKHf751e5aQKkjEtQdQw/viewform?usp=dialog" frameborder="0" marginwidth="0" marginheight="0" style="border: none;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -99,5 +100,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="">Design and developed by <b>MD Golam Mubasshir Rafi</b>.</span>
         </div>
     </footer>
+
+    <script>
+var load = 0;
+
+document.getElementById('gform').onload = function(){
+    /*Execute on every reload on iFrame*/
+    load++;
+    if(load > 1){
+        /*Second reload is a submit*/
+        document.location = "https://shop.bkash.com/mubasshir-rafi-automation01300/pay/bdt10/Rq6XzA";
+    }
+}
+</script>
 </body>
 </html>
