@@ -108,6 +108,40 @@
                 padding-bottom: 0.25rem !important;
             }
         }
+        /* Replace all blue, green, yellow, pink, indigo, purple, orange, cyan, and gray border colors in team sections with the main green (#005840) */
+        .border-blue-200,
+        .border-green-300,
+        .border-yellow-300,
+        .border-pink-300,
+        .border-indigo-300,
+        .border-purple-300,
+        .border-orange-300,
+        .border-cyan-300,
+        .border-gray-400 {
+            border-color: #005840 !important;
+        }
+        /* Update section titles to use the main green */
+        h2.text-blue-700 {
+            color: #005840 !important;
+        }
+        /* Update text-main utility if used */
+        .text-main {
+            color: #005840 !important;
+        }
+        /* Update hover backgrounds for nav links to use main green */
+        .hover\:bg-blue-700:hover {
+            background-color: #005840 !important;
+        }
+        .text-blue-700 {
+            color: #005840 !important;
+        }
+        .border-blue-200\/60 {
+            border-color: #00584099 !important;
+        }
+        /* Update any shadow or gradient if needed */
+        .shadow-lg, .shadow-2xl {
+            box-shadow: 0 4px 15px rgba(0, 88, 64, 0.15), 0 6px 20px rgba(0, 88, 64, 0.10);
+        }
     </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
