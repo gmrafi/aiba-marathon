@@ -8,6 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background: #f0f4f8; }
+        
+@media (max-width: 1279px) {
+    header .flex.flex-col.items-center.w-full.gap-4.py-4 {
+        gap: 0.5rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    header .flex.flex-row.items-center.justify-center.gap-8.w-full.mb-2 {
+        gap: 1.5rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    header .block.text-2xl.sm\:text-3xl.font-extrabold {
+        margin-bottom: 0.25rem !important;
+    }
+    header .block.text-xs.sm\:text-base.text-main.font-medium {
+        margin-bottom: 0.25rem !important;
+    }
+}
+@media (max-width: 640px) and (orientation: landscape) {
+    header .flex.flex-col.items-center.w-full.gap-4.py-4 {
+        gap: 0.25rem !important;
+        padding-top: 0.25rem !important;
+        padding-bottom: 0.25rem !important;
+    }
+}
     </style>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
