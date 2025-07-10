@@ -114,7 +114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="bg-white rounded-3xl shadow-2xl border-4 border-[#005840] p-8 md:p-12 flex flex-col items-center">
             <h1 class="text-4xl md:text-5xl font-extrabold text-center text-[#005840] mb-6">Register Now</h1>
             <div class="w-full max-w-2xl mx-auto mb-8 p-6 bg-[#005840] bg-opacity-10 border-2 border-[#005840] rounded-2xl shadow-md">
-                <h2 class="text-2xl font-bold text-[#005840] mb-3">Payment</h2>
+                <h2 class="text-2xl font-bold text-[#005840] mb-3">Send money</h2>
                 <p class="text-base text-gray-800 mb-2">Send your registration fee to</p>
                 <ul class="mb-2">
                     <li class="text-lg font-semibold text-[#005840]">bKash Number: <span class="font-mono">01757763615</span> <span class="text-xs text-gray-600">(Personal)</span></li>
@@ -174,9 +174,15 @@ function checkPayment() {
   }
   document.getElementById('paymentStatus').innerText = 'Checking...';
   fetch('https://script.google.com/macros/s/AKfycbw72zbyfjvPaUn6vOozm9Z1ohPdznktFUhWxMy2INjp8G5m1l4xQxzaHp6Pq87fzKL-/exec?txn=' + encodeURIComponent(txn))
-    .then(res => res.text())
-    .then(status => {
-      document.getElementById('paymentStatus').innerText = status;
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "verified") {
+        document.getElementById('paymentStatus').innerHTML = `Dear <span style="color:#005840;font-weight:bold">${data.name}</span>, your payment is <span style="color:#005840;font-weight:bold">verified</span>!`;
+      } else if (data.status === "pending") {
+        document.getElementById('paymentStatus').innerHTML = `ডিয়ার <span style="color:#005840;font-weight:bold">${data.name}</span>, আপনার ভেরিফিকেশন প্রক্রিয়াধীন আছে।`;
+      } else {
+        document.getElementById('paymentStatus').innerHTML = 'No record found for this Transaction ID.';
+      }
     })
     .catch(() => {
       document.getElementById('paymentStatus').innerText = 'Error checking payment.';
