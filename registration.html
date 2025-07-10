@@ -131,6 +131,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </div>
+        <div class="mt-10 w-full max-w-md mx-auto bg-white border-2 border-[#005840] rounded-2xl p-6 shadow-lg">
+          <h3 class="text-xl font-bold text-[#005840] mb-2">Payment Verification</h3>
+          <input id="txnInput" type="text" placeholder="Enter Transaction ID" class="w-full border rounded px-3 py-2 mb-3" />
+          <button onclick="checkPayment()" class="bg-[#005840] text-white px-4 py-2 rounded font-bold w-full">Check Payment Status</button>
+          <div id="paymentStatus" class="mt-3 text-center font-semibold"></div>
+        </div>
     </main>
 
     <footer class="bg-[#005840] text-gray-100 py-10 mt-16 rounded-t-3xl shadow-inner">
@@ -159,5 +165,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         }
     </style>
+    <script>
+function checkPayment() {
+  const txn = document.getElementById('txnInput').value.trim();
+  if (!txn) {
+    document.getElementById('paymentStatus').innerText = 'Please enter a Transaction ID.';
+    return;
+  }
+  document.getElementById('paymentStatus').innerText = 'Checking...';
+  fetch('https://script.google.com/macros/s/AKfycbw72zbyfjvPaUn6vOozm9Z1ohPdznktFUhWxMy2INjp8G5m1l4xQxzaHp6Pq87fzKL-/exec?txn=' + encodeURIComponent(txn))
+    .then(res => res.text())
+    .then(status => {
+      document.getElementById('paymentStatus').innerText = status;
+    })
+    .catch(() => {
+      document.getElementById('paymentStatus').innerText = 'Error checking payment.';
+    });
+}
+</script>
 </body>
 </html>
