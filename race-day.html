@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Race Day Info | Justice Half Marathon 2025</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="photos/aiba.jpg">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #f0f4f8; }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK9Z5DRC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Header Section (same as other pages) -->
+    <header class="bg-white shadow-2xl py-4 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-[#005840]/60">
+        <div class="container mx-auto px-3 sm:px-6">
+            <div class="flex flex-col xl:flex-row items-center justify-between w-full gap-6 xl:gap-8">
+                <div class="flex flex-row items-center gap-4 xl:gap-6 mb-2 xl:mb-0">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-16 sm:h-20 w-auto object-contain shadow-2xl">
+                    <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-10 sm:h-14 w-10 sm:w-14 rounded-full object-cover">
+                    <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-10 sm:h-14 w-10 sm:w-14 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col items-center min-w-[220px] xl:min-w-[320px] mb-2 xl:mb-0">
+                    <span class="block text-xl sm:text-2xl xl:text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-xs sm:text-base text-[#005840] font-medium tracking-wide whitespace-nowrap">Army IBA Hiking & Trekking Club, Sylhet</span>
+                </div>
+                <nav class="flex flex-wrap justify-center items-center gap-2 text-gray-900 font-semibold text-sm sm:text-base xl:text-base">
+                    <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                    <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                    <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                    <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                    <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                    <a href="notices.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Notices</a>
+                    <a href="race-day.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Race Day Info</a>
+                    <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="flex-1 container max-w-2xl mx-auto px-4 py-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#005840] mb-6 flex items-center gap-2">
+        <svg class="w-8 h-8 text-[#005840]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Race Day Participant Lookup
+      </h2>
+      <div class="bg-white border-2 border-[#005840] rounded-2xl shadow-lg p-6 mb-8">
+        <form id="lookupForm" class="flex flex-col sm:flex-row gap-4 items-center justify-center mb-4" onsubmit="return lookupParticipant(event)">
+          <input id="phoneInput" type="text" required pattern="[0-9]{10,15}" maxlength="15" placeholder="Enter your phone number" class="border border-[#005840] rounded-lg px-4 py-2 w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-[#005840]" />
+          <button type="submit" class="bg-[#005840] text-white font-bold px-6 py-2 rounded-lg shadow hover:bg-[#00b894] transition">Check Info</button>
+        </form>
+        <div id="lookupResult" class="mt-6"></div>
+      </div>
+      <div class="bg-[#e0f7ef] border-l-4 border-[#005840] rounded-xl p-4 mb-8">
+        <b>How does this work?</b>
+        <ul class="list-disc pl-6 mt-2 text-gray-700 text-sm">
+          <li>Enter your registered phone number to view your race day details.</li>
+          <li>All data is securely fetched from our Google Sheet (real-time).</li>
+          <li>If you face any issue, contact the organizers at the help desk.</li>
+        </ul>
+      </div>
+      <div class="text-center mt-8">
+        <a href="registration.html" class="inline-block bg-[#005840] text-white font-bold px-6 py-3 rounded-xl shadow hover:bg-[#00b894] transition">Back to Registration</a>
+      </div>
+    </main>
+    <footer class="bg-[#005840] text-gray-100 py-10 mt-16 rounded-t-3xl shadow-inner">
+      <div class="container mx-auto px-4 text-center">
+        <p>© 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.</p>
+        <span class="block mt-2 text-blue-400">Design and developed by <b><a href="https://me.gmrafi.com/" target="_blank" rel="noopener" class="underline hover:text-white transition">MD Golam Mubasshir Rafi</a></b>.</span>
+      </div>
+    </footer>
+    <style>
+      @keyframes fadeIn { from { opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+      .animate-fadeIn { animation: fadeIn 0.5s cubic-bezier(.4,0,.2,1); }
+    </style>
+    <script>
+function lookupParticipant(e) {
+  if (e) e.preventDefault();
+  var phone = document.getElementById('phoneInput').value.trim();
+  var resultDiv = document.getElementById('lookupResult');
+  if (!phone.match(/^[0-9]{10,15}$/)) {
+    resultDiv.innerHTML = '<span class="text-red-600 font-semibold">Please enter a valid phone number.</span>';
+    return false;
+  }
+  resultDiv.innerHTML = '<span class="text-[#005840] font-semibold">Searching...</span>';
+  // DEMO: Always show a sample participant info for any phone number
+  setTimeout(function() {
+    var resultDiv2 = document.getElementById('lookupResult');
+    if (!resultDiv2) return;
+    resultDiv2.innerHTML = `
+      <div id='participantCard' class='bg-[#f0f4f8] border-2 border-[#005840] rounded-xl p-5 animate-fadeIn'>
+        <h3 class='text-xl font-bold text-[#005840] mb-2'>John Doe</h3>
+        <div class='grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-800 text-base'>
+          <div><b>Bib Number:</b> <span class='text-[#005840] font-bold'>AIBA-2025-123</span></div>
+          <div><b>Category:</b> 10 KM Long Run</div>
+          <div><b>T-Shirt Size:</b> M</div>
+          <div><b>Payment:</b> <span class='text-green-600 font-bold'>Yes</span></div>
+          <div><b>Phone:</b> ${phone}</div>
+          <div><b>Gender:</b> Male</div>
+          <div><b>Date of Birth:</b> 2000-01-01</div>
+          <div><b>Student ID:</b> 20251234</div>
+          <div><b>Transaction ID:</b> TXN123456789</div>
+          <div><b>Registered At:</b> 2025-07-10 14:23:11</div>
+          <div><b>Race Starting Point:</b> Army IBA Main Gate, Sylhet Cantonment</div>
+        </div>
+     </div>
+    `;
+  }, 500);
+  return false;
+}
+</script>
+</body>
+</html>
