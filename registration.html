@@ -181,6 +181,119 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </main>
 
+<!-- Floating Action Button (FAB) -->
+<button id="fab" onclick="toggleFabMenu()" class="fixed bottom-7 right-7 z-[9999] bg-gradient-to-br from-[#005840] to-[#00b894] text-white rounded-full shadow-2xl w-16 h-16 flex items-center justify-center text-3xl hover:scale-110 transition-all duration-300 focus:outline-none">
+  <span id="fabIcon">☰</span>
+</button>
+<div id="fabMenu" class="fixed bottom-28 right-7 z-[9999] hidden flex-col gap-3">
+  <button onclick="openChecklist()" class="bg-white border-2 border-[#005840] text-[#005840] font-bold rounded-xl px-5 py-2 shadow-lg hover:bg-[#005840] hover:text-white transition">Checklist</button>
+  <button onclick="openGuide()" class="bg-white border-2 border-[#005840] text-[#005840] font-bold rounded-xl px-5 py-2 shadow-lg hover:bg-[#005840] hover:text-white transition">Event Guide</button>
+</div>
+<script>
+function toggleFabMenu() {
+  const menu = document.getElementById('fabMenu');
+  menu.classList.toggle('hidden');
+  document.getElementById('fabIcon').textContent = menu.classList.contains('hidden') ? '☰' : '✕';
+}
+window.addEventListener('click', function(e) {
+  if(!document.getElementById('fab').contains(e.target) && !document.getElementById('fabMenu').contains(e.target)) {
+    document.getElementById('fabMenu').classList.add('hidden');
+    document.getElementById('fabIcon').textContent = '☰';
+  }
+});
+</script>
+
+<!-- Event Day Checklist Modal -->
+<div id="checklistModal" class="fixed inset-0 z-[99999] bg-black/40 flex items-center justify-center hidden">
+  <div class="bg-white rounded-3xl border-4 border-[#005840] shadow-2xl p-8 w-full max-w-md relative animate-fadeIn">
+    <button onclick="closeChecklist()" class="absolute top-3 right-3 text-2xl text-[#005840] font-bold hover:text-red-500">✕</button>
+    <h3 class="text-2xl font-bold text-[#005840] mb-4 flex items-center gap-2"><svg class="w-7 h-7 text-[#005840]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Event Day Checklist</h3>
+    <div class="mb-4">
+      <div class="w-full bg-gray-200 rounded-full h-3 mb-2">
+        <div id="checklistProgress" class="bg-gradient-to-r from-[#005840] to-[#00b894] h-3 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+      <span id="checklistMotivation" class="block text-sm text-[#005840] font-semibold text-center mb-2"></span>
+    </div>
+    <ul id="checklist" class="mb-4 space-y-3">
+      <li><label class="flex items-center gap-2"><input type="checkbox" class="accent-[#005840]"/> Bib Collected</label></li>
+      <li><label class="flex items-center gap-2"><input type="checkbox" class="accent-[#005840]"/> Race Kit Ready</label></li>
+      <li><label class="flex items-center gap-2"><input type="checkbox" class="accent-[#005840]"/> Hydrated</label></li>
+      <li><label class="flex items-center gap-2"><input type="checkbox" class="accent-[#005840]"/> Warm-up Done</label></li>
+      <li><label class="flex items-center gap-2"><input type="checkbox" class="accent-[#005840]"/> Emergency Contact Saved</label></li>
+    </ul>
+    <button onclick="resetChecklist()" class="w-full bg-[#005840] text-white rounded-lg py-2 font-semibold hover:bg-[#00b894] transition">Reset Checklist</button>
+  </div>
+</div>
+<script>
+const checklistItems = document.querySelectorAll('#checklistModal #checklist input[type="checkbox"]');
+const progressBar = document.getElementById('checklistProgress');
+const motivation = document.getElementById('checklistMotivation');
+const quotes = [
+  'You are unstoppable! 🏃‍♂️',
+  'Almost there, keep going!',
+  'Great job! Stay hydrated.',
+  'Ready to conquer the race!',
+  'Finish strong, champion!'
+];
+function updateChecklist() {
+  let checked = 0;
+  checklistItems.forEach((cb,i)=>{
+    if(cb.checked) checked++;
+    localStorage.setItem('jhm_check_'+i, cb.checked ? '1' : '0');
+  });
+  const percent = Math.round((checked/checklistItems.length)*100);
+  progressBar.style.width = percent+'%';
+  motivation.textContent = quotes[checked] || 'Let\'s get started!';
+}
+checklistItems.forEach((cb,i)=>{
+  cb.checked = localStorage.getItem('jhm_check_'+i)==='1';
+  cb.addEventListener('change', updateChecklist);
+});
+updateChecklist();
+function resetChecklist() {
+  checklistItems.forEach((cb,i)=>{
+    cb.checked = false;
+    localStorage.setItem('jhm_check_'+i,'0');
+  });
+  updateChecklist();
+}
+function openChecklist() {
+  document.getElementById('checklistModal').classList.remove('hidden');
+}
+function closeChecklist() {
+  document.getElementById('checklistModal').classList.add('hidden');
+}
+</script>
+
+<!-- Event Guide Modal -->
+<div id="guideModal" class="fixed inset-0 z-[99999] bg-black/40 flex items-center justify-center hidden">
+  <div class="bg-white rounded-3xl border-4 border-[#005840] shadow-2xl p-8 w-full max-w-lg relative animate-fadeIn">
+    <button onclick="closeGuide()" class="absolute top-3 right-3 text-2xl text-[#005840] font-bold hover:text-red-500">✕</button>
+    <h3 class="text-2xl font-bold text-[#005840] mb-4 flex items-center gap-2"><svg class="w-7 h-7 text-[#005840]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 17l4 4 8-8"/></svg>Event Guide</h3>
+    <ul class="list-disc pl-6 space-y-2 text-gray-800 text-base mb-4">
+      <li>Arrive at least 30 minutes before the start time.</li>
+      <li>Bring your registration slip and ID card.</li>
+      <li>Follow the route markers and volunteers.</li>
+      <li>Use water points and medical help if needed.</li>
+      <li>Enjoy the run and cheer for others!</li>
+    </ul>
+    <a href="https://drive.google.com/uc?export=download&id=1QwQwQwQwQwQwQwQwQwQwQwQwQwQwQwQ" target="_blank" class="block w-full text-center bg-[#005840] text-white rounded-lg py-2 font-semibold hover:bg-[#00b894] transition">Download Full Guide (PDF)</a>
+  </div>
+</div>
+<script>
+function openGuide() {
+  document.getElementById('guideModal').classList.remove('hidden');
+}
+function closeGuide() {
+  document.getElementById('guideModal').classList.add('hidden');
+}
+</script>
+
+<style>
+@keyframes fadeIn { from { opacity:0; transform:scale(0.95);} to {opacity:1; transform:scale(1);} }
+.animate-fadeIn { animation: fadeIn 0.3s cubic-bezier(.4,0,.2,1); }
+</style>
+
     <footer class="bg-[#005840] text-gray-100 py-10 mt-16 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-4 text-center">
             <p>© 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.</p>
