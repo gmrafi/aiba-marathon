@@ -179,7 +179,7 @@ function checkPayment() {
       if (data.status === "verified") {
         document.getElementById('paymentStatus').innerHTML = `Dear <span style="color:#005840;font-weight:bold">${data.name}</span>, your payment is <span style="color:#005840;font-weight:bold">verified</span>!`;
       } else if (data.status === "pending") {
-        document.getElementById('paymentStatus').innerHTML = `ডিয়ার <span style="color:#005840;font-weight:bold">${data.name}</span>, আপনার ভেরিফিকেশন প্রক্রিয়াধীন আছে।`;
+        document.getElementById('paymentStatus').innerHTML = `Dear <span style="color:#005840;font-weight:bold">${data.name}</span>, your verification is <span style="color:#005840;font-weight:bold">pending</span>.`;
       } else {
         document.getElementById('paymentStatus').innerHTML = 'No record found for this Transaction ID.';
       }
