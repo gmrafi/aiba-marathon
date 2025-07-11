@@ -79,7 +79,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h2 class="text-4xl md:text-5xl font-extrabold text-[#005840] drop-shadow-lg mb-2 tracking-tight">Justice Half Marathon 2025</h2>
                 <div class="mx-auto max-w-2xl bg-gradient-to-r from-[#e0f7ef] via-white to-[#e0f7ef] border-2 border-[#005840] rounded-2xl shadow-lg p-5 md:p-7">
                     <p class="text-lg md:text-xl text-gray-800 font-medium mb-2">Organized by the <span class="font-bold text-[#005840]">Army IBA Hiking & Trekking Club</span>, this is the <span class="font-bold text-[#005840]">first-ever national marathon</span> hosted by our institute and we’re inviting runners from all over the country to be a part of something meaningful, energetic, and unforgettable.</p>
-                    <p class="text-base text-gray-700 mt-2">Whether you're a seasoned runner, a student, or just looking to have fun — there's a category for everyone!</p>
+                    <p class="text-base text-gray-700 mt-2">Event Date: <b>12th September, 2025</b></p>
+                    <div id="countdown" class="flex justify-center gap-4 mt-4 text-center">
+                        <div class="bg-[#005840] bg-opacity-10 border border-[#005840] rounded-xl px-4 py-2">
+                            <span id="days" class="block text-3xl md:text-4xl font-extrabold text-[#005840]"></span>
+                            <span class="block text-xs md:text-sm text-[#005840] font-semibold">Days</span>
+                        </div>
+                        <div class="bg-[#005840] bg-opacity-10 border border-[#005840] rounded-xl px-4 py-2">
+                            <span id="hours" class="block text-3xl md:text-4xl font-extrabold text-[#005840]"></span>
+                            <span class="block text-xs md:text-sm text-[#005840] font-semibold">Hours</span>
+                        </div>
+                        <div class="bg-[#005840] bg-opacity-10 border border-[#005840] rounded-xl px-4 py-2">
+                            <span id="minutes" class="block text-3xl md:text-4xl font-extrabold text-[#005840]"></span>
+                            <span class="block text-xs md:text-sm text-[#005840] font-semibold">Minutes</span>
+                        </div>
+                        <div class="bg-[#005840] bg-opacity-10 border border-[#005840] rounded-xl px-4 py-2">
+                            <span id="seconds" class="block text-3xl md:text-4xl font-extrabold text-[#005840]"></span>
+                            <span class="block text-xs md:text-sm text-[#005840] font-semibold">Seconds</span>
+                        </div>
+                    </div>
+                    <script>
+                    // Countdown Timer for 12th September, 2025
+                    (function() {
+                      const eventDate = new Date('2025-09-12T06:00:00+06:00'); // 6AM BD Time
+                      function updateCountdown() {
+                        const now = new Date();
+                        const diff = eventDate - now;
+                        if (diff <= 0) {
+                          document.getElementById('countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">The event is live!</span>';
+                          return;
+                        }
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                        const seconds = Math.floor((diff / 1000) % 60);
+                        document.getElementById('days').textContent = days;
+                        document.getElementById('hours').textContent = hours;
+                        document.getElementById('minutes').textContent = minutes;
+                        document.getElementById('seconds').textContent = seconds;
+                      }
+                      updateCountdown();
+                      setInterval(updateCountdown, 1000);
+                    })();
+                    </script>
                 </div>
             </div>
             <div class="max-w-4xl mx-auto">
