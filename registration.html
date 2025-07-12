@@ -292,6 +292,14 @@ function closeGuide() {
 <style>
 @keyframes fadeIn { from { opacity:0; transform:scale(0.95);} to {opacity:1; transform:scale(1);} }
 .animate-fadeIn { animation: fadeIn 0.3s cubic-bezier(.4,0,.2,1); }
+
+@media (max-width: 640px) {
+  #fab {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1.1rem !important;
+  }
+}
 </style>
 
     <footer class="bg-[#005840] text-gray-100 py-10 mt-16 rounded-t-3xl shadow-inner">
