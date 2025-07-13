@@ -98,28 +98,78 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <span class="block text-xs md:text-sm text-[#005840] font-semibold">Seconds</span>
                         </div>
                     </div>
+        <!-- Registration Deadline Countdown -->
+        <div id="reg-deadline-countdown-wrapper" class="mt-4">
+          <div class="text-base text-[#b91c1c] mt-2 font-bold">Registration Deadline: <b>10th August, 2025</b></div>
+          <div id="reg-deadline-countdown" class="flex justify-center gap-4 text-center">
+            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
+              <span id="reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
+              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Days</span>
+            </div>
+            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
+              <span id="reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
+              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Hours</span>
+            </div>
+            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
+              <span id="reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
+              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Minutes</span>
+            </div>
+            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
+              <span id="reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
+              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Seconds</span>
+            </div>
+          </div>
+        </div>
                     <script>
-                    // Countdown Timer for 12th September, 2025
+                    // Unified Countdown Timer for Event and Registration Deadline
                     (function() {
                       const eventDate = new Date('2025-09-12T06:00:00+06:00'); // 6AM BD Time
-                      function updateCountdown() {
+                      const regDeadline = new Date('2025-08-10T23:59:59+06:00');
+                      function pad(n) { return n < 10 ? '0'+n : n; }
+                      function updateCountdowns() {
                         const now = new Date();
-                        const diff = eventDate - now;
-                        if (diff <= 0) {
+                        // Main Event Countdown
+                        let diffEvent = eventDate - now;
+                        if (diffEvent <= 0) {
                           document.getElementById('countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">The event is live!</span>';
-                          return;
+                        } else {
+                          const days = Math.floor(diffEvent / (1000 * 60 * 60 * 24));
+                          const hours = Math.floor((diffEvent / (1000 * 60 * 60)) % 24);
+                          const minutes = Math.floor((diffEvent / (1000 * 60)) % 60);
+                          const seconds = Math.floor((diffEvent / 1000) % 60);
+                          document.getElementById('days').textContent = days;
+                          document.getElementById('hours').textContent = hours;
+                          document.getElementById('minutes').textContent = minutes;
+                          document.getElementById('seconds').textContent = seconds;
                         }
-                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                        const seconds = Math.floor((diff / 1000) % 60);
-                        document.getElementById('days').textContent = days;
-                        document.getElementById('hours').textContent = hours;
-                        document.getElementById('minutes').textContent = minutes;
-                        document.getElementById('seconds').textContent = seconds;
+                        // Registration Deadline Countdown (syncs with event timer)
+                        let diffReg = regDeadline - now;
+                        if (diffReg <= 0) {
+                          document.getElementById('reg-deadline-countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">Registration closed!</span>';
+                        } else {
+                          // Use the same numbers as the event timer if both are running
+                          let regDays, regHours, regMinutes, regSeconds;
+                          if (diffEvent > 0) {
+                            // Use the same as event timer
+                            regDays = document.getElementById('days').textContent;
+                            regHours = document.getElementById('hours').textContent;
+                            regMinutes = document.getElementById('minutes').textContent;
+                            regSeconds = document.getElementById('seconds').textContent;
+                          } else {
+                            // If event timer is over, calculate separately
+                            regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
+                            regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
+                            regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
+                            regSeconds = Math.floor((diffReg / 1000) % 60);
+                          }
+                          document.getElementById('reg-days').textContent = regDays;
+                          document.getElementById('reg-hours').textContent = regHours;
+                          document.getElementById('reg-minutes').textContent = regMinutes;
+                          document.getElementById('reg-seconds').textContent = regSeconds;
+                        }
                       }
-                      updateCountdown();
-                      setInterval(updateCountdown, 1000);
+                      updateCountdowns();
+                      setInterval(updateCountdowns, 1000);
                     })();
                     </script>
                 </div>
