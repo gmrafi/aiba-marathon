@@ -228,10 +228,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
         <div class="mt-10 w-full max-w-md mx-auto bg-white border-2 border-[#005840] rounded-2xl p-6 shadow-lg">
-          <h3 class="text-xl font-bold text-[#005840] mb-2">Payment Verification</h3>
-          <input id="txnInput" type="text" placeholder="Enter Transaction ID" class="w-full border rounded px-3 py-2 mb-3" />
-          <button onclick="checkPayment()" class="bg-[#005840] text-white px-4 py-2 rounded font-bold w-full">Check Payment Status</button>
-          <div id="paymentStatus" class="mt-3 text-center font-semibold"></div>
+          <div class="flex flex-col items-center gap-2 mb-4">
+            <h3 class="text-2xl font-bold text-[#005840]">Payment Verification</h3>
+          </div>
+          <p class="text-gray-700 text-sm mb-2 text-center">Check your payment status instantly by entering your <b>phone number</b> or <b>transaction ID</b> below.<br><span class="text-[#005840]">আপনার পেমেন্ট স্ট্যাটাস জানতে ফোন নম্বর বা ট্রানজেকশন আইডি দিন।</span></p>
+          <div class="flex flex-col gap-2 mb-3">
+            <input id="txnInput" type="text" placeholder="Phone Number or Transaction ID" class="w-full border-2 border-[#005840] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#005840] text-lg" />
+            <button onclick="checkPayment()" class="bg-[#005840] text-white px-4 py-2 rounded-lg font-bold w-full shadow hover:scale-105 transition">Check Payment Status</button>
+          </div>
+          <div id="paymentStatus" class="mt-4 text-center font-semibold min-h-[48px] flex flex-col items-center justify-center"></div>
+          <div id="paymentDetails" class="mt-2 text-center hidden">
+            <div class="text-lg font-bold text-[#005840]" id="payName"></div>
+            <div class="text-base text-gray-700" id="payCategory"></div>
+            <div class="text-base font-semibold mt-1" id="payStatus"></div>
+          </div>
         </div>
     </main>
 
@@ -385,24 +395,44 @@ function closeGuide() {
     <script>
 function checkPayment() {
   const txn = document.getElementById('txnInput').value.trim();
+  const statusDiv = document.getElementById('paymentStatus');
+  const detailsDiv = document.getElementById('paymentDetails');
+  const payName = document.getElementById('payName');
+  const payCategory = document.getElementById('payCategory');
+  const payStatus = document.getElementById('payStatus');
   if (!txn) {
-    document.getElementById('paymentStatus').innerText = 'Please enter a Transaction ID.';
+    statusDiv.innerHTML = '<span class="text-red-600">Please enter your phone number or transaction ID.<br>ফোন নম্বর বা ট্রানজেকশন আইডি দিন।</span>';
+    detailsDiv.classList.add('hidden');
     return;
   }
-  document.getElementById('paymentStatus').innerText = 'Checking...';
+  statusDiv.innerHTML = '<span class="text-[#005840]">Checking... / যাচাই হচ্ছে...</span>';
+  detailsDiv.classList.add('hidden');
   fetch('https://script.google.com/macros/s/AKfycbw72zbyfjvPaUn6vOozm9Z1ohPdznktFUhWxMy2INjp8G5m1l4xQxzaHp6Pq87fzKL-/exec?txn=' + encodeURIComponent(txn))
     .then(res => res.json())
     .then(data => {
       if (data.status === "verified") {
-        document.getElementById('paymentStatus').innerHTML = `Dear <span style="color:#005840;font-weight:bold">${data.name}</span>, your payment is <span style="color:#005840;font-weight:bold">verified</span>!`;
+        statusDiv.innerHTML = '<span class="text-green-600">Payment Verified! / পেমেন্ট নিশ্চিত</span>';
+        payName.textContent = data.name ? data.name : '';
+        payCategory.textContent = data.category ? 'Category: ' + data.category : '';
+        payStatus.innerHTML = '<span class="text-green-700">Congratulations! Your registration is confirmed.<br>অভিনন্দন! আপনার রেজিস্ট্রেশন নিশ্চিত।</span>';
+        detailsDiv.classList.remove('hidden');
       } else if (data.status === "pending") {
-        document.getElementById('paymentStatus').innerHTML = `Dear <span style="color:#005840;font-weight:bold">${data.name}</span>, your verification is <span style="color:#005840;font-weight:bold">pending</span>.`;
+        statusDiv.innerHTML = '<span class="text-yellow-600">Payment Pending / যাচাই চলছে</span>';
+        payName.textContent = data.name ? data.name : '';
+        payCategory.textContent = data.category ? 'Category: ' + data.category : '';
+        payStatus.innerHTML = '<span class="text-yellow-700">Your payment is under review.<br>আপনার পেমেন্ট যাচাই হচ্ছে।</span>';
+        detailsDiv.classList.remove('hidden');
+      } else if (data.status === "not_found") {
+        statusDiv.innerHTML = '<span class="text-red-600">No record found.<br>কোনো তথ্য পাওয়া যায়নি।<br><span class="text-sm">Please contact the organizers.<br>অনুগ্রহ করে আয়োজকদের সাথে যোগাযোগ করুন।</span></span>';
+        detailsDiv.classList.add('hidden');
       } else {
-        document.getElementById('paymentStatus').innerHTML = 'No record found for this Transaction ID.';
+        statusDiv.innerHTML = '<span class="text-red-600">Error. Please try again.<br>ত্রুটি! আবার চেষ্টা করুন।</span>';
+        detailsDiv.classList.add('hidden');
       }
     })
     .catch(() => {
-      document.getElementById('paymentStatus').innerText = 'Error checking payment.';
+      statusDiv.innerHTML = '<span class="text-red-600">Network error. Please try again.<br>নেটওয়ার্ক সমস্যা, আবার চেষ্টা করুন।</span>';
+      detailsDiv.classList.add('hidden');
     });
 }
 </script>
