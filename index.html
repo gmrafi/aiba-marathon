@@ -261,7 +261,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 Justice Half Marathon 2025 is an on-ground event only, bringing together runners from all over Bangladesh. Enjoy a scenic run, professional organization, and a host of facilities and rewards!
             </p>
             <div class="flex flex-col items-center mb-10">
-                <span class="block text-2xl md:text-3xl font-extrabold text-main mb-2" style="font-family: 'Inter', sans-serif; font-weight: 900;">𝗘𝘃𝗲𝗻𝘁 𝗗𝗮𝘁𝗲: 12th September, 2025</span>
+                <span class="block text-2xl md:text-3xl font-extrabold text-main mb-2" style="font-family: 'Inter', sans-serif; font-weight: 900;">Event Date: 12th September, 2025</span>
                 <div id="about-countdown" class="flex justify-center gap-4 mt-2 text-center">
                     <div class="bg-main/10 border border-main rounded-xl px-4 py-2">
                         <span id="about-days" class="block text-3xl md:text-4xl font-extrabold text-main"></span>
@@ -282,23 +282,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
                 <!-- Registration Deadline Countdown -->
                 <div id="about-reg-deadline-countdown-wrapper" class="mt-4">
-                  <div class="text-base text-[#b91c1c] mt-2 font-bold">Registration Deadline: <b>10th August, 2025</b></div>
+                  <div class="text-base mt-2 font-normal"><span class="text-[#5271ff] font-bold" style="font-family: 'Inter', sans-serif;">Registration Deadline:</span> <b>10th August, 2025</b></div>
                   <div id="about-reg-deadline-countdown" class="flex justify-center gap-4 text-center">
-                    <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-                      <span id="about-reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-                      <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Days</span>
+                    <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                      <span id="about-reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+                      <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Days</span>
                     </div>
-                    <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-                      <span id="about-reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-                      <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Hours</span>
+                    <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                      <span id="about-reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+                      <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Hours</span>
                     </div>
-                    <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-                      <span id="about-reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-                      <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Minutes</span>
+                    <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                      <span id="about-reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+                      <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Minutes</span>
                     </div>
-                    <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-                      <span id="about-reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-                      <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Seconds</span>
+                    <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                      <span id="about-reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+                      <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Seconds</span>
                     </div>
                   </div>
                 </div>
@@ -796,13 +796,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // Mobile nav toggle (removed as per changes)
 
         // Countdown Timer for About Section (12th September, 2025)
+// Unified Countdown Timer for Event and Registration Deadline (synchronized)
 (function() {
   const eventDate = new Date('2025-09-12T06:00:00+06:00'); // 6AM BD Time
   const regDeadline = new Date('2025-08-10T23:59:59+06:00');
   function updateCountdowns() {
     const now = new Date();
     // Main Event Countdown
-    const diffEvent = eventDate - now;
+    let diffEvent = eventDate - now;
     if (diffEvent <= 0) {
       document.getElementById('about-countdown').innerHTML = '<span class="text-main font-bold text-lg">The event is live!</span>';
     } else {
@@ -815,22 +816,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('about-minutes').textContent = minutes;
       document.getElementById('about-seconds').textContent = seconds;
     }
-    // Registration Deadline Countdown
-    const diffReg = regDeadline - now;
+    // Registration Deadline Countdown (always shows time left to reg deadline)
+    let diffReg = regDeadline - now;
     if (diffReg <= 0) {
-      document.getElementById('about-reg-deadline-countdown').innerHTML = '<span class="text-main font-bold text-lg">Registration closed!</span>';
+      document.getElementById('about-reg-deadline-countdown').innerHTML = '<span class="text-[#5271ff] font-bold text-lg">Registration closed!</span>';
     } else {
-      // Use the same numbers as the event timer if both are running
-      let regDays, regHours, regMinutes, regSeconds;
+      const regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
+      const regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
+      const regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
+      // Use the same seconds as the event countdown for perfect sync
+      let regSeconds;
       if (diffEvent > 0) {
-        regDays = document.getElementById('about-days').textContent;
-        regHours = document.getElementById('about-hours').textContent;
-        regMinutes = document.getElementById('about-minutes').textContent;
-        regSeconds = document.getElementById('about-seconds').textContent;
+        regSeconds = Math.floor((diffEvent / 1000) % 60);
       } else {
-        regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
-        regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
-        regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
         regSeconds = Math.floor((diffReg / 1000) % 60);
       }
       document.getElementById('about-reg-days').textContent = regDays;
@@ -839,8 +837,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('about-reg-seconds').textContent = regSeconds;
     }
   }
-  updateCountdowns();
-  setInterval(updateCountdowns, 1000);
+  // Synchronize both countdowns to the same second tick
+  function startSyncedCountdowns() {
+    updateCountdowns();
+    const now = new Date();
+    const msToNextSecond = 1000 - now.getMilliseconds();
+    setTimeout(function() {
+      updateCountdowns();
+      setInterval(updateCountdowns, 1000);
+    }, msToNextSecond);
+  }
+  startSyncedCountdowns();
 })();
     </script>
 </body>
