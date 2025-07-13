@@ -100,23 +100,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
         <!-- Registration Deadline Countdown -->
         <div id="reg-deadline-countdown-wrapper" class="mt-4">
-          <div class="text-base text-[#b91c1c] mt-2 font-bold">Registration Deadline: <b>10th August, 2025</b></div>
+          <div class="text-base mt-2 font-normal"><span class="text-[#005840]">Registration Deadline:</span> <b>10th August, 2025</b></div>
           <div id="reg-deadline-countdown" class="flex justify-center gap-4 text-center">
-            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-              <span id="reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Days</span>
+            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+              <span id="reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Days</span>
             </div>
-            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-              <span id="reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Hours</span>
+            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+              <span id="reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Hours</span>
             </div>
-            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-              <span id="reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Minutes</span>
+            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+              <span id="reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Minutes</span>
             </div>
-            <div class="bg-gradient-to-br from-[#fff1f2] to-[#fca5a5] border border-[#b91c1c] rounded-xl px-4 py-2">
-              <span id="reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#b91c1c]"></span>
-              <span class="block text-xs md:text-sm text-[#b91c1c] font-semibold">Seconds</span>
+            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+              <span id="reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Seconds</span>
             </div>
           </div>
         </div>
@@ -142,24 +142,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           document.getElementById('minutes').textContent = minutes;
                           document.getElementById('seconds').textContent = seconds;
                         }
-                        // Registration Deadline Countdown (syncs with event timer)
+                        // Registration Deadline Countdown (always shows time left to reg deadline)
                         let diffReg = regDeadline - now;
                         if (diffReg <= 0) {
                           document.getElementById('reg-deadline-countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">Registration closed!</span>';
                         } else {
-                          // Use the same numbers as the event timer if both are running
-                          let regDays, regHours, regMinutes, regSeconds;
+                          const regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
+                          const regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
+                          const regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
+                          // Use the same seconds as the event countdown for perfect sync
+                          let regSeconds;
                           if (diffEvent > 0) {
-                            // Use the same as event timer
-                            regDays = document.getElementById('days').textContent;
-                            regHours = document.getElementById('hours').textContent;
-                            regMinutes = document.getElementById('minutes').textContent;
-                            regSeconds = document.getElementById('seconds').textContent;
+                            regSeconds = Math.floor((diffEvent / 1000) % 60);
                           } else {
-                            // If event timer is over, calculate separately
-                            regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
-                            regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
-                            regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
                             regSeconds = Math.floor((diffReg / 1000) % 60);
                           }
                           document.getElementById('reg-days').textContent = regDays;
@@ -168,8 +163,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           document.getElementById('reg-seconds').textContent = regSeconds;
                         }
                       }
-                      updateCountdowns();
-                      setInterval(updateCountdowns, 1000);
+                      // Synchronize both countdowns to the same second tick
+                      function startSyncedCountdowns() {
+                        updateCountdowns();
+                        const now = new Date();
+                        const msToNextSecond = 1000 - now.getMilliseconds();
+                        setTimeout(function() {
+                          updateCountdowns();
+                          setInterval(updateCountdowns, 1000);
+                        }, msToNextSecond);
+                      }
+                      startSyncedCountdowns();
                     })();
                     </script>
                 </div>
