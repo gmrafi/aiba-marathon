@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /index.html
+Allow: /registration.html
+Allow: /race-day.html
+Allow: /notices.html
+Allow: /team.html
+
+# Allow images and CSS
+Allow: /photos/
+Allow: /*.css
+Allow: /*.js
+
+# Sitemap location
+Sitemap: https://justicehalfmarathon.com/sitemap.xml
+
+# Crawl delay (optional - 1 second between requests)
+Crawl-delay: 1
