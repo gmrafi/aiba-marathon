@@ -137,60 +137,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
                     <script>
-                    // Unified Countdown Timer for Event and Registration Deadline
+                    // FINAL SYNCHRONIZED COUNTDOWN TIMER (LOCAL TIME)
                     (function() {
-                      const eventDate = new Date('2025-09-26T06:00:00+06:00'); // 6AM BD Time
-                      const regDeadline = new Date('2025-08-10T23:59:59+06:00'); // August 10th, 2025
-                      
+                      // Use local time for Bangladesh (browser time)
+                      // Event: 26 Sep 2025 06:00:00
+                      // Registration: 10 Aug 2025 23:59:59
+                      const eventDate = new Date(2025, 8, 26, 6, 0, 0, 0).getTime(); // Month is 0-based
+                      const regDeadline = new Date(2025, 7, 10, 23, 59, 59, 0).getTime();
+
+                      let timer;
+
+                      function pad(num) {
+                        return num < 10 ? '0' + num : num;
+                      }
+
                       function updateCountdowns() {
-                        const now = new Date();
-                        
+                        const now = Date.now();
+
                         // Main Event Countdown
-                        let diffEvent = eventDate - now;
-                        if (diffEvent <= 0) {
-                          document.getElementById('countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">The event is live!</span>';
+                        const eventDiff = eventDate - now;
+                        if (eventDiff <= 0) {
+                          document.getElementById('countdown').innerHTML = '<div class="text-center"><span class="text-[#005840] font-bold text-lg">The event is live! 🏃‍♂️</span></div>';
                         } else {
-                          const days = Math.floor(diffEvent / (1000 * 60 * 60 * 24));
-                          const hours = Math.floor((diffEvent / (1000 * 60 * 60)) % 24);
-                          const minutes = Math.floor((diffEvent / (1000 * 60)) % 60);
-                          const seconds = Math.floor((diffEvent / 1000) % 60);
-                          
-                          document.getElementById('days').textContent = days;
-                          document.getElementById('hours').textContent = hours;
-                          document.getElementById('minutes').textContent = minutes;
-                          document.getElementById('seconds').textContent = seconds;
+                          const eventDays = Math.floor(eventDiff / (1000 * 60 * 60 * 24));
+                          const eventHours = Math.floor((eventDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                          const eventMinutes = Math.floor((eventDiff % (1000 * 60 * 60)) / (1000 * 60));
+                          const eventSeconds = Math.floor((eventDiff % (1000 * 60)) / 1000);
+
+                          document.getElementById('days').textContent = pad(eventDays);
+                          document.getElementById('hours').textContent = pad(eventHours);
+                          document.getElementById('minutes').textContent = pad(eventMinutes);
+                          document.getElementById('seconds').textContent = pad(eventSeconds);
                         }
-                        
+
                         // Registration Deadline Countdown
-                        let diffReg = regDeadline - now;
-                        if (diffReg <= 0) {
-                          document.getElementById('reg-deadline-countdown').innerHTML = '<span class="text-[#005840] font-bold text-lg">Registration closed!</span>';
+                        const regDiff = regDeadline - now;
+                        if (regDiff <= 0) {
+                          document.getElementById('reg-deadline-countdown').innerHTML = '<div class="text-center"><span class="text-red-600 font-bold text-lg">Registration Closed! ⏰</span></div>';
                         } else {
-                          const regDays = Math.floor(diffReg / (1000 * 60 * 60 * 24));
-                          const regHours = Math.floor((diffReg / (1000 * 60 * 60)) % 24);
-                          const regMinutes = Math.floor((diffReg / (1000 * 60)) % 60);
-                          const regSeconds = Math.floor((diffReg / 1000) % 60);
-                          
-                          document.getElementById('reg-days').textContent = regDays;
-                          document.getElementById('reg-hours').textContent = regHours;
-                          document.getElementById('reg-minutes').textContent = regMinutes;
-                          document.getElementById('reg-seconds').textContent = regSeconds;
+                          const regDays = Math.floor(regDiff / (1000 * 60 * 60 * 24));
+                          const regHours = Math.floor((regDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                          const regMinutes = Math.floor((regDiff % (1000 * 60 * 60)) / (1000 * 60));
+                          const regSeconds = Math.floor((regDiff % (1000 * 60)) / 1000);
+
+                          document.getElementById('reg-days').textContent = pad(regDays);
+                          document.getElementById('reg-hours').textContent = pad(regHours);
+                          document.getElementById('reg-minutes').textContent = pad(regMinutes);
+                          document.getElementById('reg-seconds').textContent = pad(regSeconds);
                         }
                       }
-                      
-                      // Start countdown with proper synchronization
-                      function startCountdowns() {
+
+                      function startSynchronizedCountdown() {
+                        if (timer) clearInterval(timer);
                         updateCountdowns();
-                        const now = new Date();
-                        const msToNextSecond = 1000 - now.getMilliseconds();
-                        
-                        setTimeout(function() {
-                          updateCountdowns();
-                          setInterval(updateCountdowns, 1000);
-                        }, msToNextSecond);
+                        timer = setInterval(updateCountdowns, 1000);
                       }
-                      
-                      startCountdowns();
+
+                      if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', startSynchronizedCountdown);
+                      } else {
+                        startSynchronizedCountdown();
+                      }
+
+                      window.addEventListener('beforeunload', () => {
+                        if (timer) clearInterval(timer);
+                      });
+
+                      window.restartCountdowns = () => {
+                        startSynchronizedCountdown();
+                      };
                     })();
                     </script>
                 </div>
