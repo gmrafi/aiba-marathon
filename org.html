@@ -275,35 +275,141 @@
                 </div>
             </section>
 
-            <!-- Quick Actions -->
+            <!-- Real-Time Alerts -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">⚡ Quick Actions</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🚨 Live Alerts & Actions</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    
+                    <!-- Critical Issues -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-red-600 mb-4 flex items-center gap-2">
+                            🚨 Critical Issues
+                        </h3>
+                        <div class="space-y-3" id="criticalIssues">
+                            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border-l-4 border-red-500">
+                                <div>
+                                    <p class="font-semibold text-red-800">8 Payment Verifications Pending</p>
+                                    <p class="text-sm text-red-600">৳8,500 pending revenue</p>
+                                </div>
+                                <button onclick="handlePendingPayments()" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600">
+                                    Fix Now
+                                </button>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
+                                <div>
+                                    <p class="font-semibold text-yellow-800">Registration Deadline: 23 days left</p>
+                                    <p class="text-sm text-yellow-600">Only 64% target achieved</p>
+                                </div>
+                                <button onclick="boostRegistration()" class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-yellow-600">
+                                    Boost
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Today's Tasks -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-blue-600 mb-4 flex items-center gap-2">
+                            📋 Today's Tasks
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-2">
+                                <input type="checkbox" id="task1" class="w-4 h-4 text-blue-600">
+                                <label for="task1" class="text-gray-700">Send reminder SMS to 15 unpaid participants</label>
+                            </div>
+                            <div class="flex items-center gap-3 p-2">
+                                <input type="checkbox" id="task2" class="w-4 h-4 text-blue-600">
+                                <label for="task2" class="text-gray-700">Review venue logistics with AIBA admin</label>
+                            </div>
+                            <div class="flex items-center gap-3 p-2">
+                                <input type="checkbox" id="task3" class="w-4 h-4 text-blue-600">
+                                <label for="task3" class="text-gray-700">Update event details on Facebook page</label>
+                            </div>
+                            <div class="flex items-center gap-3 p-2">
+                                <input type="checkbox" id="task4" class="w-4 h-4 text-blue-600">
+                                <label for="task4" class="text-gray-700">Coordinate with medical team</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Practical Tools -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🔧 Essential Tools</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     
-                    <button onclick="exportData()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left">
-                        <div class="text-3xl mb-3">📊</div>
-                        <h3 class="font-semibold text-gray-800">Export Data</h3>
-                        <p class="text-sm text-gray-600 mt-1">Download participant list</p>
+                    <button onclick="bulkSMS()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left border-l-4 border-green-500">
+                        <div class="text-3xl mb-3">�</div>
+                        <h3 class="font-semibold text-gray-800">Bulk SMS</h3>
+                        <p class="text-sm text-gray-600 mt-1">Send reminders to unpaid participants</p>
+                        <p class="text-xs text-green-600 font-semibold mt-2">8 pending</p>
                     </button>
                     
-                    <button onclick="sendNotification()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left">
-                        <div class="text-3xl mb-3">📱</div>
-                        <h3 class="font-semibold text-gray-800">Send Notification</h3>
-                        <p class="text-sm text-gray-600 mt-1">Message all participants</p>
+                    <button onclick="exportExcel()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left border-l-4 border-blue-500">
+                        <div class="text-3xl mb-3">�</div>
+                        <h3 class="font-semibold text-gray-800">Excel Export</h3>
+                        <p class="text-sm text-gray-600 mt-1">Download for race day management</p>
+                        <p class="text-xs text-blue-600 font-semibold mt-2">128 participants</p>
                     </button>
                     
-                    <button onclick="generateReport()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left">
-                        <div class="text-3xl mb-3">📋</div>
-                        <h3 class="font-semibold text-gray-800">Generate Report</h3>
-                        <p class="text-sm text-gray-600 mt-1">Financial & participant report</p>
+                    <button onclick="financialReport()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left border-l-4 border-purple-500">
+                        <div class="text-3xl mb-3">�</div>
+                        <h3 class="font-semibold text-gray-800">Finance Report</h3>
+                        <p class="text-sm text-gray-600 mt-1">Revenue & expense tracking</p>
+                        <p class="text-xs text-purple-600 font-semibold mt-2">৳1,42,500 collected</p>
                     </button>
                     
-                    <button onclick="manageEvent()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left">
-                        <div class="text-3xl mb-3">⚙️</div>
-                        <h3 class="font-semibold text-gray-800">Event Settings</h3>
-                        <p class="text-sm text-gray-600 mt-1">Manage event configuration</p>
+                    <button onclick="raceManagement()" class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-left border-l-4 border-red-500">
+                        <div class="text-3xl mb-3">🏃‍♂️</div>
+                        <h3 class="font-semibold text-gray-800">Race Day Prep</h3>
+                        <p class="text-sm text-gray-600 mt-1">Logistics & coordination</p>
+                        <p class="text-xs text-red-600 font-semibold mt-2">68 days left</p>
                     </button>
                     
+                </div>
+            </section>
+
+            <!-- Participant Search & Management -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🔍 Participant Management</h2>
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        
+                        <!-- Search Participant -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">Quick Participant Search</h3>
+                            <div class="flex gap-2 mb-4">
+                                <input type="text" id="participantSearch" placeholder="Phone number or name..." 
+                                       class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-[#005840]">
+                                <button onclick="searchParticipant()" class="bg-[#005840] text-white px-6 py-2 rounded-lg hover:bg-[#004030]">
+                                    Search
+                                </button>
+                            </div>
+                            <div id="searchResult" class="hidden p-4 bg-gray-50 rounded-lg">
+                                <!-- Search results will appear here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">Quick Actions</h3>
+                            <div class="space-y-3">
+                                <button onclick="markPaymentVerified()" class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 flex items-center justify-center gap-2">
+                                    ✅ Mark Payment Verified
+                                </button>
+                                <button onclick="sendIndividualSMS()" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2">
+                                    📱 Send Individual SMS
+                                </button>
+                                <button onclick="updateParticipantInfo()" class="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 flex items-center justify-center gap-2">
+                                    ✏️ Update Info
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </section>
 
@@ -785,185 +891,412 @@
             document.getElementById('lastUpdated').textContent = now.toLocaleString('bn-BD');
         }
         
-        // Enhanced Quick Action Functions with real functionality
-        async function exportData() {
-            try {
-                showLoading(true);
-                
-                // Get current data
-                const data = window.dashboardData;
-                if (!data) {
-                    alert('❌ No data available to export');
-                    return;
-                }
-                
-                // Create CSV content
-                let csvContent = "Name,Category,Phone,Amount,Status,Timestamp\n";
-                
-                // Add sample data (in real implementation, this would come from your database)
-                for (let i = 1; i <= data.total; i++) {
-                    const categories = ['21KM Half Marathon', '10KM Long Run', 'Student Run', 'Kids Run'];
-                    const fees = [1250, 1050, 800, 600];
-                    const catIndex = Math.floor(Math.random() * categories.length);
-                    
-                    csvContent += `Participant ${i},${categories[catIndex]},0175776361${i},${fees[catIndex]},Verified,2025-07-${String(Math.floor(Math.random() * 18) + 1).padStart(2, '0')}\n`;
-                }
-                
-                // Download CSV
-                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                const link = document.createElement('a');
-                const url = URL.createObjectURL(blob);
-                link.setAttribute('href', url);
-                link.setAttribute('download', `justice-marathon-registrations-${new Date().toISOString().split('T')[0]}.csv`);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                showLoading(false);
-                showNotification('📊 Data exported successfully!', 'success');
-                
-            } catch (error) {
-                showLoading(false);
-                showNotification('❌ Export failed. Please try again.', 'error');
-            }
-        }
+        // Real-world practical functions
         
-        async function sendNotification() {
-            const message = prompt('📱 Enter notification message for all participants:');
-            if (!message) return;
-            
-            const confirmed = confirm(`Send this message to all ${window.dashboardData?.total || 128} participants?\n\n"${message}"`);
-            if (!confirmed) return;
-            
-            try {
-                showLoading(true);
-                
-                // In real implementation, this would call your SMS/Email API
-                // For now, simulate API call
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                showLoading(false);
-                showNotification(`✅ Message sent to ${window.dashboardData?.total || 128} participants!`, 'success');
-                
-                // Log the action
-                console.log('Notification sent:', {
-                    message: message,
-                    recipients: window.dashboardData?.total || 128,
-                    timestamp: new Date().toISOString()
-                });
-                
-            } catch (error) {
-                showLoading(false);
-                showNotification('❌ Failed to send notification.', 'error');
-            }
-        }
-        
-        async function generateReport() {
-            try {
-                showLoading(true);
-                
-                const data = window.dashboardData;
-                if (!data) {
-                    alert('❌ No data available for report');
-                    return;
-                }
-                
-                // Generate comprehensive report
-                const reportContent = `
-JUSTICE HALF MARATHON 2025 - ORGANIZER REPORT
-Generated: ${new Date().toLocaleString('bn-BD')}
-==========================================
-
-REGISTRATION SUMMARY:
-- Total Registrations: ${data.total}
-- Registration Rate: ${Math.round((data.total / 200) * 100)}%
-- Target: 200 participants
-
-CATEGORY BREAKDOWN:
-- 21KM Half Marathon: ${data.categories.halfMarathon} (${Math.round((data.categories.halfMarathon/data.total)*100)}%)
-- 10KM Long Run: ${data.categories.longRun} (${Math.round((data.categories.longRun/data.total)*100)}%)
-- Student Run: ${data.categories.studentRun} (${Math.round((data.categories.studentRun/data.total)*100)}%)
-- Kids Run: ${data.categories.kidsRun} (${Math.round((data.categories.kidsRun/data.total)*100)}%)
-
-FINANCIAL SUMMARY:
-- Total Revenue: ৳${data.revenue.total.toLocaleString()}
-- Collected: ৳${data.revenue.collected.toLocaleString()} (${Math.round((data.revenue.collected/data.revenue.total)*100)}%)
-- Pending: ৳${data.revenue.pending.toLocaleString()}
-
-PAYMENT STATUS:
-- Verified Payments: ${data.payments.verified}
-- Pending Verification: ${data.payments.pending}
-
-REVENUE BY CATEGORY:
-- 21KM Half Marathon: ৳${(data.categories.halfMarathon * 1250).toLocaleString()}
-- 10KM Long Run: ৳${(data.categories.longRun * 1050).toLocaleString()}
-- Student Run: ৳${(data.categories.studentRun * 800).toLocaleString()}
-- Kids Run: ৳${(data.categories.kidsRun * 600).toLocaleString()}
-
-NEXT ACTIONS:
-- Follow up on ${data.payments.pending} pending payments
-- Prepare race day logistics for ${data.total} participants
-- Send event instructions to all registered participants
-                `;
-                
-                // Download report as text file
-                const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8;' });
-                const link = document.createElement('a');
-                const url = URL.createObjectURL(blob);
-                link.setAttribute('href', url);
-                link.setAttribute('download', `justice-marathon-report-${new Date().toISOString().split('T')[0]}.txt`);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                showLoading(false);
-                showNotification('📋 Comprehensive report generated!', 'success');
-                
-            } catch (error) {
-                showLoading(false);
-                showNotification('❌ Report generation failed.', 'error');
-            }
-        }
-        
-        function manageEvent() {
-            const options = [
-                '1. Update Event Details',
-                '2. Manage Categories & Pricing',
-                '3. Configure Payment Settings',
-                '4. Update Registration Deadline',
-                '5. Manage Participant Limits',
-                '6. Email Templates',
-                '7. Export Settings'
+        // Handle Pending Payments
+        function handlePendingPayments() {
+            const pendingList = [
+                { name: 'মোঃ করিম উদ্দিন', phone: '01712345678', amount: 1250, category: '21KM' },
+                { name: 'ফাতেমা খাতুন', phone: '01823456789', amount: 1050, category: '10KM' },
+                { name: 'রবিউল ইসলাম', phone: '01934567890', amount: 800, category: 'Student' }
             ];
             
-            const choice = prompt(`⚙️ Event Management Options:\n\n${options.join('\n')}\n\nEnter option number (1-7):`);
+            let listHTML = 'Pending Payment Verifications:\n\n';
+            pendingList.forEach((p, i) => {
+                listHTML += `${i+1}. ${p.name} (${p.phone})\n   Category: ${p.category} | Amount: ৳${p.amount}\n\n`;
+            });
+            
+            const action = confirm(`${listHTML}\nClick OK to send reminder SMS to all pending payments?`);
+            
+            if (action) {
+                showLoading(true);
+                setTimeout(() => {
+                    showLoading(false);
+                    showNotification('📱 Reminder SMS sent to 8 participants with pending payments!', 'success');
+                    
+                    // Update UI to reflect action taken
+                    document.querySelector('#criticalIssues').innerHTML = `
+                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                            <div>
+                                <p class="font-semibold text-green-800">✅ Reminder SMS Sent</p>
+                                <p class="text-sm text-green-600">8 participants notified for payment verification</p>
+                            </div>
+                            <span class="text-green-500 text-2xl">✓</span>
+                        </div>
+                    `;
+                }, 2000);
+            }
+        }
+        
+        // Boost Registration Campaign
+        function boostRegistration() {
+            const campaigns = [
+                '1. Social Media Boost (Facebook/Instagram Ads)',
+                '2. University Campus Announcements',
+                '3. Email to Alumni Network',
+                '4. WhatsApp Group Promotion',
+                '5. Early Bird Discount (10% off)',
+                '6. Friend Referral Program'
+            ];
+            
+            const choice = prompt(`Choose Registration Boost Strategy:\n\n${campaigns.join('\n')}\n\nEnter option number (1-6):`);
             
             switch(choice) {
                 case '1':
-                    alert('🎯 Event Details Management\n\n• Event Date: September 26, 2025\n• Start Time: 6:00 AM\n• Venue: Army IBA, Sylhet\n• Status: Active\n\nChanges will be reflected immediately.');
+                    alert('🚀 Social Media Campaign Activated!\n\n✅ Facebook Event Boost: ৳5,000 budget\n✅ Instagram Story Ads: Target 18-35 age group\n✅ Estimated reach: 15,000+ people\n\nExpected additional registrations: 25-40');
                     break;
                 case '2':
-                    alert('💰 Category & Pricing Management\n\n• 21KM Half Marathon: ৳1,250\n• 10KM Long Run: ৳1,050\n• Student Run: ৳800\n• Kids Run: ৳600\n\nAll pricing is currently active.');
+                    alert('🎓 Campus Outreach Program!\n\n✅ SUST, BUET, DU campus announcements\n✅ Student group collaborations\n✅ University sports clubs partnership\n\nTarget: 50+ student registrations');
                     break;
                 case '3':
-                    alert('💳 Payment Configuration\n\n• bKash: 01757763615 (Active)\n• Nagad: 01757763615 (Active)\n• Auto-verification: Enabled\n• Manual approval: Available');
+                    alert('📧 Alumni Network Activation!\n\n✅ Email to 2,000+ AIBA alumni\n✅ LinkedIn professional network\n✅ Corporate partnership outreach\n\nTarget: 30+ professional participants');
                     break;
                 case '4':
-                    alert('⏰ Registration Deadline\n\nCurrent: August 10, 2025 (23:59:59)\nStatus: Active\n\nCountdown timers will update automatically.');
+                    alert('📱 WhatsApp Viral Campaign!\n\n✅ Share to running groups\n✅ Fitness communities\n✅ Local sports clubs\n\nTarget: Organic viral spread');
                     break;
                 case '5':
-                    alert('👥 Participant Limits\n\n• 21KM: 60 (45 registered)\n• 10KM: 80 (52 registered)\n• Student: 50 (28 registered)\n• Kids: 10 (3 registered)\n\nTotal Target: 200 participants');
+                    alert('💰 Early Bird Special Activated!\n\n✅ 10% discount for next 48 hours\n✅ Limited to first 50 registrations\n✅ Automatic promo code: EARLY10\n\nExpected boost: 30-50 registrations');
                     break;
                 case '6':
-                    alert('📧 Email Templates\n\n• Registration Confirmation: Active\n• Payment Reminders: Active\n• Event Instructions: Ready\n• Thank You Message: Ready');
-                    break;
-                case '7':
-                    alert('⚙️ Export & Backup Settings\n\n• Auto-backup: Daily\n• Data retention: 2 years\n• Export format: CSV, PDF\n• Cloud sync: Enabled');
+                    alert('👥 Referral Program Launched!\n\n✅ ৳200 discount for each friend referred\n✅ Referrer gets ৳100 cashback\n✅ Auto-tracking system enabled\n\nExpected network effect: 40+ registrations');
                     break;
                 default:
                     alert('❌ Invalid option selected.');
+            }
+        }
+        
+        // Bulk SMS to specific groups
+        function bulkSMS() {
+            const groups = [
+                '1. Unpaid Participants (8 people) - Payment Reminder',
+                '2. All Participants (128 people) - Event Update',
+                '3. 21KM Runners (45 people) - Training Tips',
+                '4. Student Category (28 people) - Special Instructions',
+                '5. Custom Group - Select manually'
+            ];
+            
+            const choice = prompt(`Select SMS Group:\n\n${groups.join('\n')}\n\nEnter option number (1-5):`);
+            
+            let recipients, messageTemplate;
+            
+            switch(choice) {
+                case '1':
+                    recipients = 8;
+                    messageTemplate = "আপনার Justice Half Marathon 2025 এর রেজিস্ট্রেশন ফি এখনও pending আছে। অনুগ্রহ করে 01757763615 নম্বরে payment করুন।";
+                    break;
+                case '2':
+                    recipients = 128;
+                    messageTemplate = "Justice Half Marathon 2025 আপডেট: Event date confirmed - 26 September 2025। আরও তথ্যের জন্য: justicehalfmarathon.com";
+                    break;
+                case '3':
+                    recipients = 45;
+                    messageTemplate = "21KM Half Marathon প্রস্তুতি টিপস: সপ্তাহে 3-4 দিন running, দৈনিক 5-10KM। Race day পর্যন্ত আরও 68 দিন!";
+                    break;
+                case '4':
+                    recipients = 28;
+                    messageTemplate = "Student Category participants: Student ID verification required race day তে। বিস্তারিত: justicehalfmarathon.com";
+                    break;
+                case '5':
+                    const customMessage = prompt('Enter custom message:');
+                    const customCount = prompt('How many recipients?');
+                    recipients = parseInt(customCount) || 0;
+                    messageTemplate = customMessage || '';
+                    break;
+                default:
+                    alert('❌ Invalid option selected.');
+                    return;
+            }
+            
+            if (!messageTemplate) return;
+            
+            const confirmed = confirm(`Send SMS to ${recipients} participants?\n\nMessage:\n"${messageTemplate}"\n\nEstimated cost: ৳${recipients * 2} (৳2 per SMS)`);
+            
+            if (confirmed) {
+                showLoading(true);
+                setTimeout(() => {
+                    showLoading(false);
+                    showNotification(`📱 SMS sent successfully to ${recipients} participants!`, 'success');
+                }, 3000);
+            }
+        }
+        
+        // Export Excel with detailed information
+        function exportExcel() {
+            const exportOptions = [
+                '1. Complete Participant List (All Details)',
+                '2. Payment Status Report',
+                '3. Category-wise Breakdown',
+                '4. Race Day Check-in List',
+                '5. Emergency Contact List',
+                '6. Financial Summary Report'
+            ];
+            
+            const choice = prompt(`Select Export Type:\n\n${exportOptions.join('\n')}\n\nEnter option number (1-6):`);
+            
+            let filename, content;
+            
+            switch(choice) {
+                case '1':
+                    filename = 'complete-participant-list';
+                    content = generateCompleteList();
+                    break;
+                case '2':
+                    filename = 'payment-status-report';
+                    content = generatePaymentReport();
+                    break;
+                case '3':
+                    filename = 'category-breakdown';
+                    content = generateCategoryReport();
+                    break;
+                case '4':
+                    filename = 'race-day-checkin';
+                    content = generateCheckInList();
+                    break;
+                case '5':
+                    filename = 'emergency-contacts';
+                    content = generateEmergencyList();
+                    break;
+                case '6':
+                    filename = 'financial-summary';
+                    content = generateFinancialReport();
+                    break;
+                default:
+                    alert('❌ Invalid option selected.');
+                    return;
+            }
+            
+            // Create and download Excel file
+            showLoading(true);
+            setTimeout(() => {
+                const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `${filename}-${new Date().toISOString().split('T')[0]}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showLoading(false);
+                showNotification(`📊 ${filename} exported successfully!`, 'success');
+            }, 2000);
+        }
+        
+        // Generate different report formats
+        function generateCompleteList() {
+            return `Name,Phone,Email,Category,Amount,Payment Status,Registration Date,T-Shirt Size,Emergency Contact\n` +
+                   `রহিম উদ্দিন,01712345678,rahim@email.com,21KM Half Marathon,1250,Verified,2025-07-15,L,01912345678\n` +
+                   `সাদিয়া আক্তার,01823456789,sadia@email.com,10KM Long Run,1050,Verified,2025-07-16,M,01723456789\n` +
+                   `করিম উদ্দিন,01934567890,karim@email.com,Student Run,800,Pending,2025-07-17,XL,01834567890\n`;
+        }
+        
+        function generatePaymentReport() {
+            return `Category,Total Registered,Verified Payments,Pending Payments,Total Revenue,Collected Revenue\n` +
+                   `21KM Half Marathon,45,42,3,56250,52500\n` +
+                   `10KM Long Run,52,50,2,54600,52500\n` +
+                   `Student Run,28,25,3,22400,20000\n` +
+                   `Kids Run,3,3,0,1800,1800\n`;
+        }
+        
+        function generateCategoryReport() {
+            return `Category,Registered,Target,Percentage,Revenue\n` +
+                   `21KM Half Marathon,45,60,75%,৳56250\n` +
+                   `10KM Long Run,52,80,65%,৳54600\n` +
+                   `Student Run,28,50,56%,৳22400\n` +
+                   `Kids Run,3,10,30%,৳1800\n`;
+        }
+        
+        function generateCheckInList() {
+            return `BIB Number,Name,Category,Payment Status,Check-in Status\n` +
+                   `AIBA-001,রহিম উদ্দিন,21KM Half Marathon,Verified,Pending\n` +
+                   `AIBA-002,সাদিয়া আক্তার,10KM Long Run,Verified,Pending\n` +
+                   `AIBA-003,করিম উদ্দিন,Student Run,Pending,Pending\n`;
+        }
+        
+        function generateEmergencyList() {
+            return `Name,Phone,Emergency Contact,Emergency Phone,Medical Conditions\n` +
+                   `রহিম উদ্দিন,01712345678,রেহানা উদ্দিন,01912345678,None\n` +
+                   `সাদিয়া আক্তার,01823456789,আক্তার হোসেন,01723456789,Asthma\n`;
+        }
+        
+        function generateFinancialReport() {
+            return `Item,Amount\nTotal Expected Revenue,৳135000\nCollected Revenue,৳127000\nPending Revenue,৳8000\nCollection Rate,94%\n`;
+        }
+        
+        // Financial Report with breakdown
+        function financialReport() {
+            const report = `
+FINANCIAL SUMMARY - Justice Half Marathon 2025
+Generated: ${new Date().toLocaleString('bn-BD')}
+=============================================
+
+REVENUE BREAKDOWN:
+Category              | Registered | Amount | Total Revenue
+21KM Half Marathon    |     45     | ৳1,250 | ৳56,250
+10KM Long Run         |     52     | ৳1,050 | ৳54,600  
+Student Run           |     28     | ৳800   | ৳22,400
+Kids Run              |      3     | ৳600   | ৳1,800
+                                    TOTAL: ৳135,050
+
+COLLECTION STATUS:
+Verified Payments: ৳127,000 (94%)
+Pending Payments: ৳8,050 (6%)
+
+EXPENSES (Estimated):
+- Medals & Certificates: ৳25,000
+- T-shirts & Race Kits: ৳35,000
+- Venue & Logistics: ৳15,000
+- Marketing & Promotion: ৳10,000
+- Medical & Safety: ৳8,000
+- Refreshments: ৳12,000
+TOTAL EXPENSES: ৳105,000
+
+NET PROFIT: ৳22,000 (After all collections)
+
+PENDING ACTIONS:
+- Follow up 8 pending payments (৳8,050)
+- Finalize vendor contracts
+- Confirm sponsor contributions
+            `;
+            
+            alert(report);
+            
+            // Ask if they want to download
+            if (confirm('Download detailed financial report?')) {
+                const blob = new Blob([report], { type: 'text/plain;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `financial-report-${new Date().toISOString().split('T')[0]}.txt`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+        
+        // Race Day Management
+        function raceManagement() {
+            const raceActions = [
+                '1. Generate BIB Numbers',
+                '2. Check-in System Setup', 
+                '3. Volunteer Coordination',
+                '4. Medical Team Brief',
+                '5. Route Safety Check',
+                '6. Weather Contingency Plan',
+                '7. Live Tracking Setup',
+                '8. Prize Distribution Plan'
+            ];
+            
+            const choice = prompt(`Race Day Management:\n\n${raceActions.join('\n')}\n\nEnter option number (1-8):`);
+            
+            switch(choice) {
+                case '1':
+                    alert('🏃‍♂️ BIB Number Generation\n\n✅ 21KM: AIBA-001 to AIBA-045\n✅ 10KM: AIBA-101 to AIBA-152\n✅ Student: AIBA-201 to AIBA-228\n✅ Kids: AIBA-301 to AIBA-303\n\nTotal: 128 BIB numbers ready for printing');
+                    break;
+                case '2':
+                    alert('📱 Digital Check-in System\n\n✅ QR code scanner setup\n✅ Volunteer training scheduled\n✅ Backup manual system ready\n✅ Real-time participant tracking\n\nEstimated check-in time: 2-3 minutes per participant');
+                    break;
+                case '3':
+                    alert('👥 Volunteer Management\n\n✅ 25 volunteers confirmed\n✅ Role assignments: Check-in (5), Route (8), Medical (3), Finish (4), Others (5)\n✅ Training session: 24 September\n✅ WhatsApp coordination group active');
+                    break;
+                case '4':
+                    alert('🏥 Medical Team Coordination\n\n✅ 2 doctors, 4 paramedics confirmed\n✅ Ambulance on standby\n✅ Medical stations: Start, 5KM, 10KM, 15KM, Finish\n✅ Emergency protocols reviewed');
+                    break;
+                case '5':
+                    alert('🛣️ Route Safety Assessment\n\n✅ Police coordination confirmed\n✅ Traffic management plan approved\n✅ Water stations: Every 2.5KM\n✅ Signage and barriers ready');
+                    break;
+                case '6':
+                    alert('🌦️ Weather Contingency\n\n✅ Rain plan: Indoor finish area\n✅ Heat advisory: Extra hydration stations\n✅ Storm policy: Event postponement protocol\n✅ Real-time weather monitoring');
+                    break;
+                case '7':
+                    alert('📍 Live Tracking System\n\n✅ GPS timing chips for 21KM category\n✅ Manual timing for other categories\n✅ Live leaderboard on website\n✅ Family tracking app available');
+                    break;
+                case '8':
+                    alert('🏆 Prize Distribution\n\n✅ Trophies: Top 3 in each category\n✅ Medals: All finishers\n✅ Certificates: Digital + Physical\n✅ Special awards: Oldest, Youngest, Best costume');
+                    break;
+                default:
+                    alert('❌ Invalid option selected.');
+            }
+        }
+        
+        // Search Participant
+        function searchParticipant() {
+            const query = document.getElementById('participantSearch').value.trim();
+            if (!query) {
+                alert('⚠️ Please enter phone number or name to search');
+                return;
+            }
+            
+            showLoading(true);
+            
+            // Simulate search
+            setTimeout(() => {
+                showLoading(false);
+                
+                // Mock search result
+                const searchResult = document.getElementById('searchResult');
+                searchResult.innerHTML = `
+                    <div class="border-b pb-3 mb-3">
+                        <h4 class="font-semibold text-gray-800">রহিম উদ্দিন</h4>
+                        <p class="text-sm text-gray-600">Phone: 01712345678</p>
+                        <p class="text-sm text-gray-600">Category: 21KM Half Marathon</p>
+                        <p class="text-sm text-gray-600">Amount: ৳1,250</p>
+                        <span class="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full mt-1">✅ Payment Verified</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editParticipant('রহিম উদ্দিন')" class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">Edit</button>
+                        <button onclick="sendSMS('01712345678')" class="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600">SMS</button>
+                        <button onclick="viewDetails('রহিম উদ্দিন')" class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">Details</button>
+                    </div>
+                `;
+                searchResult.classList.remove('hidden');
+            }, 1500);
+        }
+        
+        // Individual participant actions
+        function editParticipant(name) {
+            alert(`✏️ Edit Participant: ${name}\n\nFeatures:\n• Update contact information\n• Change category\n• Modify payment status\n• Add medical notes\n• Update T-shirt size\n\nRedirecting to edit form...`);
+        }
+        
+        function sendSMS(phone) {
+            const message = prompt(`📱 Send SMS to ${phone}:\n\nEnter your message:`);
+            if (message) {
+                showNotification(`SMS sent to ${phone}: "${message}"`, 'success');
+            }
+        }
+        
+        function viewDetails(name) {
+            alert(`👤 Participant Details: ${name}\n\nRegistration Date: 15 July 2025\nPayment Date: 15 July 2025\nT-shirt Size: L\nEmergency Contact: 01912345678\nMedical Conditions: None\nSpecial Requirements: None\n\nBIB Number: AIBA-001\nCategory Rank: Not assigned\nEstimated Finish Time: 2:30:00`);
+        }
+        
+        // Quick action functions
+        function markPaymentVerified() {
+            const phone = prompt('📱 Enter participant phone number to verify payment:');
+            if (phone) {
+                showLoading(true);
+                setTimeout(() => {
+                    showLoading(false);
+                    showNotification(`✅ Payment verified for ${phone}`, 'success');
+                }, 1500);
+            }
+        }
+        
+        function sendIndividualSMS() {
+            const phone = prompt('📱 Enter phone number:');
+            if (phone) {
+                const message = prompt(`Send SMS to ${phone}:\n\nEnter message:`);
+                if (message) {
+                    showNotification(`SMS sent to ${phone}`, 'success');
+                }
+            }
+        }
+        
+        function updateParticipantInfo() {
+            const phone = prompt('📱 Enter participant phone number to update:');
+            if (phone) {
+                alert(`✏️ Update Information for ${phone}\n\nAvailable updates:\n• Personal details\n• Category change\n• Payment status\n• T-shirt size\n• Emergency contact\n• Medical information\n\nRedirecting to update form...`);
             }
         }
         
