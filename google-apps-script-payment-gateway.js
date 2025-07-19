@@ -108,7 +108,9 @@ function handleRegistration(data) {
         'Transaction ID',
         'Payment Timestamp',
         'BIB Number',
-        'Registration ID'
+        'Registration ID',
+        'Invoice ID',
+        'Payment Method'
       ];
       
       sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
@@ -145,7 +147,9 @@ function handleRegistration(data) {
       data.transactionId || '',
       data.paymentTimestamp || '',
       bibNumber,
-      registrationId
+      registrationId,
+      data.invoiceId || '',
+      data.paymentMethod || ''
     ];
     
     // Sheet এ append করে
@@ -219,10 +223,20 @@ function updatePaymentStatus(data) {
     const paymentStatusCol = 14; // Payment Status column
     const transactionIdCol = 15; // Transaction ID column
     const paymentTimestampCol = 16; // Payment Timestamp column
+    const invoiceIdCol = 19; // Invoice ID column
+    const paymentMethodCol = 20; // Payment Method column
     
     sheet.getRange(targetRow, paymentStatusCol).setValue(data.paymentStatus);
     sheet.getRange(targetRow, transactionIdCol).setValue(data.transactionId);
     sheet.getRange(targetRow, paymentTimestampCol).setValue(data.paymentTimestamp);
+    
+    // Update invoice ID and payment method if provided
+    if (data.invoiceId) {
+      sheet.getRange(targetRow, invoiceIdCol).setValue(data.invoiceId);
+    }
+    if (data.paymentMethod) {
+      sheet.getRange(targetRow, paymentMethodCol).setValue(data.paymentMethod);
+    }
     
     // Payment verified হলে row highlight করে
     if (data.paymentStatus === 'Verified') {

@@ -14,6 +14,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- html2canvas for image generation -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    
     <!-- bKash Payment Integration Scripts -->
     <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
     
@@ -53,6 +56,36 @@
         .price-card.selected {
             border-color: #005840;
             background: linear-gradient(135deg, rgba(0, 88, 64, 0.05) 0%, rgba(0, 122, 94, 0.05) 100%);
+        }
+        
+        /* Print styles */
+        @media print {
+            @page { 
+                margin: 0.5in; 
+                size: A4;
+            }
+            
+            .print\:hidden { 
+                display: none !important; 
+            }
+            
+            .print\:shadow-none { 
+                box-shadow: none !important; 
+            }
+            
+            .print\:border-2 { 
+                border-width: 2px !important; 
+            }
+            
+            .print\:border-gray-300 { 
+                border-color: #d1d5db !important; 
+            }
+            
+            #registrationCard {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
         }
     </style>
     
@@ -324,9 +357,15 @@
                             <div class="flex items-center justify-center mb-4">
                                 <div class="bg-pink-600 text-white px-4 py-2 rounded-lg font-bold text-lg">bKash</div>
                             </div>
-                            <p class="text-gray-700 mb-4">Pay securely with bKash Merchant Account</p>
+                            <p class="text-gray-700 mb-4">Pay securely with bKash Merchant Gateway</p>
+                            <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-4">
+                                <p class="text-yellow-800 text-sm">
+                                    <strong>Important:</strong> You will be redirected to bKash payment page. 
+                                    Please complete the payment and return to confirm your transaction.
+                                </p>
+                            </div>
                             <button id="bKash_button" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transition-all hover:shadow-xl w-full">
-                                Pay with bKash
+                                Pay ৳<span id="paymentButtonAmount"></span> with bKash
                             </button>
                         </div>
                         
@@ -350,39 +389,67 @@
                     <h2 class="text-3xl font-bold text-green-600 mb-4">Registration Successful!</h2>
                     <p class="text-gray-600 mb-6">Your registration for Justice Half Marathon 2025 has been confirmed.</p>
                     
-                    <div class="bg-green-50 border border-green-200 rounded-xl p-6 mb-6">
-                        <h3 class="text-xl font-semibold text-green-800 mb-4">Registration Details</h3>
-                        <div class="space-y-2 text-left">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Name:</span>
-                                <span class="font-medium" id="confirmName"></span>
+                    <!-- Printable Registration Card -->
+                    <div id="registrationCard" class="bg-gradient-to-br from-[#005840] to-[#007a5e] text-white rounded-2xl p-6 mb-6 mx-auto max-w-md print:shadow-none print:border-2 print:border-gray-300">
+                        <div class="text-center mb-4">
+                            <img src="photos/logo3.png" alt="Marathon Logo" class="h-12 w-auto mx-auto mb-2 print:h-8">
+                            <h3 class="text-xl font-bold">Justice Half Marathon 2025</h3>
+                            <p class="text-sm opacity-90">Army IBA Hiking & Trekking Club</p>
+                        </div>
+                        
+                        <div class="bg-white/20 rounded-xl p-4 mb-4">
+                            <div class="text-center mb-3">
+                                <div class="text-3xl font-bold text-yellow-300" id="confirmBibNumber">BIB: LOADING...</div>
+                                <div class="text-lg font-semibold" id="confirmName">Loading...</div>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Category:</span>
-                                <span class="font-medium" id="confirmCategory"></span>
+                            
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div>
+                                    <span class="opacity-80">Category:</span>
+                                    <div class="font-semibold" id="confirmCategory">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Amount:</span>
+                                    <div class="font-semibold text-yellow-300" id="confirmAmount">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Registration ID:</span>
+                                    <div class="font-semibold text-xs" id="confirmRegId">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Transaction ID:</span>
+                                    <div class="font-semibold text-xs" id="confirmTxnId">Loading...</div>
+                                </div>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Amount Paid:</span>
-                                <span class="font-medium text-green-600" id="confirmAmount"></span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Transaction ID:</span>
-                                <span class="font-medium font-mono" id="confirmTxnId"></span>
-                            </div>
+                        </div>
+                        
+                        <div class="text-center text-xs opacity-80">
+                            <p class="mb-1">Event Date: 26th September, 2025</p>
+                            <p>Please bring this BIB card on race day</p>
                         </div>
                     </div>
 
-                    <div class="space-y-4">
-                        <p class="text-gray-600">
-                            You will receive a confirmation email shortly. Please keep your transaction ID for future reference.
+                    <!-- Action Buttons -->
+                    <div class="space-y-4 print:hidden">
+                        <button onclick="printRegistrationCard()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition mx-2">
+                            🖨️ Print BIB Card
+                        </button>
+                        
+                        <button onclick="downloadRegistrationCard()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition mx-2">
+                            📱 Download as Image
+                        </button>
+                        
+                        <p class="text-gray-600 text-sm">
+                            Keep your BIB number safe! You will need it on race day.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
                             <a href="index.html" class="bg-[#005840] hover:bg-[#004632] text-white font-bold py-3 px-6 rounded-xl transition">
                                 Back to Home
                             </a>
-                            <a href="registration.html" class="border-2 border-[#005840] text-[#005840] hover:bg-[#005840] hover:text-white font-bold py-3 px-6 rounded-xl transition">
+                            <button onclick="registerAnother()" class="border-2 border-[#005840] text-[#005840] hover:bg-[#005840] hover:text-white font-bold py-3 px-6 rounded-xl transition">
                                 Register Another Participant
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -473,8 +540,7 @@
 
         // Submit to Google Sheets
         async function submitToGoogleSheets(data) {
-            // আপনার Google Apps Script web app URL এখানে দিন
-                        // Google Apps Script Web App URL
+            // Google Apps Script Web App URL
             const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjhwUsSIT46HLiXktpKQLY1KGqhDII4Cf05ng8KSrrS7D_MezYpSQm3uiZUHWgYo1XKg/exec';
             
             try {
@@ -488,17 +554,26 @@
                 
                 const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
-                    body: formData // Use FormData instead of JSON
+                    body: formData
                 });
                 
-                console.log('Google Sheets submission successful');
-                return response;
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Store BIB number and registration ID
+                    registrationData.bibNumber = result.bibNumber;
+                    registrationData.registrationId = result.registrationId;
+                    console.log('Google Sheets submission successful');
+                    return result;
+                } else {
+                    throw new Error(result.message || 'Registration failed');
+                }
                 
             } catch (error) {
                 console.error('Error submitting to Google Sheets:', error);
-                // Don't throw error, continue to payment step anyway
+                // Continue to payment step anyway
                 console.log('Continuing to payment despite Google Sheets error');
-                return Promise.resolve();
+                return { status: 'success', bibNumber: 'TEMP-001', registrationId: 'TEMP-' + Date.now() };
             }
         }
 
@@ -508,6 +583,12 @@
             document.getElementById('paymentCategory').textContent = registrationData.category;
             document.getElementById('paymentEmail').textContent = registrationData.email;
             document.getElementById('paymentAmount').textContent = '৳' + registrationData.amount.toLocaleString();
+            
+            // Update payment button amount
+            const paymentButtonAmount = document.getElementById('paymentButtonAmount');
+            if (paymentButtonAmount) {
+                paymentButtonAmount.textContent = registrationData.amount.toLocaleString();
+            }
         }
 
         // Step navigation
@@ -546,8 +627,9 @@
             progressBar.style.width = progressPercentage + '%';
         }
 
-        // bKash Payment Integration
+        // bKash Payment Integration - Real Gateway
         let paymentID = '';
+        let invoiceId = '';
         
         function showLoading(show) {
             const overlay = document.getElementById('loadingOverlay');
@@ -558,74 +640,252 @@
             }
         }
 
-        // bKash Configuration
-        var paymentConfig = {
-            createCheckoutURL: 'https://YOUR_SERVER.com/create-payment', // Your backend URL
-            executeCheckoutURL: 'https://YOUR_SERVER.com/execute-payment' // Your backend URL
-        };
+        // Generate unique invoice ID
+        function generateInvoiceId() {
+            const timestamp = Date.now().toString(36);
+            const random = Math.random().toString(36).substr(2, 5);
+            return `JHM${timestamp}${random}`.toUpperCase();
+        }
 
-        // bKash Payment Button Click
+        // bKash Payment Button Click - Real Gateway
         document.getElementById('bKash_button').addEventListener('click', function() {
-            showLoading(true);
+            if (!registrationData.fullName || !registrationData.amount) {
+                alert('Please complete the registration form first');
+                return;
+            }
             
-            // For demo purposes, we'll simulate the payment process
-            // In production, you'll integrate with actual bKash API
-            simulatePayment();
+            // Generate unique invoice ID for this transaction
+            invoiceId = generateInvoiceId();
+            
+            // Create bKash payment URL
+            const amount = registrationData.amount;
+            const bkashPaymentUrl = `https://shop.bkash.com/mubasshir-rafi-automation01300/pay/bdt${amount}/${invoiceId}`;
+            
+            // Store registration data temporarily
+            sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
+            sessionStorage.setItem('jhm_invoice_id', invoiceId);
+            
+            // Open bKash payment in new window
+            const paymentWindow = window.open(
+                bkashPaymentUrl, 
+                'bkash_payment', 
+                'width=800,height=600,scrollbars=yes,resizable=yes'
+            );
+            
+            // Start checking payment status
+            checkPaymentStatus(invoiceId, paymentWindow);
         });
 
-        // Simulate payment process (for demo)
-        function simulatePayment() {
+        // Check payment status periodically
+        function checkPaymentStatus(invoiceId, paymentWindow) {
+            showLoading(true);
+            
+            const checkInterval = setInterval(() => {
+                // Check if payment window is closed
+                if (paymentWindow.closed) {
+                    clearInterval(checkInterval);
+                    
+                    // Show manual verification dialog
+                    showManualVerification(invoiceId);
+                }
+            }, 2000);
+            
+            // Auto timeout after 10 minutes
             setTimeout(() => {
-                const txnId = 'TXN' + Date.now().toString(36).toUpperCase();
+                clearInterval(checkInterval);
+                if (!paymentWindow.closed) {
+                    paymentWindow.close();
+                }
+                showManualVerification(invoiceId);
+            }, 600000); // 10 minutes
+        }
+
+        // Show manual payment verification
+        function showManualVerification(invoiceId) {
+            showLoading(false);
+            
+            const userResponse = confirm(
+                `Did you complete the payment successfully?\n\n` +
+                `Invoice ID: ${invoiceId}\n` +
+                `Amount: ৳${registrationData.amount}\n\n` +
+                `Click OK if payment was successful, Cancel if failed.`
+            );
+            
+            if (userResponse) {
+                // Payment successful
+                const txnId = prompt('Please enter the bKash transaction ID (TrxID) from the payment receipt:');
                 
-                // Update registration data with payment info
-                registrationData.paymentStatus = 'Verified';
-                registrationData.transactionId = txnId;
-                registrationData.paymentTimestamp = new Date().toISOString();
-                
-                // Update Google Sheets with payment confirmation
-                updatePaymentInGoogleSheets(registrationData);
-                
+                if (txnId && txnId.trim()) {
+                    completePayment(txnId.trim(), invoiceId);
+                } else {
+                    alert('Transaction ID is required. Please try again.');
+                    showManualVerification(invoiceId);
+                }
+            } else {
+                // Payment failed or cancelled
+                alert('Payment was not completed. Please try again.');
+                // Stay on payment step
+            }
+        }
+
+        // Complete payment process
+        function completePayment(transactionId, invoiceId) {
+            showLoading(true);
+            
+            // Update registration data with payment info
+            registrationData.paymentStatus = 'Verified';
+            registrationData.transactionId = transactionId;
+            registrationData.invoiceId = invoiceId;
+            registrationData.paymentTimestamp = new Date().toISOString();
+            registrationData.paymentMethod = 'bKash';
+            
+            // Update Google Sheets with payment confirmation
+            updatePaymentInGoogleSheets(registrationData).then(() => {
                 // Show confirmation
-                showConfirmation(txnId);
+                showConfirmation(transactionId, invoiceId);
+                
+                // Clear session storage
+                sessionStorage.removeItem('jhm_registration_data');
+                sessionStorage.removeItem('jhm_invoice_id');
                 
                 showLoading(false);
                 goToStep(3);
-            }, 3000);
+            }).catch(error => {
+                console.error('Error updating payment:', error);
+                // Still proceed to confirmation even if update fails
+                showConfirmation(transactionId, invoiceId);
+                showLoading(false);
+                goToStep(3);
+            });
         }
 
         // Update payment status in Google Sheets
         async function updatePaymentInGoogleSheets(data) {
-            // আপনার Google Apps Script web app URL এখানে দিন
             const UPDATE_PAYMENT_URL = 'https://script.google.com/macros/s/AKfycbzjhwUsSIT46HLiXktpKQLY1KGqhDII4Cf05ng8KSrrS7D_MezYpSQm3uiZUHWgYo1XKg/exec';
             
             try {
-                await fetch(UPDATE_PAYMENT_URL, {
+                // Create form data for payment update
+                const formData = new FormData();
+                formData.append('action', 'updatePayment');
+                formData.append('email', data.email);
+                formData.append('phone', data.phone);
+                formData.append('transactionId', data.transactionId);
+                formData.append('invoiceId', data.invoiceId || '');
+                formData.append('paymentMethod', data.paymentMethod || 'bKash');
+                formData.append('paymentStatus', data.paymentStatus);
+                formData.append('paymentTimestamp', data.paymentTimestamp);
+                
+                const response = await fetch(UPDATE_PAYMENT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'updatePayment',
-                        email: data.email,
-                        phone: data.phone,
-                        transactionId: data.transactionId,
-                        paymentStatus: data.paymentStatus,
-                        paymentTimestamp: data.paymentTimestamp
-                    })
+                    body: formData
                 });
+                
+                console.log('Payment update successful');
+                return response;
+                
             } catch (error) {
                 console.error('Error updating payment:', error);
+                // Don't throw error, continue anyway
+                return Promise.resolve();
             }
         }
 
         // Show confirmation details
-        function showConfirmation(txnId) {
+        function showConfirmation(txnId, invoiceId) {
             document.getElementById('confirmName').textContent = registrationData.fullName;
             document.getElementById('confirmCategory').textContent = registrationData.category;
             document.getElementById('confirmAmount').textContent = '৳' + registrationData.amount.toLocaleString();
             document.getElementById('confirmTxnId').textContent = txnId;
+            
+            // Show BIB number and Registration ID
+            if (registrationData.bibNumber) {
+                document.getElementById('confirmBibNumber').textContent = 'BIB: ' + registrationData.bibNumber;
+            }
+            if (registrationData.registrationId) {
+                document.getElementById('confirmRegId').textContent = registrationData.registrationId;
+            }
+        }
+
+        // Print registration card
+        function printRegistrationCard() {
+            // Add print styles
+            const printStyles = `
+                <style media="print">
+                    @page { margin: 0.5in; }
+                    body * { visibility: hidden; }
+                    #registrationCard, #registrationCard * { visibility: visible; }
+                    #registrationCard { 
+                        position: absolute; 
+                        left: 0; 
+                        top: 0; 
+                        width: 100% !important; 
+                        max-width: none !important;
+                        background: linear-gradient(135deg, #005840 0%, #007a5e 100%) !important;
+                        -webkit-print-color-adjust: exact !important;
+                        color-adjust: exact !important;
+                    }
+                </style>
+            `;
+            
+            // Add print styles to head
+            const head = document.head || document.getElementsByTagName('head')[0];
+            const style = document.createElement('style');
+            style.type = 'text/css';
+            style.media = 'print';
+            style.innerHTML = printStyles.replace('<style media="print">', '').replace('</style>', '');
+            head.appendChild(style);
+            
+            // Print
+            window.print();
+            
+            // Remove print styles after printing
+            setTimeout(() => {
+                head.removeChild(style);
+            }, 1000);
+        }
+
+        // Download registration card as image
+        function downloadRegistrationCard() {
+            // Create canvas from the card
+            html2canvas(document.getElementById('registrationCard'), {
+                backgroundColor: '#005840',
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                // Create download link
+                const link = document.createElement('a');
+                link.download = `JHM2025_BIB_${registrationData.bibNumber || 'CARD'}.png`;
+                link.href = canvas.toDataURL();
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                alert('Could not generate image. Please use print instead.');
+            });
+        }
+
+        // Register another participant
+        function registerAnother() {
+            // Reset form and go back to step 1
+            document.getElementById('registrationForm').reset();
+            selectedCategory = '';
+            selectedPrice = 0;
+            registrationData = {};
+            
+            // Hide selected category
+            document.getElementById('selectedCategoryDiv').classList.add('hidden');
+            document.getElementById('studentIdDiv').classList.add('hidden');
+            
+            // Clear selection
+            document.querySelectorAll('.price-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Go to step 1
+            goToStep(1);
         }
 
         // Real bKash Integration (uncomment when you have merchant account)
