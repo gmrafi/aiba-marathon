@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway | Justice Half Marathon 2025</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Secure payment gateway for Justice Half Marathon 2025 registration. Complete your registration with integrated bKash payment system.">
+    <meta name="keywords" content="Justice Half Marathon payment, bKash payment gateway, marathon registration payment, secure online payment">
+    <meta name="author" content="Army IBA Hiking & Trekking Club, Sylhet">
+    <meta name="robots" content="index, follow">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- html2canvas for image generation -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    
+    <!-- bKash Payment Integration Scripts -->
+    <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #005840;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .step-indicator {
+            background: linear-gradient(135deg, #005840 0%, #007a5e 100%);
+        }
+        .form-step {
+            display: none;
+        }
+        .form-step.active {
+            display: block;
+        }
+        .price-card {
+            transition: all 0.3s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 88, 64, 0.15);
+        }
+        .price-card.selected {
+            border-color: #005840;
+            background: linear-gradient(135deg, rgba(0, 88, 64, 0.05) 0%, rgba(0, 122, 94, 0.05) 100%);
+        }
+        
+        /* Typing Animation */
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid #005840;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #005840 }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Print styles */
+        @media print {
+            @page { 
+                margin: 0.5in; 
+                size: A4;
+            }
+            
+            .print\:hidden { 
+                display: none !important; 
+            }
+            
+            .print\:shadow-none { 
+                box-shadow: none !important; 
+            }
+            
+            .print\:border-2 { 
+                border-width: 2px !important; 
+            }
+            
+            .print\:border-gray-300 { 
+                border-color: #d1d5db !important; 
+            }
+            
+            #registrationCard {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="photos/aiba.jpg">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NK9Z5DRC');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body class="antialiased">
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK9Z5DRC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg rounded-b-3xl mb-6">
+        <div class="container mx-auto px-3 sm:px-6">
+            <!-- Desktop: All logos, name, and menu in a single row for xl and up -->
+            <div class="hidden xl:flex flex-row items-center justify-between w-full gap-8 fixed top-0 left-0 right-0 z-50 bg-white border-b-4 border-[#005840]/60 shadow-2xl rounded-b-3xl transition-all duration-300">
+                <div class="flex flex-row items-center gap-6">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-20 w-auto object-contain shadow-2xl">
+                    <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-14 w-14 rounded-full object-cover">
+                    <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-14 w-14 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col items-center min-w-[320px]">
+                    <span class="block text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap typing-animation">Payment Gateway <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-base text-[#005840] font-medium tracking-wide whitespace-nowrap">Army IBA Hiking & Trekking Club, Sylhet</span>
+                </div>
+                <div class="flex flex-row items-center gap-2 text-gray-900 font-semibold text-base">
+                    <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                    <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                    <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                    <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                    <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                    <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                </div>
+            </div>
+            <!-- Mobile & Tablet: show same header for all screens below xl, NOT sticky/fixed -->
+            <div class="block xl:hidden">
+                <div class="flex flex-col items-center w-full gap-4 py-4">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-28 w-auto sm:h-32 object-contain mb-3 shadow-2xl">
+                    <div class="flex flex-row items-center justify-center gap-8 w-full mb-2">
+                        <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
+                        <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
+                    </div>
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Payment Gateway <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-xs sm:text-base text-[#005840] font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
+                    <div class="flex flex-wrap justify-center items-center gap-2 text-gray-900 font-semibold text-sm sm:text-base mt-2">
+                        <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                        <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                        <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                        <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                        <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                        <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Indicator -->
+    <div class="container mx-auto px-4 py-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center">
+                    <div id="step1-indicator" class="step-indicator text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
+                    <span class="ml-3 text-sm font-medium text-gray-700">Registration Details</span>
+                </div>
+                <div class="flex-1 mx-4 h-1 bg-gray-200 rounded">
+                    <div id="progress-bar" class="h-full bg-[#005840] rounded transition-all duration-300" style="width: 33%"></div>
+                </div>
+                <div class="flex items-center">
+                    <div id="step2-indicator" class="bg-gray-300 text-gray-600 rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
+                    <span class="ml-3 text-sm font-medium text-gray-600">Payment</span>
+                </div>
+                <div class="flex-1 mx-4 h-1 bg-gray-200 rounded">
+                    <div class="h-full bg-gray-200 rounded"></div>
+                </div>
+                <div class="flex items-center">
+                    <div id="step3-indicator" class="bg-gray-300 text-gray-600 rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
+                    <span class="ml-3 text-sm font-medium text-gray-600">Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-16">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Step 1: Registration Form -->
+            <div id="step1" class="form-step active">
+                <div class="bg-white rounded-2xl shadow-xl border-2 border-[#005840]/20 p-8">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-[#005840] mb-2">Registration Form</h2>
+                        <p class="text-gray-600">Please fill in your details to register for the marathon</p>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Select Category</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="price-card border-2 border-gray-200 rounded-xl p-4 cursor-pointer" onclick="selectCategory('21KM Half Marathon', 1250)">
+                                <div class="text-center">
+                                    <h4 class="font-bold text-[#005840] text-lg mb-2">21 KM Half Marathon</h4>
+                                    <div class="text-2xl font-bold text-gray-800 mb-2">৳1,250</div>
+                                    <p class="text-sm text-gray-600">For experienced runners</p>
+                                </div>
+                            </div>
+                            <div class="price-card border-2 border-gray-200 rounded-xl p-4 cursor-pointer" onclick="selectCategory('10KM Long Run', 1050)">
+                                <div class="text-center">
+                                    <h4 class="font-bold text-[#005840] text-lg mb-2">10 KM Long Run</h4>
+                                    <div class="text-2xl font-bold text-gray-800 mb-2">৳1,050</div>
+                                    <p class="text-sm text-gray-600">For passionate runners</p>
+                                </div>
+                            </div>
+                            <div class="price-card border-2 border-gray-200 rounded-xl p-4 cursor-pointer" onclick="selectCategory('Student Run', 800)">
+                                <div class="text-center">
+                                    <h4 class="font-bold text-[#005840] text-lg mb-2">Student Run</h4>
+                                    <div class="text-2xl font-bold text-gray-800 mb-2">৳800</div>
+                                    <p class="text-sm text-gray-600">For students</p>
+                                </div>
+                            </div>
+                            <div class="price-card border-2 border-gray-200 rounded-xl p-4 cursor-pointer" onclick="selectCategory('Kids Run', 600)">
+                                <div class="text-center">
+                                    <h4 class="font-bold text-[#005840] text-lg mb-2">Kids Run</h4>
+                                    <div class="text-2xl font-bold text-gray-800 mb-2">৳600</div>
+                                    <p class="text-sm text-gray-600">For children (1KM)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <form id="registrationForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">Full Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="fullName" name="fullName" required 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                       placeholder="Enter your full name">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                       placeholder="your@email.com">
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number <span class="text-red-500">*</span></label>
+                                <input type="tel" id="phone" name="phone" required 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                       placeholder="01XXXXXXXXX">
+                            </div>
+
+                            <!-- Alternative Phone -->
+                            <div>
+                                <label for="altPhone" class="block text-sm font-medium text-gray-700 mb-2">Alternative Phone</label>
+                                <input type="tel" id="altPhone" name="altPhone" 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                       placeholder="01XXXXXXXXX (Optional)">
+                            </div>
+
+                            <!-- Date of Birth -->
+                            <div>
+                                <label for="dob" class="block text-sm font-medium text-gray-700 mb-2">Date of Birth <span class="text-red-500">*</span></label>
+                                <input type="date" id="dob" name="dob" required 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition">
+                            </div>
+
+                            <!-- Gender -->
+                            <div>
+                                <label for="gender" class="block text-sm font-medium text-gray-700 mb-2">Gender <span class="text-red-500">*</span></label>
+                                <select id="gender" name="gender" required 
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- T-Shirt Size -->
+                            <div>
+                                <label for="tshirtSize" class="block text-sm font-medium text-gray-700 mb-2">T-Shirt Size <span class="text-red-500">*</span></label>
+                                <select id="tshirtSize" name="tshirtSize" required 
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition">
+                                    <option value="">Select Size</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </div>
+
+                            <!-- Accommodation -->
+                            <div>
+                                <label for="accommodation" class="block text-sm font-medium text-gray-700 mb-2">Need Accommodation?</label>
+                                <select id="accommodation" name="accommodation" 
+                                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div>
+                            <label for="address" class="block text-sm font-medium text-gray-700 mb-2">Address <span class="text-red-500">*</span></label>
+                            <textarea id="address" name="address" required rows="3" 
+                                      class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                      placeholder="Enter your full address"></textarea>
+                        </div>
+
+                        <!-- Student ID (conditional) -->
+                        <div id="studentIdDiv" class="hidden">
+                            <label for="studentId" class="block text-sm font-medium text-gray-700 mb-2">Student ID <span class="text-red-500">*</span></label>
+                            <input type="text" id="studentId" name="studentId" 
+                                   class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#005840] focus:border-[#005840] transition"
+                                   placeholder="Enter your student ID">
+                        </div>
+
+                        <!-- Selected Category Display -->
+                        <div id="selectedCategoryDiv" class="hidden bg-[#005840]/10 p-4 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="font-semibold text-[#005840]">Selected Category: </span>
+                                    <span id="selectedCategoryName" class="font-bold"></span>
+                                </div>
+                                <div class="text-2xl font-bold text-[#005840]" id="selectedCategoryPrice"></div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="bg-[#005840] hover:bg-[#004632] text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transition-all hover:shadow-xl">
+                                Proceed to Payment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Step 2: Payment -->
+            <div id="step2" class="form-step">
+                <div class="bg-white rounded-2xl shadow-xl border-2 border-[#005840]/20 p-8">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-[#005840] mb-2">Payment</h2>
+                        <p class="text-gray-600">Complete your payment to confirm registration</p>
+                    </div>
+
+                    <!-- Payment Summary -->
+                    <div class="bg-gray-50 rounded-xl p-6 mb-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Payment Summary</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Participant:</span>
+                                <span class="font-medium" id="paymentName"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Category:</span>
+                                <span class="font-medium" id="paymentCategory"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Email:</span>
+                                <span class="font-medium" id="paymentEmail"></span>
+                            </div>
+                            <hr class="my-3">
+                            <div class="flex justify-between text-xl font-bold text-[#005840]">
+                                <span>Total Amount:</span>
+                                <span id="paymentAmount"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- bKash Payment Button -->
+                    <div class="text-center space-y-4">
+                        <div class="bg-pink-50 border-2 border-pink-200 rounded-xl p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <div class="bg-pink-600 text-white px-4 py-2 rounded-lg font-bold text-lg">bKash</div>
+                            </div>
+                            <p class="text-gray-700 mb-4">Pay securely with bKash Merchant Gateway</p>
+                            <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-4">
+                                <p class="text-yellow-800 text-sm">
+                                    <strong>Important:</strong> You will be redirected to bKash payment page. 
+                                    Please complete the payment and return to confirm your transaction.
+                                </p>
+                            </div>
+                            <button id="bKash_button" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transition-all hover:shadow-xl w-full">
+                                Pay ৳<span id="paymentButtonAmount"></span> with bKash
+                            </button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button onclick="goToStep(1)" class="text-[#005840] hover:underline">
+                                ← Back to Registration Form
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirmation -->
+            <div id="step3" class="form-step">
+                <div class="bg-white rounded-2xl shadow-xl border-2 border-green-200 p-8 text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-green-600 mb-4">Registration Successful!</h2>
+                    <p class="text-gray-600 mb-6">Your registration for Justice Half Marathon 2025 has been confirmed.</p>
+                    
+                    <!-- Printable Registration Card -->
+                    <div id="registrationCard" class="bg-gradient-to-br from-[#005840] to-[#007a5e] text-white rounded-2xl p-6 mb-6 mx-auto max-w-md print:shadow-none print:border-2 print:border-gray-300">
+                        <div class="text-center mb-4">
+                            <img src="photos/logo3.png" alt="Marathon Logo" class="h-12 w-auto mx-auto mb-2 print:h-8">
+                            <h3 class="text-xl font-bold">Justice Half Marathon 2025</h3>
+                            <p class="text-sm opacity-90">Army IBA Hiking & Trekking Club</p>
+                        </div>
+                        
+                        <div class="bg-white/20 rounded-xl p-4 mb-4">
+                            <div class="text-center mb-3">
+                                <div class="text-3xl font-bold text-yellow-300" id="confirmBibNumber">BIB: LOADING...</div>
+                                <div class="text-lg font-semibold" id="confirmName">Loading...</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div>
+                                    <span class="opacity-80">Category:</span>
+                                    <div class="font-semibold" id="confirmCategory">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Amount:</span>
+                                    <div class="font-semibold text-yellow-300" id="confirmAmount">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Registration ID:</span>
+                                    <div class="font-semibold text-xs" id="confirmRegId">Loading...</div>
+                                </div>
+                                <div>
+                                    <span class="opacity-80">Transaction ID:</span>
+                                    <div class="font-semibold text-xs" id="confirmTxnId">Loading...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center text-xs opacity-80">
+                            <p class="mb-1">Event Date: 26th September, 2025</p>
+                            <p>Please bring this BIB card on race day</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-4 print:hidden">
+                        <button onclick="printRegistrationCard()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition mx-2">
+                            🖨️ Print BIB Card
+                        </button>
+                        
+                        <button onclick="downloadRegistrationCard()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition mx-2">
+                            📱 Download as Image
+                        </button>
+                        
+                        <p class="text-gray-600 text-sm">
+                            Keep your BIB number safe! You will need it on race day.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+                            <a href="index.html" class="bg-[#005840] hover:bg-[#004632] text-white font-bold py-3 px-6 rounded-xl transition">
+                                Back to Home
+                            </a>
+                            <button onclick="registerAnother()" class="border-2 border-[#005840] text-[#005840] hover:bg-[#005840] hover:text-white font-bold py-3 px-6 rounded-xl transition">
+                                Register Another Participant
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 flex flex-col items-center">
+            <div class="loading-spinner mb-4"></div>
+            <p class="text-gray-700 font-medium">Processing payment...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        /*
+         * bKash Payment Gateway Integration
+         * Updated according to official bKash Developer Documentation
+         * https://developer.bka.sh/docs/product-overview
+         * 
+         * CONFIGURATION REQUIRED:
+         * 1. Update bKashConfig object with your merchant credentials
+         * 2. Set baseURL to sandbox for testing, production for live
+         * 3. Add your app credentials from bKash merchant portal
+         * 
+         * FEATURES:
+         * - Official bKash API integration (Checkout URL)
+         * - Fallback to manual payment verification
+         * - Automatic token management
+         * - Callback handling for payment status
+         * - Google Sheets integration for registration data
+         * - BIB card generation and printing
+         */
+        
+        // Global variables
+        let selectedCategory = '';
+        let selectedPrice = 0;
+        let registrationData = {};
+        let currentStep = 1;
+
+        // Category selection
+        function selectCategory(category, price) {
+            selectedCategory = category;
+            selectedPrice = price;
+            
+            // Update UI
+            document.querySelectorAll('.price-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show selected category
+            document.getElementById('selectedCategoryDiv').classList.remove('hidden');
+            document.getElementById('selectedCategoryName').textContent = category;
+            document.getElementById('selectedCategoryPrice').textContent = '৳' + price.toLocaleString();
+            
+            // Show/hide student ID field
+            if (category === 'Student Run') {
+                document.getElementById('studentIdDiv').classList.remove('hidden');
+                document.getElementById('studentId').required = true;
+            } else {
+                document.getElementById('studentIdDiv').classList.add('hidden');
+                document.getElementById('studentId').required = false;
+            }
+        }
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedCategory) {
+                alert('Please select a category first');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+            registrationData = {
+                timestamp: new Date().toISOString(),
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                altPhone: formData.get('altPhone') || '',
+                dob: formData.get('dob'),
+                address: formData.get('address'),
+                gender: formData.get('gender'),
+                tshirtSize: formData.get('tshirtSize'),
+                accommodation: formData.get('accommodation'),
+                category: selectedCategory,
+                amount: selectedPrice,
+                studentId: formData.get('studentId') || '',
+                paymentStatus: 'Pending'
+            };
+
+            // Submit to Google Sheets first
+            submitToGoogleSheets(registrationData).then(() => {
+                // Move to payment step
+                goToStep(2);
+                updatePaymentSummary();
+            }).catch(error => {
+                console.error('Error submitting to Google Sheets:', error);
+                alert('Error submitting registration. Please try again.');
+            });
+        });
+
+        // Submit to Google Sheets
+        async function submitToGoogleSheets(data) {
+            // Google Apps Script Web App URL
+            const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjhwUsSIT46HLiXktpKQLY1KGqhDII4Cf05ng8KSrrS7D_MezYpSQm3uiZUHWgYo1XKg/exec';
+            
+            try {
+                // Create form data instead of JSON for Google Apps Script
+                const formData = new FormData();
+                
+                // Add all data as form fields
+                Object.keys(data).forEach(key => {
+                    formData.append(key, data[key]);
+                });
+                
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    // Store BIB number and registration ID
+                    registrationData.bibNumber = result.bibNumber;
+                    registrationData.registrationId = result.registrationId;
+                    console.log('Google Sheets submission successful');
+                    return result;
+                } else {
+                    throw new Error(result.message || 'Registration failed');
+                }
+                
+            } catch (error) {
+                console.error('Error submitting to Google Sheets:', error);
+                // Continue to payment step anyway
+                console.log('Continuing to payment despite Google Sheets error');
+                return { status: 'success', bibNumber: 'TEMP-001', registrationId: 'TEMP-' + Date.now() };
+            }
+        }
+
+        // Update payment summary
+        function updatePaymentSummary() {
+            document.getElementById('paymentName').textContent = registrationData.fullName;
+            document.getElementById('paymentCategory').textContent = registrationData.category;
+            document.getElementById('paymentEmail').textContent = registrationData.email;
+            document.getElementById('paymentAmount').textContent = '৳' + registrationData.amount.toLocaleString();
+            
+            // Update payment button amount
+            const paymentButtonAmount = document.getElementById('paymentButtonAmount');
+            if (paymentButtonAmount) {
+                paymentButtonAmount.textContent = registrationData.amount.toLocaleString();
+            }
+        }
+
+        // Step navigation
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update progress
+            updateProgress(step);
+            currentStep = step;
+        }
+
+        // Update progress indicators
+        function updateProgress(step) {
+            const indicators = ['step1-indicator', 'step2-indicator', 'step3-indicator'];
+            
+            indicators.forEach((id, index) => {
+                const indicator = document.getElementById(id);
+                if (index + 1 <= step) {
+                    indicator.classList.remove('bg-gray-300', 'text-gray-600');
+                    indicator.classList.add('step-indicator', 'text-white');
+                } else {
+                    indicator.classList.remove('step-indicator', 'text-white');
+                    indicator.classList.add('bg-gray-300', 'text-gray-600');
+                }
+            });
+            
+            // Update progress bar
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercentage = (step / 3) * 100;
+            progressBar.style.width = progressPercentage + '%';
+        }
+
+        // bKash Payment Integration - Official API Implementation
+        let paymentID = '';
+        let invoiceId = '';
+        let authToken = '';
+        
+        // bKash API Configuration
+        // IMPORTANT: Configure these settings with your bKash merchant credentials
+        const bKashConfig = {
+            // Environment Settings
+            // For testing: 'https://tokenized.sandbox.bka.sh/v1.2.0-beta'
+            // For production: 'https://tokenized.pay.bka.sh/v1.2.0-beta'
+            baseURL: 'https://tokenized.sandbox.bka.sh/v1.2.0-beta', // Change to production for live
+            
+            // Merchant Credentials (Get these from bKash merchant portal)
+            // Leave empty for manual payment fallback
+            appKey: '', // Your X-App-Key from bKash
+            appSecret: '', // Your app secret from bKash  
+            username: '', // Your merchant username
+            password: '', // Your merchant password
+            
+            // Callback Configuration
+            callbackURL: window.location.origin + '/pgw.html', // Current page as callback
+            
+            // Additional Settings
+            timeout: 30000, // API timeout in milliseconds
+            maxRetries: 2 // Maximum retry attempts for failed requests
+        };
+        
+        // Configuration Status Check
+        const isConfigured = !!(bKashConfig.appKey && bKashConfig.appSecret && 
+                               bKashConfig.username && bKashConfig.password);
+        
+        if (!isConfigured) {
+            console.warn('⚠️  bKash API Configuration Required:');
+            console.warn('📝 Please configure your bKash merchant credentials in bKashConfig object');
+            console.warn('🔗 Get credentials from: https://merchant.bkash.com/');
+            console.warn('📚 Documentation: https://developer.bka.sh/docs/product-overview');
+            console.warn('💡 Without configuration, system will use manual payment verification');
+        } else {
+            console.log('✅ bKash API configured successfully');
+        }
+        
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            if (show) {
+                overlay.classList.remove('hidden');
+            } else {
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // Generate unique invoice ID
+        function generateInvoiceId() {
+            const timestamp = Date.now().toString(36);
+            const random = Math.random().toString(36).substr(2, 5);
+            return `JHM${timestamp}${random}`.toUpperCase();
+        }
+
+        // Step 1: Get Authorization Token with better error handling
+        async function getBkashToken() {
+            try {
+                if (!bKashConfig.appKey || !bKashConfig.username) {
+                    throw new Error('bKash configuration incomplete');
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/token/grant`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'username': bKashConfig.username,
+                        'password': bKashConfig.password
+                    },
+                    body: JSON.stringify({
+                        app_key: bKashConfig.appKey,
+                        app_secret: bKashConfig.appSecret
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    authToken = data.id_token;
+                    console.log('bKash token obtained successfully');
+                    return data.id_token;
+                } else {
+                    throw new Error(data.statusMessage || `Token error: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error getting bKash token:', error);
+                throw new Error(`Token generation failed: ${error.message}`);
+            }
+        }
+
+        // Step 2: Create Payment with enhanced error handling
+        async function createBkashPayment(amount, invoiceNumber) {
+            try {
+                if (!authToken) {
+                    await getBkashToken();
+                }
+                
+                const requestBody = {
+                    mode: '0011', // Checkout URL mode
+                    payerReference: registrationData.phone || registrationData.fullName || '',
+                    callbackURL: bKashConfig.callbackURL,
+                    amount: amount.toString(),
+                    currency: 'BDT',
+                    intent: 'sale',
+                    merchantInvoiceNumber: invoiceNumber
+                };
+                
+                console.log('Creating bKash payment with data:', requestBody);
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    console.log('bKash payment created successfully:', data.paymentID);
+                    return data;
+                } else {
+                    throw new Error(data.statusMessage || `Payment creation failed: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error creating bKash payment:', error);
+                throw new Error(`Payment creation failed: ${error.message}`);
+            }
+        }
+
+        // Step 3: Execute Payment with retry logic
+        async function executeBkashPayment(paymentID, retryCount = 0) {
+            try {
+                if (!authToken && retryCount === 0) {
+                    await getBkashToken();
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/execute`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        paymentID: paymentID
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000' && data.transactionStatus === 'Completed') {
+                    console.log('bKash payment executed successfully:', data.trxID);
+                    return data;
+                } else if (data.errorCode === '2001' && retryCount < 2) {
+                    // Token expired, refresh and retry
+                    console.log('Token expired, refreshing and retrying...');
+                    await refreshBkashToken();
+                    return await executeBkashPayment(paymentID, retryCount + 1);
+                } else {
+                    throw new Error(data.statusMessage || data.errorMessage || `Payment execution failed: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error executing bKash payment:', error);
+                throw new Error(`Payment execution failed: ${error.message}`);
+            }
+        }
+
+        // bKash Payment Button Click - Official API Implementation with Enhanced Error Handling
+        document.getElementById('bKash_button').addEventListener('click', async function() {
+            if (!registrationData.fullName || !registrationData.amount) {
+                alert('Please complete the registration form first');
+                return;
+            }
+            
+            // Show configuration notice in console
+            showConfigurationNotice();
+            
+            showLoading(true);
+            
+            try {
+                // Generate unique invoice ID for this transaction
+                invoiceId = generateInvoiceId();
+                
+                console.log('Initiating bKash payment process...');
+                console.log('Invoice ID:', invoiceId);
+                console.log('Amount:', registrationData.amount);
+                
+                // Step 1: Create payment
+                const paymentData = await createBkashPayment(registrationData.amount, invoiceId);
+                paymentID = paymentData.paymentID;
+                
+                console.log('Payment created with ID:', paymentID);
+                
+                // Store payment data
+                sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
+                sessionStorage.setItem('jhm_invoice_id', invoiceId);
+                sessionStorage.setItem('jhm_payment_id', paymentID);
+                
+                showLoading(false);
+                
+                // Step 2: Redirect to bKash payment page
+                if (paymentData.bkashURL) {
+                    console.log('Redirecting to bKash payment page:', paymentData.bkashURL);
+                    
+                    // Show user what's happening
+                    const proceed = confirm(
+                        'You will now be redirected to bKash payment page.\n\n' +
+                        `Amount: ৳${registrationData.amount}\n` +
+                        `Invoice: ${invoiceId}\n\n` +
+                        'Click OK to proceed with payment.'
+                    );
+                    
+                    if (proceed) {
+                        window.location.href = paymentData.bkashURL;
+                    } else {
+                        // User cancelled, clear stored data
+                        sessionStorage.removeItem('jhm_registration_data');
+                        sessionStorage.removeItem('jhm_invoice_id');
+                        sessionStorage.removeItem('jhm_payment_id');
+                    }
+                } else {
+                    throw new Error('bKash payment URL not received from API');
+                }
+                
+            } catch (error) {
+                showLoading(false);
+                console.error('bKash API payment failed:', error);
+                
+                // Show user-friendly error message and offer fallback
+                const errorMessage = error.message.includes('configuration') 
+                    ? 'bKash API is not configured. Using manual payment method.'
+                    : `bKash API Error: ${error.message}\n\nWould you like to use manual payment instead?`;
+                
+                const useManualPayment = confirm(
+                    errorMessage + '\n\n' +
+                    'Manual payment will redirect you to bKash merchant page.\n\n' +
+                    'Click OK to proceed with manual payment, Cancel to try again.'
+                );
+                
+                if (useManualPayment) {
+                    // Fallback to manual payment URL
+                    const bkashPaymentUrl = `https://shop.bkash.com/mubasshir-rafi-automation01300/paymentlink/default-payment`;
+                    
+                    console.log('Falling back to manual payment:', bkashPaymentUrl);
+                    
+                    // Store registration data temporarily
+                    sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
+                    sessionStorage.setItem('jhm_invoice_id', invoiceId);
+                    
+                    // Open bKash payment in new window
+                    const paymentWindow = window.open(
+                        bkashPaymentUrl, 
+                        'bkash_payment', 
+                        'width=800,height=600,scrollbars=yes,resizable=yes'
+                    );
+                    
+                    if (paymentWindow) {
+                        // Start checking payment status for manual flow
+                        checkPaymentStatusManual(invoiceId, paymentWindow);
+                    } else {
+                        alert('Popup blocked. Please allow popups and try again.');
+                    }
+                } else {
+                    // User wants to try again
+                    console.log('User chose to retry payment');
+                }
+            }
+        });
+
+        // Handle bKash callback (when user returns from bKash payment page)
+        function handleBkashCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentID = urlParams.get('paymentID');
+            const status = urlParams.get('status');
+            
+            if (paymentID && status) {
+                const storedPaymentId = sessionStorage.getItem('jhm_payment_id');
+                const storedRegistrationData = sessionStorage.getItem('jhm_registration_data');
+                
+                if (storedPaymentId === paymentID && storedRegistrationData) {
+                    registrationData = JSON.parse(storedRegistrationData);
+                    
+                    if (status === 'success') {
+                        // Execute payment to finalize
+                        executePaymentAfterCallback(paymentID);
+                    } else if (status === 'failure') {
+                        alert('Payment failed. Please try again.');
+                        goToStep(2); // Go back to payment step
+                    } else if (status === 'cancel') {
+                        alert('Payment was cancelled.');
+                        goToStep(2); // Go back to payment step
+                    }
+                }
+            }
+        }
+
+        // Execute payment after successful callback
+        async function executePaymentAfterCallback(paymentID) {
+            showLoading(true);
+            
+            try {
+                const executionResult = await executeBkashPayment(paymentID);
+                
+                if (executionResult.transactionStatus === 'Completed') {
+                    // Payment successful
+                    completePayment(executionResult.trxID, invoiceId, executionResult);
+                } else {
+                    throw new Error('Payment execution failed');
+                }
+                
+            } catch (error) {
+                showLoading(false);
+                console.error('Payment execution failed:', error);
+                
+                // Show manual verification as fallback
+                showManualVerification(invoiceId);
+            }
+        }
+
+        // Check payment status periodically (for manual payment flow)
+        function checkPaymentStatusManual(invoiceId, paymentWindow) {
+            showLoading(true);
+            
+            const checkInterval = setInterval(() => {
+                // Check if payment window is closed
+                if (paymentWindow.closed) {
+                    clearInterval(checkInterval);
+                    
+                    // Show manual verification dialog
+                    showManualVerification(invoiceId);
+                }
+            }, 2000);
+            
+            // Auto timeout after 10 minutes
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                if (!paymentWindow.closed) {
+                    paymentWindow.close();
+                }
+                showManualVerification(invoiceId);
+            }, 600000); // 10 minutes
+        }
+
+        // Show manual payment verification
+        function showManualVerification(invoiceId) {
+            showLoading(false);
+            
+            const userResponse = confirm(
+                `Did you complete the payment successfully?\n\n` +
+                `Invoice ID: ${invoiceId}\n` +
+                `Amount: ৳${registrationData.amount}\n\n` +
+                `Click OK if payment was successful, Cancel if failed.`
+            );
+            
+            if (userResponse) {
+                // Payment successful
+                const txnId = prompt('Please enter the bKash transaction ID (TrxID) from the payment receipt:');
+                
+                if (txnId && txnId.trim()) {
+                    completePayment(txnId.trim(), invoiceId);
+                } else {
+                    alert('Transaction ID is required. Please try again.');
+                    showManualVerification(invoiceId);
+                }
+            } else {
+                // Payment failed or cancelled
+                alert('Payment was not completed. Please try again.');
+                // Stay on payment step
+            }
+        }
+
+        // Complete payment process
+        function completePayment(transactionId, invoiceId, apiData = null) {
+            showLoading(true);
+            
+            // Update registration data with payment info
+            registrationData.paymentStatus = 'Verified';
+            registrationData.transactionId = transactionId;
+            registrationData.invoiceId = invoiceId;
+            registrationData.paymentTimestamp = new Date().toISOString();
+            registrationData.paymentMethod = 'bKash';
+            
+            // Add API data if available
+            if (apiData) {
+                registrationData.customerMsisdn = apiData.customerMsisdn;
+                registrationData.paymentExecuteTime = apiData.paymentExecuteTime;
+                registrationData.apiPaymentId = apiData.paymentID;
+            }
+            
+            // Update Google Sheets with payment confirmation
+            updatePaymentInGoogleSheets(registrationData).then(() => {
+                // Show confirmation
+                showConfirmation(transactionId, invoiceId);
+                
+                // Clear session storage
+                sessionStorage.removeItem('jhm_registration_data');
+                sessionStorage.removeItem('jhm_invoice_id');
+                sessionStorage.removeItem('jhm_payment_id');
+                
+                // Clear URL parameters
+                if (window.history.replaceState) {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+                
+                showLoading(false);
+                goToStep(3);
+            }).catch(error => {
+                console.error('Error updating payment:', error);
+                // Still proceed to confirmation even if update fails
+                showConfirmation(transactionId, invoiceId);
+                showLoading(false);
+                goToStep(3);
+            });
+        }
+
+        // Update payment status in Google Sheets
+        async function updatePaymentInGoogleSheets(data) {
+            const UPDATE_PAYMENT_URL = 'https://script.google.com/macros/s/AKfycbzjhwUsSIT46HLiXktpKQLY1KGqhDII4Cf05ng8KSrrS7D_MezYpSQm3uiZUHWgYo1XKg/exec';
+            
+            try {
+                // Create form data for payment update
+                const formData = new FormData();
+                formData.append('action', 'updatePayment');
+                formData.append('email', data.email);
+                formData.append('phone', data.phone);
+                formData.append('transactionId', data.transactionId);
+                formData.append('invoiceId', data.invoiceId || '');
+                formData.append('paymentMethod', data.paymentMethod || 'bKash');
+                formData.append('paymentStatus', data.paymentStatus);
+                formData.append('paymentTimestamp', data.paymentTimestamp);
+                
+                const response = await fetch(UPDATE_PAYMENT_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                console.log('Payment update successful');
+                return response;
+                
+            } catch (error) {
+                console.error('Error updating payment:', error);
+                // Don't throw error, continue anyway
+                return Promise.resolve();
+            }
+        }
+
+        // Show confirmation details
+        function showConfirmation(txnId, invoiceId) {
+            document.getElementById('confirmName').textContent = registrationData.fullName;
+            document.getElementById('confirmCategory').textContent = registrationData.category;
+            document.getElementById('confirmAmount').textContent = '৳' + registrationData.amount.toLocaleString();
+            document.getElementById('confirmTxnId').textContent = txnId;
+            
+            // Show BIB number and Registration ID
+            if (registrationData.bibNumber) {
+                document.getElementById('confirmBibNumber').textContent = 'BIB: ' + registrationData.bibNumber;
+            }
+            if (registrationData.registrationId) {
+                document.getElementById('confirmRegId').textContent = registrationData.registrationId;
+            }
+        }
+
+        // Print registration card
+        function printRegistrationCard() {
+            // Add print styles
+            const printStyles = `
+                <style media="print">
+                    @page { margin: 0.5in; }
+                    body * { visibility: hidden; }
+                    #registrationCard, #registrationCard * { visibility: visible; }
+                    #registrationCard { 
+                        position: absolute; 
+                        left: 0; 
+                        top: 0; 
+                        width: 100% !important; 
+                        max-width: none !important;
+                        background: linear-gradient(135deg, #005840 0%, #007a5e 100%) !important;
+                        -webkit-print-color-adjust: exact !important;
+                        color-adjust: exact !important;
+                    }
+                </style>
+            `;
+            
+            // Add print styles to head
+            const head = document.head || document.getElementsByTagName('head')[0];
+            const style = document.createElement('style');
+            style.type = 'text/css';
+            style.media = 'print';
+            style.innerHTML = printStyles.replace('<style media="print">', '').replace('</style>', '');
+            head.appendChild(style);
+            
+            // Print
+            window.print();
+            
+            // Remove print styles after printing
+            setTimeout(() => {
+                head.removeChild(style);
+            }, 1000);
+        }
+
+        // Download registration card as image
+        function downloadRegistrationCard() {
+            // Create canvas from the card
+            html2canvas(document.getElementById('registrationCard'), {
+                backgroundColor: '#005840',
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                // Create download link
+                const link = document.createElement('a');
+                link.download = `JHM2025_BIB_${registrationData.bibNumber || 'CARD'}.png`;
+                link.href = canvas.toDataURL();
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                alert('Could not generate image. Please use print instead.');
+            });
+        }
+
+        // Register another participant
+        function registerAnother() {
+            // Reset form and go back to step 1
+            document.getElementById('registrationForm').reset();
+            selectedCategory = '';
+            selectedPrice = 0;
+            registrationData = {};
+            
+            // Hide selected category
+            document.getElementById('selectedCategoryDiv').classList.add('hidden');
+            document.getElementById('studentIdDiv').classList.add('hidden');
+            
+            // Clear selection
+            document.querySelectorAll('.price-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Go to step 1
+            goToStep(1);
+        }
+
+        // Real bKash Integration (uncomment when you have merchant account)
+        /*
+        bKash.init({
+            paymentMode: 'checkout',
+            paymentRequest: {
+                amount: registrationData.amount,
+                intent: 'sale'
+            },
+            createRequest: function(request) {
+                console.log('Creating payment for:', request);
+                // Call your backend to create payment
+                fetch(paymentConfig.createCheckoutURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: registrationData.amount,
+                        orderID: 'ORDER_' + Date.now(),
+                        currency: 'BDT'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.paymentID) {
+                        paymentID = data.paymentID;
+                        bKash.create().onSuccess(data);
+                    } else {
+                        bKash.create().onError();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    bKash.create().onError();
+                });
+            },
+            executeRequestOnAuthorization: function() {
+                // Execute payment
+                fetch(paymentConfig.executeCheckoutURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paymentID: paymentID
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.transactionStatus === 'Completed') {
+                        // Payment successful
+                        registrationData.paymentStatus = 'Verified';
+                        registrationData.transactionId = data.trxID;
+                        registrationData.paymentTimestamp = new Date().toISOString();
+                        
+                        updatePaymentInGoogleSheets(registrationData);
+                        showConfirmation(data.trxID);
+                        goToStep(3);
+                    } else {
+                        alert('Payment failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Payment failed. Please try again.');
+                });
+            }
+        });
+        */
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress(1);
+            
+            // Check if this is a callback from bKash payment
+            handleBkashCallback();
+            
+            // Check for stored registration data (in case of page reload)
+            const storedData = sessionStorage.getItem('jhm_registration_data');
+            if (storedData) {
+                registrationData = JSON.parse(storedData);
+                
+                // If we have stored data, check which step we should be on
+                if (registrationData.fullName && !registrationData.paymentStatus) {
+                    // Registration completed, go to payment step
+                    goToStep(2);
+                    updatePaymentSummary();
+                }
+            }
+        });
+
+        // Add configuration notice for developers
+        function showConfigurationNotice() {
+            if (!bKashConfig.appKey || !bKashConfig.appSecret || !bKashConfig.username || !bKashConfig.password) {
+                console.warn('bKash API Configuration Notice:');
+                console.warn('Please configure your bKash API credentials in the bKashConfig object:');
+                console.warn('- baseURL: Set to sandbox for testing or production for live');
+                console.warn('- appKey: Your application key from bKash');
+                console.warn('- appSecret: Your application secret from bKash');
+                console.warn('- username: Your merchant username from bKash');
+                console.warn('- password: Your merchant password from bKash');
+                console.warn('Without proper configuration, the system will fall back to manual payment verification.');
+            }
+        }
+
+        // Query payment status (for checking pending payments)
+        async function queryBkashPayment(paymentID) {
+            try {
+                if (!authToken) {
+                    await getBkashToken();
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/payment/status`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        paymentID: paymentID
+                    })
+                });
+                
+                const data = await response.json();
+                return data;
+                
+            } catch (error) {
+                console.error('Error querying bKash payment:', error);
+                throw error;
+            }
+        }
+
+        // Refresh token if needed
+        async function refreshBkashToken() {
+            try {
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/token/refresh`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        refresh_token: authToken // Use existing token as refresh token
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    authToken = data.id_token;
+                    return data.id_token;
+                } else {
+                    // If refresh fails, get new token
+                    return await getBkashToken();
+                }
+            } catch (error) {
+                console.error('Error refreshing bKash token:', error);
+                // Fallback to getting new token
+                return await getBkashToken();
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-[#005840] text-gray-100 py-12 mt-16 rounded-t-3xl shadow-inner">
+        <div class="container mx-auto px-4">
+            <!-- Contact Us Section -->
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6 flex items-center justify-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Contact Us
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <!-- President Contact -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">President</h4>
+                        </div>
+                        <p class="text-sm text-gray-200">
+                            <span class="block font-semibold">Hasib Hasan Moon</span>
+                            <span class="block font-mono text-xs">01568-082587</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Vice President Contact -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">Vice President</h4>
+                        </div>
+                        <p class="text-sm text-gray-200">
+                            <span class="block font-semibold">Muftasim Fuad Zim</span>
+                            <span class="block font-mono text-xs">01316891926</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Visuals and Editing Lead Contact -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">Visuals & Editing</h4>
+                        </div>
+                        <p class="text-sm text-gray-200">
+                            <span class="block font-semibold">Ahmed Hamim Enan</span>
+                            <span class="block font-mono text-xs">01757763615</span>
+                            <span class="block text-xs mt-1">Visuals and Editing Lead</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Email Contact -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">Email Us</h4>
+                        </div>
+                        <p class="text-sm text-gray-200">
+                            <span class="block">aibahtc454@gmail.com</span>
+                            <span class="block text-xs mt-1">Official support</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Address & Social Media -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-6">
+                    <!-- Address -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">Address</h4>
+                        </div>
+                        <p class="text-sm text-gray-200">
+                            <span class="block">Army Institute of Business Administration</span>
+                            <span class="block">Sylhet Cantonment, Sylhet, Bangladesh</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                        <div class="flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2"/>
+                            </svg>
+                            <h4 class="font-semibold text-white">Follow Us</h4>
+                        </div>
+                        <div class="flex justify-center gap-4">
+                            <a href="https://www.facebook.com/profile.php?id=61569394011282" target="_blank" class="text-blue-300 hover:text-white transition">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/aiba.htc" target="_blank" class="text-pink-300 hover:text-white transition">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM15.156 7.987c.46 0 .833.372.833.833 0 .46-.372.833-.833.833-.46 0-.833-.372-.833-.833 0-.461.372-.833.833-.833zM12.017 9.485c1.384 0 2.502 1.119 2.502 2.502 0 1.384-1.119 2.502-2.502 2.502-1.384 0-2.502-1.119-2.502-2.502 0-1.383 1.119-2.502 2.502-2.502zM12.017 4.155c.653 0 1.295.042 1.909.123.5.066.987.16 1.48.284.493.123.986.284 1.462.493.477.21.926.493 1.328.833.402.341.743.742 1.006 1.178.263.436.461.906.594 1.397.133.49.2 1.001.2 1.532v.803c0 .531-.067 1.041-.2 1.532-.133.49-.331.961-.594 1.397-.263.436-.604.837-1.006 1.178-.402.341-.851.623-1.328.833-.477.21-.969.37-1.462.493-.493.123-.98.218-1.48.284-.614.081-1.256.123-1.909.123-.653 0-1.295-.042-1.909-.123-.5-.066-.987-.16-1.48-.284-.493-.123-.986-.284-1.462-.493-.477-.21-.926-.493-1.328-.833-.402-.341-.743-.742-1.006-1.178-.263-.436-.461-.906-.594-1.397-.133-.49-.2-1.001-.2-1.532v-.803c0-.531.067-1.041.2-1.532.133-.49.331-.961.594-1.397.263-.436.604-.837 1.006-1.178.402-.341.851-.623 1.328-.833.477-.21.969-.37 1.462-.493.493-.123.98-.218 1.48-.284.614-.081 1.256-.123 1.909-.123z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/events/2142919522842092" target="_blank" class="text-blue-300 hover:text-white transition">
+                                <span class="text-xs font-semibold bg-blue-600 px-2 py-1 rounded">Event</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contact -->
+                <div class="mt-6 bg-red-600/20 border border-red-400 rounded-xl p-4 max-w-md mx-auto">
+                    <h4 class="font-semibold text-red-200 mb-1 flex items-center justify-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.081 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        Emergency Contact (Event Day)
+                    </h4>
+                    <p class="text-red-200 text-sm">
+                        <span class="block font-mono">01757763615 | 01568-082587 | 01316891926</span>
+                        <span class="block text-xs">Available 24/7 during event</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center border-t border-gray-400 pt-6">
+                <p>© 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.</p>
+                <span class="block mt-2 text-blue-400">Design and developed by <b><a href="https://me.gmrafi.com/" target="_blank" rel="noopener" class="underline hover:text-white transition">MD Golam Mubasshir Rafi</a></b>.</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
