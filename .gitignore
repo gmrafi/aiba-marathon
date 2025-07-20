@@ -3,6 +3,10 @@
 .env.local
 .env.production
 
+# Private documentation files
+PRIVATE_FILES_BACKUP.md
+PRIVATE_REPO_SETUP.md
+
 # Node modules
 node_modules/
 
