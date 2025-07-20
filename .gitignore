@@ -3,9 +3,12 @@
 .env.local
 .env.production
 
-# Private documentation files
+# Current private documentation files (specific files only)
 PRIVATE_FILES_BACKUP.md
 PRIVATE_REPO_SETUP.md
+BKASH_INTEGRATION_GUIDE.md
+DASHBOARD_SETUP_GUIDE.md
+PAYMENT_GATEWAY_SETUP.md
 
 # Node modules
 node_modules/
