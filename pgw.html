@@ -467,6 +467,25 @@
 
     <!-- Scripts -->
     <script>
+        /*
+         * bKash Payment Gateway Integration
+         * Updated according to official bKash Developer Documentation
+         * https://developer.bka.sh/docs/product-overview
+         * 
+         * CONFIGURATION REQUIRED:
+         * 1. Update bKashConfig object with your merchant credentials
+         * 2. Set baseURL to sandbox for testing, production for live
+         * 3. Add your app credentials from bKash merchant portal
+         * 
+         * FEATURES:
+         * - Official bKash API integration (Checkout URL)
+         * - Fallback to manual payment verification
+         * - Automatic token management
+         * - Callback handling for payment status
+         * - Google Sheets integration for registration data
+         * - BIB card generation and printing
+         */
+        
         // Global variables
         let selectedCategory = '';
         let selectedPrice = 0;
@@ -627,9 +646,47 @@
             progressBar.style.width = progressPercentage + '%';
         }
 
-        // bKash Payment Integration - Real Gateway
+        // bKash Payment Integration - Official API Implementation
         let paymentID = '';
         let invoiceId = '';
+        let authToken = '';
+        
+        // bKash API Configuration
+        // IMPORTANT: Configure these settings with your bKash merchant credentials
+        const bKashConfig = {
+            // Environment Settings
+            // For testing: 'https://tokenized.sandbox.bka.sh/v1.2.0-beta'
+            // For production: 'https://tokenized.pay.bka.sh/v1.2.0-beta'
+            baseURL: 'https://tokenized.sandbox.bka.sh/v1.2.0-beta', // Change to production for live
+            
+            // Merchant Credentials (Get these from bKash merchant portal)
+            // Leave empty for manual payment fallback
+            appKey: '', // Your X-App-Key from bKash
+            appSecret: '', // Your app secret from bKash  
+            username: '', // Your merchant username
+            password: '', // Your merchant password
+            
+            // Callback Configuration
+            callbackURL: window.location.origin + '/pgw.html', // Current page as callback
+            
+            // Additional Settings
+            timeout: 30000, // API timeout in milliseconds
+            maxRetries: 2 // Maximum retry attempts for failed requests
+        };
+        
+        // Configuration Status Check
+        const isConfigured = !!(bKashConfig.appKey && bKashConfig.appSecret && 
+                               bKashConfig.username && bKashConfig.password);
+        
+        if (!isConfigured) {
+            console.warn('⚠️  bKash API Configuration Required:');
+            console.warn('📝 Please configure your bKash merchant credentials in bKashConfig object');
+            console.warn('🔗 Get credentials from: https://merchant.bkash.com/');
+            console.warn('📚 Documentation: https://developer.bka.sh/docs/product-overview');
+            console.warn('💡 Without configuration, system will use manual payment verification');
+        } else {
+            console.log('✅ bKash API configured successfully');
+        }
         
         function showLoading(show) {
             const overlay = document.getElementById('loadingOverlay');
@@ -647,37 +704,291 @@
             return `JHM${timestamp}${random}`.toUpperCase();
         }
 
-        // bKash Payment Button Click - Real Gateway
-        document.getElementById('bKash_button').addEventListener('click', function() {
+        // Step 1: Get Authorization Token with better error handling
+        async function getBkashToken() {
+            try {
+                if (!bKashConfig.appKey || !bKashConfig.username) {
+                    throw new Error('bKash configuration incomplete');
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/token/grant`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'username': bKashConfig.username,
+                        'password': bKashConfig.password
+                    },
+                    body: JSON.stringify({
+                        app_key: bKashConfig.appKey,
+                        app_secret: bKashConfig.appSecret
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    authToken = data.id_token;
+                    console.log('bKash token obtained successfully');
+                    return data.id_token;
+                } else {
+                    throw new Error(data.statusMessage || `Token error: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error getting bKash token:', error);
+                throw new Error(`Token generation failed: ${error.message}`);
+            }
+        }
+
+        // Step 2: Create Payment with enhanced error handling
+        async function createBkashPayment(amount, invoiceNumber) {
+            try {
+                if (!authToken) {
+                    await getBkashToken();
+                }
+                
+                const requestBody = {
+                    mode: '0011', // Checkout URL mode
+                    payerReference: registrationData.phone || registrationData.fullName || '',
+                    callbackURL: bKashConfig.callbackURL,
+                    amount: amount.toString(),
+                    currency: 'BDT',
+                    intent: 'sale',
+                    merchantInvoiceNumber: invoiceNumber
+                };
+                
+                console.log('Creating bKash payment with data:', requestBody);
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    console.log('bKash payment created successfully:', data.paymentID);
+                    return data;
+                } else {
+                    throw new Error(data.statusMessage || `Payment creation failed: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error creating bKash payment:', error);
+                throw new Error(`Payment creation failed: ${error.message}`);
+            }
+        }
+
+        // Step 3: Execute Payment with retry logic
+        async function executeBkashPayment(paymentID, retryCount = 0) {
+            try {
+                if (!authToken && retryCount === 0) {
+                    await getBkashToken();
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/execute`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        paymentID: paymentID
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000' && data.transactionStatus === 'Completed') {
+                    console.log('bKash payment executed successfully:', data.trxID);
+                    return data;
+                } else if (data.errorCode === '2001' && retryCount < 2) {
+                    // Token expired, refresh and retry
+                    console.log('Token expired, refreshing and retrying...');
+                    await refreshBkashToken();
+                    return await executeBkashPayment(paymentID, retryCount + 1);
+                } else {
+                    throw new Error(data.statusMessage || data.errorMessage || `Payment execution failed: ${data.errorCode}`);
+                }
+            } catch (error) {
+                console.error('Error executing bKash payment:', error);
+                throw new Error(`Payment execution failed: ${error.message}`);
+            }
+        }
+
+        // bKash Payment Button Click - Official API Implementation with Enhanced Error Handling
+        document.getElementById('bKash_button').addEventListener('click', async function() {
             if (!registrationData.fullName || !registrationData.amount) {
                 alert('Please complete the registration form first');
                 return;
             }
             
-            // Generate unique invoice ID for this transaction
-            invoiceId = generateInvoiceId();
+            // Show configuration notice in console
+            showConfigurationNotice();
             
-            // Create bKash payment URL
-            const amount = registrationData.amount;
-            const bkashPaymentUrl = `https://shop.bkash.com/mubasshir-rafi-automation01300/pay/bdt${amount}/${invoiceId}`;
+            showLoading(true);
             
-            // Store registration data temporarily
-            sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
-            sessionStorage.setItem('jhm_invoice_id', invoiceId);
-            
-            // Open bKash payment in new window
-            const paymentWindow = window.open(
-                bkashPaymentUrl, 
-                'bkash_payment', 
-                'width=800,height=600,scrollbars=yes,resizable=yes'
-            );
-            
-            // Start checking payment status
-            checkPaymentStatus(invoiceId, paymentWindow);
+            try {
+                // Generate unique invoice ID for this transaction
+                invoiceId = generateInvoiceId();
+                
+                console.log('Initiating bKash payment process...');
+                console.log('Invoice ID:', invoiceId);
+                console.log('Amount:', registrationData.amount);
+                
+                // Step 1: Create payment
+                const paymentData = await createBkashPayment(registrationData.amount, invoiceId);
+                paymentID = paymentData.paymentID;
+                
+                console.log('Payment created with ID:', paymentID);
+                
+                // Store payment data
+                sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
+                sessionStorage.setItem('jhm_invoice_id', invoiceId);
+                sessionStorage.setItem('jhm_payment_id', paymentID);
+                
+                showLoading(false);
+                
+                // Step 2: Redirect to bKash payment page
+                if (paymentData.bkashURL) {
+                    console.log('Redirecting to bKash payment page:', paymentData.bkashURL);
+                    
+                    // Show user what's happening
+                    const proceed = confirm(
+                        'You will now be redirected to bKash payment page.\n\n' +
+                        `Amount: ৳${registrationData.amount}\n` +
+                        `Invoice: ${invoiceId}\n\n` +
+                        'Click OK to proceed with payment.'
+                    );
+                    
+                    if (proceed) {
+                        window.location.href = paymentData.bkashURL;
+                    } else {
+                        // User cancelled, clear stored data
+                        sessionStorage.removeItem('jhm_registration_data');
+                        sessionStorage.removeItem('jhm_invoice_id');
+                        sessionStorage.removeItem('jhm_payment_id');
+                    }
+                } else {
+                    throw new Error('bKash payment URL not received from API');
+                }
+                
+            } catch (error) {
+                showLoading(false);
+                console.error('bKash API payment failed:', error);
+                
+                // Show user-friendly error message and offer fallback
+                const errorMessage = error.message.includes('configuration') 
+                    ? 'bKash API is not configured. Using manual payment method.'
+                    : `bKash API Error: ${error.message}\n\nWould you like to use manual payment instead?`;
+                
+                const useManualPayment = confirm(
+                    errorMessage + '\n\n' +
+                    'Manual payment will redirect you to bKash merchant page.\n\n' +
+                    'Click OK to proceed with manual payment, Cancel to try again.'
+                );
+                
+                if (useManualPayment) {
+                    // Fallback to manual payment URL
+                    const bkashPaymentUrl = `https://shop.bkash.com/mubasshir-rafi-automation01300/paymentlink/default-payment`;
+                    
+                    console.log('Falling back to manual payment:', bkashPaymentUrl);
+                    
+                    // Store registration data temporarily
+                    sessionStorage.setItem('jhm_registration_data', JSON.stringify(registrationData));
+                    sessionStorage.setItem('jhm_invoice_id', invoiceId);
+                    
+                    // Open bKash payment in new window
+                    const paymentWindow = window.open(
+                        bkashPaymentUrl, 
+                        'bkash_payment', 
+                        'width=800,height=600,scrollbars=yes,resizable=yes'
+                    );
+                    
+                    if (paymentWindow) {
+                        // Start checking payment status for manual flow
+                        checkPaymentStatusManual(invoiceId, paymentWindow);
+                    } else {
+                        alert('Popup blocked. Please allow popups and try again.');
+                    }
+                } else {
+                    // User wants to try again
+                    console.log('User chose to retry payment');
+                }
+            }
         });
 
-        // Check payment status periodically
-        function checkPaymentStatus(invoiceId, paymentWindow) {
+        // Handle bKash callback (when user returns from bKash payment page)
+        function handleBkashCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentID = urlParams.get('paymentID');
+            const status = urlParams.get('status');
+            
+            if (paymentID && status) {
+                const storedPaymentId = sessionStorage.getItem('jhm_payment_id');
+                const storedRegistrationData = sessionStorage.getItem('jhm_registration_data');
+                
+                if (storedPaymentId === paymentID && storedRegistrationData) {
+                    registrationData = JSON.parse(storedRegistrationData);
+                    
+                    if (status === 'success') {
+                        // Execute payment to finalize
+                        executePaymentAfterCallback(paymentID);
+                    } else if (status === 'failure') {
+                        alert('Payment failed. Please try again.');
+                        goToStep(2); // Go back to payment step
+                    } else if (status === 'cancel') {
+                        alert('Payment was cancelled.');
+                        goToStep(2); // Go back to payment step
+                    }
+                }
+            }
+        }
+
+        // Execute payment after successful callback
+        async function executePaymentAfterCallback(paymentID) {
+            showLoading(true);
+            
+            try {
+                const executionResult = await executeBkashPayment(paymentID);
+                
+                if (executionResult.transactionStatus === 'Completed') {
+                    // Payment successful
+                    completePayment(executionResult.trxID, invoiceId, executionResult);
+                } else {
+                    throw new Error('Payment execution failed');
+                }
+                
+            } catch (error) {
+                showLoading(false);
+                console.error('Payment execution failed:', error);
+                
+                // Show manual verification as fallback
+                showManualVerification(invoiceId);
+            }
+        }
+
+        // Check payment status periodically (for manual payment flow)
+        function checkPaymentStatusManual(invoiceId, paymentWindow) {
             showLoading(true);
             
             const checkInterval = setInterval(() => {
@@ -729,7 +1040,7 @@
         }
 
         // Complete payment process
-        function completePayment(transactionId, invoiceId) {
+        function completePayment(transactionId, invoiceId, apiData = null) {
             showLoading(true);
             
             // Update registration data with payment info
@@ -739,6 +1050,13 @@
             registrationData.paymentTimestamp = new Date().toISOString();
             registrationData.paymentMethod = 'bKash';
             
+            // Add API data if available
+            if (apiData) {
+                registrationData.customerMsisdn = apiData.customerMsisdn;
+                registrationData.paymentExecuteTime = apiData.paymentExecuteTime;
+                registrationData.apiPaymentId = apiData.paymentID;
+            }
+            
             // Update Google Sheets with payment confirmation
             updatePaymentInGoogleSheets(registrationData).then(() => {
                 // Show confirmation
@@ -747,6 +1065,12 @@
                 // Clear session storage
                 sessionStorage.removeItem('jhm_registration_data');
                 sessionStorage.removeItem('jhm_invoice_id');
+                sessionStorage.removeItem('jhm_payment_id');
+                
+                // Clear URL parameters
+                if (window.history.replaceState) {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
                 
                 showLoading(false);
                 goToStep(3);
@@ -961,7 +1285,96 @@
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             updateProgress(1);
+            
+            // Check if this is a callback from bKash payment
+            handleBkashCallback();
+            
+            // Check for stored registration data (in case of page reload)
+            const storedData = sessionStorage.getItem('jhm_registration_data');
+            if (storedData) {
+                registrationData = JSON.parse(storedData);
+                
+                // If we have stored data, check which step we should be on
+                if (registrationData.fullName && !registrationData.paymentStatus) {
+                    // Registration completed, go to payment step
+                    goToStep(2);
+                    updatePaymentSummary();
+                }
+            }
         });
+
+        // Add configuration notice for developers
+        function showConfigurationNotice() {
+            if (!bKashConfig.appKey || !bKashConfig.appSecret || !bKashConfig.username || !bKashConfig.password) {
+                console.warn('bKash API Configuration Notice:');
+                console.warn('Please configure your bKash API credentials in the bKashConfig object:');
+                console.warn('- baseURL: Set to sandbox for testing or production for live');
+                console.warn('- appKey: Your application key from bKash');
+                console.warn('- appSecret: Your application secret from bKash');
+                console.warn('- username: Your merchant username from bKash');
+                console.warn('- password: Your merchant password from bKash');
+                console.warn('Without proper configuration, the system will fall back to manual payment verification.');
+            }
+        }
+
+        // Query payment status (for checking pending payments)
+        async function queryBkashPayment(paymentID) {
+            try {
+                if (!authToken) {
+                    await getBkashToken();
+                }
+                
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/payment/status`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        paymentID: paymentID
+                    })
+                });
+                
+                const data = await response.json();
+                return data;
+                
+            } catch (error) {
+                console.error('Error querying bKash payment:', error);
+                throw error;
+            }
+        }
+
+        // Refresh token if needed
+        async function refreshBkashToken() {
+            try {
+                const response = await fetch(`${bKashConfig.baseURL}/tokenized/checkout/token/refresh`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Authorization': authToken,
+                        'X-App-Key': bKashConfig.appKey
+                    },
+                    body: JSON.stringify({
+                        refresh_token: authToken // Use existing token as refresh token
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.statusCode === '0000') {
+                    authToken = data.id_token;
+                    return data.id_token;
+                } else {
+                    // If refresh fails, get new token
+                    return await getBkashToken();
+                }
+            } catch (error) {
+                console.error('Error refreshing bKash token:', error);
+                // Fallback to getting new token
+                return await getBkashToken();
+            }
+        }
     </script>
 
     <!-- Footer -->
