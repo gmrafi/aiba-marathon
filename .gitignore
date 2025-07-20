@@ -1,0 +1,32 @@
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# API Keys and Secrets
+config.js
+credentials.js
+bkash-config.js
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build files
+dist/
+build/

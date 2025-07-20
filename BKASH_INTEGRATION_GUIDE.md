@@ -24,23 +24,84 @@
 
 ## Configuration Steps
 
-### Step 1: Update API Configuration
-`pgw.html` ফাইলে `bKashConfig` object এ আপনার credentials add করুন:
+### Step 1: Secure Configuration Setup
+
+**⚠️ SECURITY WARNING**: bKash credentials are highly sensitive and should NEVER be stored in public repositories.
+
+#### Option A: Environment Variables (Recommended)
+```bash
+# Create .env file (this will be gitignored)
+cp .env.example .env
+
+# Add your actual credentials to .env file
+BKASH_APP_KEY=your_actual_app_key
+BKASH_APP_SECRET=your_actual_app_secret
+BKASH_USERNAME=your_actual_username
+BKASH_PASSWORD=your_actual_password
+```
+
+#### Option B: Private Repository
+Create a separate private repository for payment processing:
+- See `PRIVATE_REPO_SETUP.md` for detailed instructions
+- Deploy payment API to secure platform (Vercel/Netlify)
+- Frontend calls your secure API instead of bKash directly
+
+#### Option C: Configuration File (Development Only)
+```bash
+# Copy template and add real credentials
+cp config.template.js config.js
+
+# Edit config.js with your actual credentials
+# Make sure config.js is in .gitignore
+```
+
+### Step 2: Update API Configuration
+DO NOT put real credentials directly in `pgw.html`. Instead:
 
 ```javascript
+// PUBLIC REPOSITORY VERSION (pgw.html)
 const bKashConfig = {
     // Environment (sandbox for testing, production for live)
     baseURL: 'https://tokenized.pay.bka.sh/v1.2.0-beta', // Production
     // baseURL: 'https://tokenized.sandbox.bka.sh/v1.2.0-beta', // Sandbox
     
-    // Your bKash merchant credentials
-    appKey: 'YOUR_APP_KEY_HERE',
-    appSecret: 'YOUR_APP_SECRET_HERE', 
-    username: 'YOUR_MERCHANT_USERNAME',
-    password: 'YOUR_MERCHANT_PASSWORD',
+    // DO NOT PUT REAL CREDENTIALS HERE IN PUBLIC REPO
+    appKey: '', // Keep empty - use environment variables or private API
+    appSecret: '', // Keep empty
+    username: '', // Keep empty
+    password: '', // Keep empty
+    
+    // Alternative: Use your secure API endpoint
+    apiBaseURL: 'https://your-payment-api.vercel.app/api',
     
     // Callback URL (automatic)
     callbackURL: window.location.origin + '/pgw.html'
+};
+```
+
+### Secure Deployment Options
+
+#### Option A: Use Private API
+```javascript
+// Call your secure API instead of bKash directly
+async function getBkashToken() {
+    const response = await fetch(`${bKashConfig.apiBaseURL}/bkash/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    return response.json();
+}
+```
+
+#### Option B: Environment Variables (Server-side)
+```javascript
+// This code should be in your private backend
+const bKashConfig = {
+    baseURL: process.env.BKASH_BASE_URL,
+    appKey: process.env.BKASH_APP_KEY,
+    appSecret: process.env.BKASH_APP_SECRET,
+    username: process.env.BKASH_USERNAME,
+    password: process.env.BKASH_PASSWORD
 };
 ```
 
@@ -145,10 +206,38 @@ GET TOKEN → CREATE PAYMENT → REDIRECT TO BKASH → EXECUTE PAYMENT
 
 ## Security Considerations
 
+### 🔒 Critical Security Rules
+
+1. **NEVER commit credentials to public repositories**
+2. **Use environment variables for sensitive data**
+3. **Create private repository for payment processing**
+4. **Deploy secure API to trusted platforms**
+5. **Enable CORS only for your domain**
+
 ### Data Protection
 - Credentials কখনো client-side এ expose করবেন না
-- HTTPS ব্যবহার করুন
-- Session management properly করুন
+- Use HTTPS everywhere (frontend + backend)
+- Environment variables for all sensitive data
+- Private repository for payment API
+- Secure deployment platforms (Vercel, Netlify, Heroku)
+
+### Repository Security
+```bash
+# Add these to .gitignore
+.env
+.env.local
+.env.production
+config.js
+credentials.js
+bkash-config.js
+```
+
+### Secure Architecture
+```
+Frontend (Public Repo)     →     Backend (Private Repo)     →     bKash API
+pgw.html                   →     Payment API Server         →     Official API
+No credentials             →     Environment variables      →     Secure calls
+```
 
 ### Validation
 - Amount validation
