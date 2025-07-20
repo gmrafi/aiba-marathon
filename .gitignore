@@ -8,6 +8,22 @@ config.js
 credentials.js
 bkash-config.js
 
+# Private pages and sensitive files
+pgw.html
+PRIVATE_REPO_SETUP.md
+BKASH_INTEGRATION_GUIDE.md
+PAYMENT_GATEWAY_SETUP.md
+DASHBOARD_SETUP_GUIDE.md
+
+# Google Apps Script files (contains sensitive data)
+google-apps-script-payment-gateway.js
+google-apps-script-payment-verification.js
+test-apps-script.js
+
+# Test files
+test.html
+test-*.js
+
 # Node modules
 node_modules/
 
