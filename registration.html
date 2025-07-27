@@ -93,12 +93,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       function closePopupBanner() {
         document.getElementById('popupBannerModal').classList.add('hidden');
       }
-      // Show popup on page load (once per session)
+      // Show popup on every page load (not just once per session)
       window.addEventListener('DOMContentLoaded', function() {
-        if (!sessionStorage.getItem('jhm_popup_shown')) {
-          showPopupBanner();
-          sessionStorage.setItem('jhm_popup_shown', '1');
-        }
+        showPopupBanner();
       });
       // Close popup when clicking/touching outside modal content
       document.getElementById('popupBannerModal').addEventListener('mousedown', function(e) {
@@ -107,6 +104,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.getElementById('popupBannerModal').addEventListener('touchstart', function(e) {
         if (e.target === this) closePopupBanner();
       });
+      // Clear auto-close timer if popup is closed manually
+      function closePopupBanner() {
+        document.getElementById('popupBannerModal').classList.add('hidden');
+      }
     </script>
 
     <!-- Header Section -->

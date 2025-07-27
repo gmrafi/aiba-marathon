@@ -244,11 +244,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         document.getElementById('popupBannerModal').classList.add('hidden');
       }
       // Show popup on page load (once per session)
+      // Show popup on every page load (not just once per session)
       window.addEventListener('DOMContentLoaded', function() {
-        if (!sessionStorage.getItem('jhm_popup_shown')) {
-          showPopupBanner();
-          sessionStorage.setItem('jhm_popup_shown', '1');
-        }
+        showPopupBanner();
       });
       // Close popup when clicking/touching outside modal content
       document.getElementById('popupBannerModal').addEventListener('mousedown', function(e) {
