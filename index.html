@@ -223,6 +223,73 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body class="antialiased">
 
 
+    <!-- Popup Banner Modal -->
+    <div id="popupBannerModal" class="fixed inset-0 z-[999999] bg-black/60 flex items-center justify-center hidden">
+      <div id="popupBannerContent" class="relative bg-transparent rounded-3xl shadow-2xl p-0 max-w-3xl w-full animate-fadeIn flex flex-col items-center">
+        <img src="photos/popupbanner (2).jpg" alt="Event Popup Banner" class="rounded-2xl w-full h-auto object-contain banner-img-modal" />
+        <div class="w-full flex justify-center py-4">
+          <button onclick="closePopupBanner()" class="group rounded-full w-20 h-20 flex items-center justify-center border-0 transition bg-[#00b894] focus:outline-none" style="box-shadow: 0 0 32px 8px #00b89480;">
+            <svg class="w-14 h-14" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M6 18L18 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showPopupBanner() {
+        document.getElementById('popupBannerModal').classList.remove('hidden');
+      }
+      function closePopupBanner() {
+        document.getElementById('popupBannerModal').classList.add('hidden');
+      }
+      // Show popup on page load (once per session)
+      window.addEventListener('DOMContentLoaded', function() {
+        if (!sessionStorage.getItem('jhm_popup_shown')) {
+          showPopupBanner();
+          sessionStorage.setItem('jhm_popup_shown', '1');
+        }
+      });
+      // Close popup when clicking/touching outside modal content
+      document.getElementById('popupBannerModal').addEventListener('mousedown', function(e) {
+        if (e.target === this) closePopupBanner();
+      });
+      document.getElementById('popupBannerModal').addEventListener('touchstart', function(e) {
+        if (e.target === this) closePopupBanner();
+      });
+    </script>
+    <style>
+      /* Popup close button: smaller on mobile */
+      @media (max-width: 640px) {
+        #popupBannerModal button.group {
+          width: 38px !important;
+          height: 38px !important;
+        }
+        #popupBannerModal button.group svg {
+          width: 18px !important;
+          height: 18px !important;
+        }
+      }
+      /* Popup Banner Modal Responsive Image Sizing */
+      .banner-img-modal {
+        max-height: 70vh;
+      }
+      @media (min-width: 1024px) {
+        #popupBannerModal .max-w-3xl {
+          max-width: 900px;
+        }
+        .banner-img-modal {
+          max-height: 85vh;
+        }
+      }
+      @media (max-width: 640px) {
+        .banner-img-modal {
+          max-height: 55vh;
+        }
+      }
+      @keyframes fadeIn { from { opacity:0; transform:scale(0.95);} to {opacity:1; transform:scale(1);} }
+      .animate-fadeIn { animation: fadeIn 0.3s cubic-bezier(.4,0,.2,1); }
+    </style>
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK9Z5DRC"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

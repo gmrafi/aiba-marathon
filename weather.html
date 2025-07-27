@@ -39,7 +39,247 @@
         </div>
     </header>
 
-    ...existing code...
+
+    <main class="flex-1 container max-w-6xl mx-auto px-2 py-8 md:py-14">
+      <div class="flex flex-col md:flex-row gap-10 md:gap-12">
+        <!-- Today's Weather Card -->
+        <section class="flex-1">
+          <div class="bg-gradient-to-br from-[#a18fff] to-[#ff6f91] rounded-3xl p-8 md:p-10 text-white shadow-2xl border-2 border-white/20">
+            <div class="text-center mb-6">
+              <h3 class="text-2xl md:text-3xl font-extrabold flex items-center justify-center gap-2 drop-shadow-lg">
+                🌦️ আজকের আবহাওয়া
+              </h3>
+              <p class="text-white/80 text-base md:text-lg font-medium" id="todayDate"></p>
+            </div>
+            <div class="weather-card rounded-2xl p-6 mb-6 shadow-lg">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-5xl md:text-6xl font-extrabold" id="todayTemp">29°C</div>
+                  <div class="text-white/90 text-lg md:text-xl font-semibold" id="todayCond">Cloudy</div>
+                  <div class="text-white/70 text-base md:text-lg font-medium" id="todayFeels">Feels like 32°C</div>
+                </div>
+                <div class="text-7xl md:text-8xl" id="todayIcon">☁️</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="weather-card rounded-xl p-4 text-center shadow">
+                <div class="text-3xl mb-2">💧</div>
+                <div class="text-base text-white/80">Rain Chance</div>
+                <div class="font-bold text-lg" id="todayRain">20%</div>
+              </div>
+              <div class="weather-card rounded-xl p-4 text-center shadow">
+                <div class="text-3xl mb-2">💨</div>
+                <div class="text-base text-white/80">Wind Speed</div>
+                <div class="font-bold text-lg" id="todayWind">10 km/h</div>
+              </div>
+              <div class="weather-card rounded-xl p-4 text-center shadow">
+                <div class="text-3xl mb-2">💦</div>
+                <div class="text-base text-white/80">Humidity</div>
+                <div class="font-bold text-lg" id="todayHum">70%</div>
+              </div>
+              <div class="weather-card rounded-xl p-4 text-center shadow">
+                <div class="text-3xl mb-2">👁️</div>
+                <div class="text-base text-white/80">Visibility</div>
+                <div class="font-bold text-lg" id="todayVis">8 km</div>
+              </div>
+            </div>
+            <div class="text-center mt-6 text-white/70 text-sm md:text-base">
+              Last updated: <span id="todayUpdated"></span>
+            </div>
+          </div>
+        </section>
+        <!-- Event Day Weather Card -->
+        <section class="flex-1">
+          <div class="weather-gradient rounded-3xl p-8 md:p-10 text-white shadow-2xl border-2 border-white/20">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl md:text-3xl font-extrabold flex items-center justify-center gap-2 drop-shadow-lg">
+                    🌤️ Event Day Weather
+                </h3>
+                <p class="text-white/80 text-base md:text-lg font-medium">September 26, 2025 • Sylhet</p>
+            </div>
+            <div class="weather-card rounded-2xl p-6 mb-6 shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-5xl md:text-6xl font-extrabold" id="temperature">28°C</div>
+                        <div class="text-white/90 text-lg md:text-xl font-semibold" id="condition">Partly Cloudy</div>
+                        <div class="text-white/70 text-base md:text-lg font-medium" id="feelsLike">Feels like 31°C</div>
+                    </div>
+                    <div class="text-7xl md:text-8xl" id="weatherIcon">⛅</div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="weather-card rounded-xl p-4 text-center shadow">
+                    <div class="text-3xl mb-2">💧</div>
+                    <div class="text-base text-white/80">Rain Chance</div>
+                    <div class="font-bold text-lg" id="rainChance">15%</div>
+                </div>
+                <div class="weather-card rounded-xl p-4 text-center shadow">
+                    <div class="text-3xl mb-2">💨</div>
+                    <div class="text-base text-white/80">Wind Speed</div>
+                    <div class="font-bold text-lg" id="windSpeed">8 km/h</div>
+                </div>
+                <div class="weather-card rounded-xl p-4 text-center shadow">
+                    <div class="text-3xl mb-2">💦</div>
+                    <div class="text-base text-white/80">Humidity</div>
+                    <div class="font-bold text-lg" id="humidity">65%</div>
+                </div>
+                <div class="weather-card rounded-xl p-4 text-center shadow">
+                    <div class="text-3xl mb-2">👁️</div>
+                    <div class="text-base text-white/80">Visibility</div>
+                    <div class="font-bold text-lg" id="visibility">10 km</div>
+                </div>
+            </div>
+            <div class="weather-card rounded-2xl p-6 mb-6 shadow-lg">
+                <h4 class="font-bold mb-4 text-center text-lg md:text-xl">🕐 Race Day Hourly Forecast</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-base md:text-lg">
+                    <div>
+                        <div class="text-white/80">6:00 AM</div>
+                        <div class="text-2xl">🌅</div>
+                        <div class="font-bold">26°C</div>
+                    </div>
+                    <div>
+                        <div class="text-white/80">8:00 AM</div>
+                        <div class="text-2xl">☀️</div>
+                        <div class="font-bold">28°C</div>
+                    </div>
+                    <div>
+                        <div class="text-white/80">10:00 AM</div>
+                        <div class="text-2xl">⛅</div>
+                        <div class="font-bold">30°C</div>
+                    </div>
+                    <div>
+                        <div class="text-white/80">12:00 PM</div>
+                        <div class="text-2xl">☀️</div>
+                        <div class="font-bold">32°C</div>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-card rounded-2xl p-6 shadow-lg">
+                <h4 class="font-bold mb-4 flex items-center gap-2 text-center text-lg md:text-xl">
+                    💡 Running Advice
+                </h4>
+                <div class="space-y-3 text-base md:text-lg">
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-300">✓</span>
+                        <span>Perfect temperature for running</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-green-300">✓</span>
+                        <span>Low rain probability</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-yellow-300">⚠️</span>
+                        <span>Stay hydrated - moderate humidity</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-300">💧</span>
+                        <span>Drink water every 2km</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-6 text-white/70 text-sm md:text-base">
+                Last updated: <span id="lastUpdated"></span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bg-[#005840] text-gray-100 py-10 mt-16 rounded-t-3xl shadow-inner">
+      <div class="container mx-auto px-4 text-center">
+        <p>© 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.</p>
+        <span class="block mt-2 text-blue-400">Design and developed by <b><a href="https://me.gmrafi.com/" target="_blank" rel="noopener" class="underline hover:text-white transition">MD Golam Mubasshir Rafi</a></b>.</span>
+      </div>
+    </footer>
+
+    <script>
+        // Event Day Weather Data
+        const weatherData = {
+            temperature: 28,
+            condition: "Partly Cloudy",
+            feelsLike: 31,
+            rainChance: 15,
+            windSpeed: 8,
+            humidity: 65,
+            visibility: 10,
+            icon: "⛅"
+        };
+
+        // Today's Weather Data (simulated)
+        const todayWeather = {
+            temperature: 29,
+            condition: "Cloudy",
+            feelsLike: 32,
+            rainChance: 20,
+            windSpeed: 10,
+            humidity: 70,
+            visibility: 8,
+            icon: "☁️"
+        };
+
+        // Update event day weather display
+        function updateWeatherDisplay() {
+            document.getElementById('temperature').textContent = `${weatherData.temperature}°C`;
+            document.getElementById('condition').textContent = weatherData.condition;
+            document.getElementById('feelsLike').textContent = `Feels like ${weatherData.feelsLike}°C`;
+            document.getElementById('rainChance').textContent = `${weatherData.rainChance}%`;
+            document.getElementById('windSpeed').textContent = `${weatherData.windSpeed} km/h`;
+            document.getElementById('humidity').textContent = `${weatherData.humidity}%`;
+            document.getElementById('visibility').textContent = `${weatherData.visibility} km`;
+            document.getElementById('weatherIcon').textContent = weatherData.icon;
+            // Update timestamp
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = now.toLocaleString('bn-BD');
+        }
+
+        // Update today's weather display
+        function updateTodayWeatherDisplay() {
+            document.getElementById('todayTemp').textContent = `${todayWeather.temperature}°C`;
+            document.getElementById('todayCond').textContent = todayWeather.condition;
+            document.getElementById('todayFeels').textContent = `Feels like ${todayWeather.feelsLike}°C`;
+            document.getElementById('todayRain').textContent = `${todayWeather.rainChance}%`;
+            document.getElementById('todayWind').textContent = `${todayWeather.windSpeed} km/h`;
+            document.getElementById('todayHum').textContent = `${todayWeather.humidity}%`;
+            document.getElementById('todayVis').textContent = `${todayWeather.visibility} km`;
+            document.getElementById('todayIcon').textContent = todayWeather.icon;
+            // Date and timestamp
+            const now = new Date();
+            document.getElementById('todayDate').textContent = now.toLocaleDateString('bn-BD', { year: 'numeric', month: 'long', day: 'numeric' }) + ' • Sylhet';
+            document.getElementById('todayUpdated').textContent = now.toLocaleString('bn-BD');
+        }
+
+        // Simulate event day weather updates
+        function simulateWeatherChanges() {
+            weatherData.temperature += (Math.random() - 0.5) * 2;
+            weatherData.humidity += (Math.random() - 0.5) * 10;
+            weatherData.windSpeed += (Math.random() - 0.5) * 3;
+            weatherData.temperature = Math.max(25, Math.min(35, weatherData.temperature));
+            weatherData.humidity = Math.max(40, Math.min(90, weatherData.humidity));
+            weatherData.windSpeed = Math.max(2, Math.min(15, weatherData.windSpeed));
+            weatherData.feelsLike = Math.round(weatherData.temperature + (weatherData.humidity / 100) * 3);
+            updateWeatherDisplay();
+        }
+
+        // Simulate today's weather updates
+        function simulateTodayWeatherChanges() {
+            todayWeather.temperature += (Math.random() - 0.5) * 2;
+            todayWeather.humidity += (Math.random() - 0.5) * 10;
+            todayWeather.windSpeed += (Math.random() - 0.5) * 3;
+            todayWeather.temperature = Math.max(25, Math.min(35, todayWeather.temperature));
+            todayWeather.humidity = Math.max(40, Math.min(90, todayWeather.humidity));
+            todayWeather.windSpeed = Math.max(2, Math.min(15, todayWeather.windSpeed));
+            todayWeather.feelsLike = Math.round(todayWeather.temperature + (todayWeather.humidity / 100) * 3);
+            updateTodayWeatherDisplay();
+        }
+
+        // Initialize both cards
+        updateWeatherDisplay();
+        updateTodayWeatherDisplay();
+
+        // Update every 10 minutes
+        setInterval(simulateWeatherChanges, 600000);
+        setInterval(simulateTodayWeatherChanges, 600000);
+    </script>
 
 </body>
 </html>
