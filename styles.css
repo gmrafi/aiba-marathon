@@ -113,7 +113,24 @@ html {
     }
     
     iframe[src*="cal.com"] {
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+    }
+    
+    /* Remove border from Cal.com container on mobile */
+    .bg-white\/10.border {
+        border: none !important;
+    }
+    
+    /* Target the specific Cal.com container and remove border */
+    .bg-white\/10.rounded-xl.p-3.md\:p-6.backdrop-blur-sm.border {
+        border: none !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* Increase map height for mobile devices only */
+    iframe[src*="google.com/maps"] {
+        height: 900px !important;
+        min-height: 900px !important;
     }
 }
 
