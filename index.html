@@ -949,7 +949,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="text-main font-semibold text-center text-sm">Media Partner</span>
                     </div>
                     <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-main/20 min-w-[220px] max-w-xs w-full">
-                        <img src="photos/partner/𝗛𝘆𝗱𝗿𝗮𝘁𝗶𝗼𝗻 𝗣𝗼𝘄𝗱𝗲𝗿 - 𝗙𝗨𝗘𝗟 𝗛𝘆𝗱𝗿𝗮𝘁𝗶𝗼𝗻 𝗣𝗼𝘄𝗱𝗲𝗿.jpg" alt="Hydration Partner - FUEL Hydration Powder" class="mb-4 w-full object-contain rounded-lg h-24">
+                        <img src="photos/partner/𝗛𝘆𝗱𝗿𝗮𝘁𝗶𝗼𝗻 𝗣𝗼𝘄𝗱𝗲𝗿 - 𝗙𝗨𝗘𝗟 𝗛𝘆𝗱𝗿𝗮𝘁𝗶𝗼𝗻 𝗣𝗼𝘄𝗲𝗿.jpg" alt="Hydration Partner - FUEL Hydration Powder" class="mb-4 w-full object-contain rounded-lg h-24">
                         <span class="text-gray-800 font-bold text-lg text-center mb-2">FUEL Hydration Powder</span>
                         <span class="text-main font-semibold text-center text-sm">Hydration Partner</span>
                     </div>
@@ -1048,7 +1048,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="text-center text-xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
             Explore the scenic routes of the Justice Half Marathon 2025. Each route is designed to challenge and inspire runners of all levels.
             </p>
-            <div class="flex flex-col gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Half Marathon Route -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start border-4 border-main/20">
                     <h3 class="text-2xl font-bold text-main mb-4">Half Marathon</h3>
@@ -1071,147 +1071,154 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="mt-8">
-                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R_vW9tcGcCf2DqLPtW6UrBNTVy6QKzc&ehbc=2E312F" width="100%" height="600" class="w-full rounded-xl shadow-2xl border-8 border-main"></iframe>
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1R_vW9tcGcCf2DqLPtW6UrBNTVy6QKzc&ehbc=2E312F" width="100%" height="800" class="w-full rounded-xl shadow-2xl border-8 border-main"></iframe>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-16 bg-white rounded-2xl mx-auto my-8 section-fade-in">
+    <section id="contact" class="py-12 md:py-16 bg-gradient-to-br from-main via-[#004a35] to-[#003d2b] rounded-2xl mx-auto my-8 section-fade-in">
         <div class="container mx-auto px-4">
-            <h2 class="text-5xl font-extrabold text-center text-gray-800 mb-10">Contact Us</h2>
-            <p class="text-center text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <h2 class="text-5xl font-extrabold text-center text-white mb-10">Contact Us</h2>
+            <p class="text-center text-2xl text-white mb-12 max-w-4xl mx-auto leading-relaxed">
                 Have questions? We're here to help!
-           
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <!-- Contact Information Cards -->
-                <div class="space-y-6">
-                    <h3 class="text-4xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                        <span class="text-5xl">📞</span> Get in Touch
+            <!-- Two Column Layout: Contact Info (Left) + Calendar Form (Right) -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
+                <!-- Left Side: Contact Information -->
+                <div class="space-y-6 lg:col-span-2">
+                    <h3 class="text-3xl font-bold text-white mb-6">
+                        Get in Touch
                     </h3>
-                    
-                    <!-- Address Card -->
-                    <div class="bg-gradient-to-br from-main/10 to-main/5 p-6 rounded-2xl shadow-lg border-l-4 border-main">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-main text-white p-3 rounded-full">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"></svg>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- President Contact -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                <h4 class="font-semibold text-white">President</h4>
+                            </div>
+                            <p class="text-sm text-gray-200">
+                                <span class="block font-semibold">Hasib Hasan Moon</span>
+                                <span class="block font-mono text-xs">01568-082587</span>
+                            </p>
+                        </div>
+
+                        <!-- Vice President Contact -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                </svg>
+                                <h4 class="font-semibold text-white">Vice President</h4>
+                            </div>
+                            <p class="text-sm text-gray-200">
+                                <span class="block font-semibold">Muftasim Fuad Zim</span>
+                                <span class="block font-mono text-xs">01316891926</span>
+                            </p>
+                        </div>
+
+                        <!-- Visuals and Editing Lead Contact -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                                <h4 class="font-semibold text-white">Visuals & Editing</h4>
+                            </div>
+                            <p class="text-sm text-gray-200">
+                                <span class="block font-semibold">Ahmed Hamim Enan</span>
+                                <span class="block font-mono text-xs">01757763615</span>
+                                <span class="block text-xs mt-1">Visuals and Editing Lead</span>
+                            </p>
+                        </div>
+
+                        <!-- Email Contact -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                                </svg>
+                                <h4 class="font-semibold text-white">Email Us</h4>
+                            </div>
+                            <p class="text-sm text-gray-200">
+                                <span class="block">info@justicehalfmarathon.com</span>
+                                <span class="block">aibahtc454@gmail.com</span>
+                                <span class="block text-xs mt-1">Official support</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Address & Social Media -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                        <!-- Address -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
+                                <h4 class="font-semibold text-white">Address</h4>
                             </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-main mb-2">Our Address</h4>
-                                <p class="text-gray-700 leading-relaxed">
-                                    Army Institute of Business Administration<br>
-                                    Sylhet Cantonment, Sylhet, Bangladesh
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Cards Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- President -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="bg-blue-500 text-white p-2 rounded-full">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">President</h4>
-                                    <p class="text-sm text-gray-500">Club Leadership</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-gray-800 mb-1">Hasib Hasan Moon</p>
-                            <p class="text-gray-600 text-sm font-mono">📱 01568-082587</p>
+                            <p class="text-sm text-gray-200">
+                                <span class="block">Army Institute of Business Administration</span>
+                                <span class="block">Sylhet Cantonment, Sylhet, Bangladesh</span>
+                            </p>
                         </div>
 
-                        <!-- Vice President -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="bg-green-500 text-white p-2 rounded-full">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Vice President</h4>
-                                    <p class="text-sm text-gray-500">Co-Leadership</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-gray-800 mb-1">Muftasim Fuad Zim</p>
-                            <p class="text-gray-600 text-sm font-mono">📱 01316891926</p>
-                        </div>
-
-                        <!-- Editing Lead -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="bg-purple-500 text-white p-2 rounded-full">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Visuals & Editing</h4>
-                                    <p class="text-sm text-gray-500">Media Lead</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-gray-800 mb-1">Ahmed Hamim Enan</p>
-                            <p class="text-gray-600 text-sm font-mono">📱 01757763615</p>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="flex items-center gap-3 mb-3">
-                                <div class="bg-red-500 text-white p-2 rounded-full">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800">Email Support</h4>
-                                    <p class="text-sm text-gray-500">Official Contact</p>
-                                </div>
-                            </div>
-                            <p class="font-semibold text-gray-800 mb-1"></p>
-                            <p class="text-gray-600 text-sm">📧 info@justicehalfmarathon.com</p>
-                            <p class="text-gray-600 text-sm">📧 aibahtc454@gmail.com</p>
-                        </div>
-                    </div>
-
-                    <!-- Social Media -->
-                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border">
-                        <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                            <span class="text-2xl">🌐</span> Follow Us
-                        </h4>
-                        <div class="flex gap-4">
-                            <a href="https://www.facebook.com/profile.php?id=61569394011282" target="_blank" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-110">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        <!-- Social Media -->
+                        <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+                            <div class="flex items-center justify-center mb-2">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2"/>
                                 </svg>
-                            </a>
-                            <a href="https://www.instagram.com/aiba.htc" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-full hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-110">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM15.156 7.987c.46 0 .833.372.833.833 0 .46-.372.833-.833.833-.46 0-.833-.372-.833-.833 0-.461.372-.833.833-.833zM12.017 9.485c1.384 0 2.502 1.119 2.502 2.502 0 1.384-1.119 2.502-2.502 2.502-1.384 0-2.502-1.119-2.502-2.502 0-1.383 1.119-2.502 2.502-2.502z"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.facebook.com/events/2142919522842092" target="_blank" class="bg-blue-500 text-white px-4 py-3 rounded-full hover:bg-blue-600 transition-all duration-300 transform hover:scale-110 text-sm font-semibold">
-                                📅 Event Page
-                            </a>
+                                <h4 class="font-semibold text-white">Follow Us</h4>
+                            </div>
+                            <div class="flex justify-center gap-4">
+                                <a href="https://www.facebook.com/profile.php?id=61569394011282" target="_blank" class="text-blue-300 hover:text-white transition">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.instagram.com/aiba.htc" target="_blank" class="text-pink-300 hover:text-white transition">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM15.156 7.987c.46 0 .833.372.833.833 0 .46-.372.833-.833.833-.46 0-.833-.372-.833-.833 0-.461.372-.833.833-.833zM12.017 9.485c1.384 0 2.502 1.119 2.502 2.502 0 1.384-1.119 2.502-2.502 2.502-1.384 0-2.502-1.119-2.502-2.502 0-1.383 1.119-2.502 2.502-2.502zM12.017 4.155c.653 0 1.295.042 1.909.123.5.066.987.16 1.48.284.493.123.986.284 1.462.493.477.21.926.493 1.328.833.402.341.743.742 1.006 1.178.263.436.461.906.594 1.397.133.49.2 1.001.2 1.532v.803c0 .531-.067 1.041-.2 1.532-.133.49-.331.961-.594 1.397-.263.436-.604.837-1.006 1.178-.402.341-.851.623-1.328.833-.477.21-.969.37-1.462.493-.493.123-.98.218-1.48.284-.614.081-1.256.123-1.909.123-.653 0-1.295-.042-1.909-.123-.5-.066-.987-.16-1.48-.284-.493-.123-.986-.284-1.462-.493-.477-.21-.926-.493-1.328-.833-.402-.341-.743-.742-1.006-1.178-.263-.436-.461-.906-.594-1.397-.133-.49-.2-1.001-.2-1.532v-.803c0-.531.067-1.041.2-1.532.133-.49.331-.961.594-1.397.263-.436.604-.837 1.006-1.178.402-.341.851-.623 1.328-.833.477-.21.969-.37 1.462-.493.493-.123.98-.218 1.48-.284.614-.081 1.256-.123 1.909-.123z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://www.facebook.com/events/2142919522842092" target="_blank" class="text-blue-300 hover:text-white transition">
+                                    <span class="text-xs font-semibold bg-blue-600 px-2 py-1 rounded">Event</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
-                    <h3 class="text-4xl font-bold text-gray-800 mb-8 flex items-center gap-3">
-                        <span class="text-5xl">💬</span> Send us a Message
+                <!-- Right Side: Send Us a Message (Calendar Form) -->
+                <div class="space-y-6 lg:col-span-3">
+                    <h3 class="text-3xl font-bold text-white mb-6">
+                        Send us a Message
                     </h3>
-                    <div class="bg-gray-50 rounded-2xl p-4">
-                        <iframe width="100%" height="600" src="https://docs.google.com/forms/d/e/1FAIpQLSfE3P2jmV5auvogV6KRxDZlsAnVDi0_cmdmGwgK_eFh9CXYBg/viewform?usp=dialog" frameborder="0" marginwidth="0" marginheight="0" style="border: none; width:100%; min-width:0; max-width:100%; border-radius:1rem;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+                    
+                    <!-- Cal inline embed code begins -->
+                    <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                        <div style="width:100%;height:600px;overflow:auto;max-width:none" id="my-cal-inline-jhm2025"></div>
+                    </div>
+                        <script type="text/javascript">
+                          (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+                        Cal("init", "jhm2025", {origin:"https://app.cal.com"});
+
+                          Cal.ns.jhm2025("inline", {
+                            elementOrSelector:"#my-cal-inline-jhm2025",
+                            config: {"layout":"month_view"},
+                            calLink: "gmrafi/jhm2025",
+                          });
+
+                          Cal.ns.jhm2025("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#605be5"},"dark":{"cal-brand":"#605be5"}},"hideEventTypeDetails":false,"layout":"month_view"});
+                        </script>
+                        <!-- Cal inline embed code ends -->
                     </div>
                 </div>
             </div>
@@ -1220,127 +1227,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- Professional Single Footer -->
     <footer class="bg-gradient-to-br from-main via-[#004a35] to-[#003d2b] text-white mt-16">
-        <div class="container mx-auto px-4 py-16">
+        <div class="container mx-auto px-4 py-8">
             <!-- Main Footer Content -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                
-                <!-- Brand Section -->
-                <div class="lg:col-span-2">
-                    <div class="flex items-center mb-6">
-                        <img src="photos/logo3.png" alt="Marathon Logo" class="h-16 w-auto mr-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Justice Half Marathon 2025</h3>
-                            <p class="text-gray-300">Army IBA Hiking & Trekking Club, Sylhet</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed max-w-md">
-                        Join Bangladesh's premier running event on September 26th, 2025. Experience the thrill of running through the scenic routes of Sylhet while being part of a community that values fitness, determination, and unity.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://www.facebook.com/profile.php?id=61569394011282" target="_blank" class="bg-blue-600 hover:bg-blue-700 p-3 rounded-full transition-all duration-300 transform hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/aiba.htc" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 p-3 rounded-full transition-all duration-300 transform hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM15.156 7.987c.46 0 .833.372.833.833 0 .46-.372.833-.833.833-.46 0-.833-.372-.833-.833 0-.461.372-.833.833-.833zM12.017 9.485c1.384 0 2.502 1.119 2.502 2.502 0 1.384-1.119 2.502-2.502 2.502-1.384 0-2.502-1.119-2.502-2.502 0-1.383 1.119-2.502 2.502-2.502z"/>
-                            </svg>
-                        </a>
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <img src="photos/mini logo 2.jpg" alt="Marathon Logo" class="h-12 w-auto mr-3">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Justice Half Marathon 2025</h3>
+                        <p class="text-gray-300 text-sm">Army IBA Hiking & Trekking Club, Sylhet</p>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-xl font-bold text-white mb-6">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Home
-                        </a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> About Event
-                        </a></li>
-                        <li><a href="registration.html" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Registration
-                        </a></li>
-                        <li><a href="payment-verification.html" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Payment Status
-                        </a></li>
-                        <li><a href="#route" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Route Map
-                        </a></li>
-                        <li><a href="team.html" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Our Team
-                        </a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-yellow-300 transition duration-300 flex items-center gap-2">
-                            <span class="w-2 h-2 bg-yellow-300 rounded-full"></span> Contact Us
-                        </a></li>
-                    </ul>
-                </div>
-
-                <!-- Event Information -->
-                <div>
-                    <h4 class="text-xl font-bold text-white mb-6">Event Details</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-3">
-                            <div class="bg-yellow-300 text-green-800 p-2 rounded-full">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold">Event Date</p>
-                                <p class="text-gray-300 text-sm">September 26, 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="bg-yellow-300 text-green-800 p-2 rounded-full">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold">Location</p>
-                                <p class="text-gray-300 text-sm">Army IBA, Sylhet</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="bg-yellow-300 text-green-800 p-2 rounded-full">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold">Categories</p>
-                                <p class="text-gray-300 text-sm">21KM, 10KM, Kids Run</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Emergency Contact Banner -->
-            <div class="bg-red-600/20 border border-red-400 rounded-xl p-6 mb-8">
-                <div class="flex items-center gap-4">
-                    <div class="bg-red-500 p-3 rounded-full">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.081 16.5c-.77.833.192 2.5 1.732 2.5z"/>
-                        </svg>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-white font-bold text-lg">Emergency Contact (Event Day)</h4>
-                        <p class="text-red-200">Available 24/7 during the event for any assistance</p>
-                        <p class="text-white font-mono text-sm mt-2">📱 01757763615 | 01568-082587 | 01316891926</p>
-                    </div>
-                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-2xl mx-auto">
+                    Join Bangladesh's premier running event on September 26th, 2025. Experience the thrill of running through the scenic routes of Sylhet while being part of a community that values fitness, determination, and unity.
+                </p>
             </div>
 
             <!-- Bottom Footer -->
-            <div class="border-t border-gray-400 pt-8">
+            <div class="border-t border-gray-400 pt-4 mt-6">
                 <div class="text-center space-y-2">
-                    <p class="text-white text-base">
+                    <p class="text-white text-sm">
                         © 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.
                     </p>
-                    <p class="text-white text-base">
+                    <p class="text-white text-sm">
                         Design and developed by 
                         <a href="https://me.gmrafi.com/" target="_blank" rel="noopener" class="text-white hover:text-yellow-300 transition font-semibold underline">
                             MD Golam Mubasshir Rafi
