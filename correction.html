@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correction Request | Justice Half Marathon 2025</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#005840',
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg border-b-4 border-main">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center gap-4 mb-4 md:mb-0">
+                    <img src="photos/logo3.png" alt="Marathon Logo" class="h-16 w-auto object-contain">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">
+                            Justice Half Marathon <span class="text-main">2025</span>
+                        </h1>
+                        <p class="text-main font-medium">Correction Request</p>
+                    </div>
+                </div>
+                <nav class="flex gap-4">
+                    <a href="index.html" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Home</a>
+                    <a href="confirmation.html" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Confirmation</a>
+                    <a href="registration.html" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Register</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        
+        <!-- Page Introduction -->
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-4">
+                Request Data Correction
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Found an error in your registration details? Submit a correction request for your name or T-shirt size.
+            </p>
+        </div>
+
+        <!-- Correction Form -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-200">
+            <form id="correctionForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="mobile" class="block text-gray-700 text-lg font-semibold mb-2">Mobile Number *</label>
+                        <input 
+                            type="tel" 
+                            id="mobile" 
+                            name="mobile" 
+                            placeholder="01712345678"
+                            pattern="01[3-9][0-9]{8}"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                            required
+                        >
+                        <p class="text-sm text-gray-500 mt-1">Your registered mobile number</p>
+                    </div>
+                    
+                    <div>
+                        <label for="serialNumber" class="block text-gray-700 text-lg font-semibold mb-2">Serial Number</label>
+                        <input 
+                            type="text" 
+                            id="serialNumber" 
+                            name="serialNumber" 
+                            placeholder="HM1234"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                        >
+                        <p class="text-sm text-gray-500 mt-1">If known (optional)</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 text-lg font-semibold mb-4">What needs to be corrected? *</label>
+                    <div class="space-y-3">
+                        <label class="flex items-center cursor-pointer p-3 border-2 border-gray-200 rounded-xl hover:border-main/50 transition">
+                            <input type="checkbox" name="correctionType" value="name" class="w-4 h-4 text-main bg-gray-100 border-gray-300 rounded focus:ring-main focus:ring-2">
+                            <span class="ml-3 text-gray-700 font-medium">Name Correction</span>
+                        </label>
+                        <label class="flex items-center cursor-pointer p-3 border-2 border-gray-200 rounded-xl hover:border-main/50 transition">
+                            <input type="checkbox" name="correctionType" value="tshirt" class="w-4 h-4 text-main bg-gray-100 border-gray-300 rounded focus:ring-main focus:ring-2">
+                            <span class="ml-3 text-gray-700 font-medium">T-shirt Size Correction</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="nameCorrection" class="hidden space-y-4">
+                    <div>
+                        <label for="currentName" class="block text-gray-700 font-semibold mb-2">Current Name (as registered)</label>
+                        <input 
+                            type="text" 
+                            id="currentName" 
+                            name="currentName" 
+                            placeholder="Enter current name"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                        >
+                    </div>
+                    <div>
+                        <label for="correctName" class="block text-gray-700 font-semibold mb-2">Correct Name</label>
+                        <input 
+                            type="text" 
+                            id="correctName" 
+                            name="correctName" 
+                            placeholder="Enter correct name"
+                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                        >
+                    </div>
+                </div>
+
+                <div id="tshirtCorrection" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="currentSize" class="block text-gray-700 font-semibold mb-2">Current T-shirt Size</label>
+                            <select 
+                                id="currentSize" 
+                                name="currentSize" 
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                            >
+                                <option value="">Select current size</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="correctSize" class="block text-gray-700 font-semibold mb-2">Correct T-shirt Size</label>
+                            <select 
+                                id="correctSize" 
+                                name="correctSize" 
+                                class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                            >
+                                <option value="">Select correct size</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="additionalInfo" class="block text-gray-700 font-semibold mb-2">Additional Information</label>
+                    <textarea 
+                        id="additionalInfo" 
+                        name="additionalInfo" 
+                        rows="4" 
+                        placeholder="Provide any additional details that might help us process your correction..."
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition"
+                    ></textarea>
+                </div>
+
+                <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-yellow-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-yellow-800 mb-1">Important Note</h4>
+                            <p class="text-yellow-700 text-sm">
+                                Please submit correction requests by August 15, 2025. All requests will be reviewed and processed within 2-3 business days.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="w-full bg-gradient-to-r from-main to-main/80 text-white px-8 py-4 rounded-xl text-xl font-bold hover:from-main/90 hover:to-main transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                    Submit Correction Request
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="hidden bg-green-50 border-2 border-green-200 rounded-3xl p-8 mt-8">
+            <div class="flex items-center gap-3 mb-4">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <h3 class="text-xl font-bold text-green-800">Request Submitted Successfully!</h3>
+            </div>
+            <p class="text-green-700 mb-4">
+                Your correction request has been submitted. We'll review and process it within 2-3 business days.
+            </p>
+            <div class="flex gap-4">
+                <a href="confirmation.html" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                    Check Status
+                </a>
+                <button onclick="location.reload()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                    Submit Another Request
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Army Institute of Business Administration - Hiking & Trekking Club. All rights reserved.</p>
+            <p class="mt-2 text-sm">Design and developed by <span class="text-main font-semibold">MD Golam Mubasshir Rafi</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Form handling
+        const correctionForm = document.getElementById('correctionForm');
+        const nameCorrection = document.getElementById('nameCorrection');
+        const tshirtCorrection = document.getElementById('tshirtCorrection');
+        const successMessage = document.getElementById('successMessage');
+
+        // Handle correction type checkboxes
+        document.querySelectorAll('input[name="correctionType"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.value === 'name') {
+                    nameCorrection.classList.toggle('hidden', !this.checked);
+                    if (this.checked) {
+                        document.getElementById('currentName').required = true;
+                        document.getElementById('correctName').required = true;
+                    } else {
+                        document.getElementById('currentName').required = false;
+                        document.getElementById('correctName').required = false;
+                    }
+                } else if (this.value === 'tshirt') {
+                    tshirtCorrection.classList.toggle('hidden', !this.checked);
+                    if (this.checked) {
+                        document.getElementById('currentSize').required = true;
+                        document.getElementById('correctSize').required = true;
+                    } else {
+                        document.getElementById('currentSize').required = false;
+                        document.getElementById('correctSize').required = false;
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        correctionForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const correctionTypes = Array.from(document.querySelectorAll('input[name="correctionType"]:checked')).map(cb => cb.value);
+            
+            if (correctionTypes.length === 0) {
+                alert('Please select at least one correction type.');
+                return;
+            }
+            
+            // Validate mobile number
+            const mobile = formData.get('mobile');
+            if (!/^01[3-9]\d{8}$/.test(mobile)) {
+                alert('Please enter a valid 11-digit mobile number starting with 01');
+                return;
+            }
+            
+            try {
+                // Here you would normally send to Google Apps Script
+                // For demo, just show success message
+                
+                correctionForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your request. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

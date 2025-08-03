@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Test</title>
+</head>
+<body>
+    <h1>Registration Search Test</h1>
+    
+    <div>
+        <label>Search Type:</label>
+        <select id="searchType">
+            <option value="mobile">Mobile</option>
+            <option value="transaction">Transaction</option>
+        </select>
+    </div>
+    
+    <div>
+        <label>Search Value:</label>
+        <input type="text" id="searchValue" placeholder="Enter mobile or transaction">
+        <button onclick="searchNow()">Search</button>
+    </div>
+    
+    <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        // আপনার স্ক্রিপ্ট URL - MUST BE UPDATED
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa6-hycDC9W4Ze6aH-Ja3Wo1amI_nIeqiXhfawWgrBH7Sf25gZ15ses-wtFBYfc1vD/exec';
+        
+        async function searchNow() {
+            const searchType = document.getElementById('searchType').value;
+            const searchValue = document.getElementById('searchValue').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!searchValue) {
+                alert('Please enter a search value');
+                return;
+            }
+            
+            resultDiv.innerHTML = 'Searching...';
+            
+            try {
+                console.log('Searching:', searchType, searchValue);
+                console.log('URL:', SCRIPT_URL);
+                
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'searchRegistration',
+                        searchType: searchType,
+                        searchValue: searchValue
+                    })
+                });
+                
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Result:', result);
+                
+                if (result.success && result.data) {
+                    resultDiv.innerHTML = `
+                        <h3>Registration Found!</h3>
+                        <p><strong>Name:</strong> ${result.data.name}</p>
+                        <p><strong>Mobile:</strong> ${result.data.mobile}</p>
+                        <p><strong>Email:</strong> ${result.data.email}</p>
+                        <p><strong>T-shirt:</strong> ${result.data.tshirtSize}</p>
+                        <p><strong>Serial:</strong> ${result.data.serialNumber}</p>
+                        <p><strong>Payment:</strong> ${result.data.paymentStatus}</p>
+                        <p><strong>Found in:</strong> Row ${result.data.foundInRow}, Column ${result.data.foundInColumn}</p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<p style="color: red;">Not Found: ${result.message}</p>`;
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
