@@ -66,23 +66,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .fade-in { animation: fadeIn 0.5s ease-in; }
-        .scale-in { animation: scaleIn 0.3s ease-out; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f0f4f8; /* Matching the other pages */
+            color: #2d3748;
+            min-height: 100vh;
+        }
+        
+        /* Enhanced Animations */
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        .scale-in { animation: scaleIn 0.4s ease-out; }
+        .slide-up { animation: slideUp 0.5s ease-out; }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes scaleIn {
-            from { transform: scale(0.9); opacity: 0; }
+            from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
         
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modern Card Design */
+        .modern-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .modern-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Enhanced Loading Spinner */
         .loading-spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #005840;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffffff;
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -92,6 +121,122 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* Modern Input Styling */
+        .modern-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(0, 88, 64, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modern-input:focus {
+            border-color: #005840;
+            box-shadow: 0 0 0 4px rgba(0, 88, 64, 0.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        /* Modern Button */
+        .modern-btn {
+            background: linear-gradient(135deg, #005840 0%, #007A5A 100%);
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 88, 64, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 88, 64, 0.4);
+        }
+        
+        .modern-btn:active {
+            transform: translateY(0);
+        }
+        
+        .modern-btn:disabled {
+            opacity: 0.7;
+            transform: none;
+            cursor: not-allowed;
+        }
+        
+        /* Status Badge Styles */
+        .status-confirmed {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-pending {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Data Grid Enhancement */
+        .data-item {
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .data-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 88, 64, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        /* Professional Typography */
+        .section-title {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        
+        /* Alert Boxes */
+        .alert-success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+        }
+        
+        .alert-error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .modern-card {
+                margin: 0 16px;
+                border-radius: 12px;
+            }
         }
     </style>
 </head>
@@ -103,99 +248,198 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navigation -->
-    <nav class="bg-main text-white p-4 shadow-lg">
-        <div class="container mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <img src="photos/aiba.jpg" alt="Army IBA Hiking & Trekking Club Logo" class="h-12 w-12 rounded-full">
-                <div>
-                    <h1 class="text-xl font-bold">Justice Half Marathon 2025</h1>
-                    <p class="text-green-200 text-sm">Registration Confirmation</p>
+    <header class="bg-white shadow-2xl py-4 z-50 rounded-b-3xl transition-all duration-300 border-b-4 border-[#005840]/60">
+        <div class="container mx-auto px-3 sm:px-6">
+            <!-- Desktop: All logos, name, and menu in a single row for xl and up -->
+            <div class="hidden xl:flex flex-row items-center justify-between w-full gap-8 fixed top-0 left-0 right-0 z-50 bg-white border-b-4 border-[#005840]/60 shadow-2xl rounded-b-3xl transition-all duration-300">
+                <div class="flex flex-row items-center gap-6">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-20 w-auto object-contain shadow-2xl">
+                    <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-14 w-14 rounded-full object-cover">
+                    <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-14 w-14 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col items-center min-w-[320px]">
+                    <span class="block text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-base text-[#005840] font-medium tracking-wide whitespace-nowrap">Army IBA Hiking & Trekking Club, Sylhet</span>
+                </div>
+                <div class="flex flex-row items-center gap-2 text-gray-900 font-semibold text-base">
+                    <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                    <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                    <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                    <a href="confirmation.html" class="bg-[#005840] text-white px-4 py-2 rounded-xl">Confirmation</a>
+                    <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                    <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                    <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
                 </div>
             </div>
-            <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="hover:text-green-200 transition duration-300">Home</a>
-                <a href="register.html" class="hover:text-green-200 transition duration-300">Register</a>
-                <a href="confirmation.html" class="text-green-200 font-semibold">Confirmation</a>
-                <a href="payment-verification.html" class="hover:text-green-200 transition duration-300">Payment</a>
+            <!-- Mobile & Tablet: show same header for all screens below xl, NOT sticky/fixed -->
+            <div class="block xl:hidden">
+                <div class="flex flex-col items-center w-full gap-4 py-4">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-28 w-auto sm:h-32 object-contain mb-3 shadow-2xl">
+                    <div class="flex flex-row items-center justify-center gap-8 w-full mb-2">
+                        <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
+                        <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
+                    </div>
+                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-xs sm:text-base text-[#005840] font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
+                    <div class="flex flex-wrap justify-center items-center gap-2 text-gray-900 font-semibold text-sm sm:text-base mt-2">
+                        <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
+                        <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
+                        <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
+                        <a href="confirmation.html" class="bg-[#005840] text-white px-4 py-2 rounded-xl">Confirmation</a>
+                        <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
+                        <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
+                        <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-2xl mx-auto">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
             <!-- Page Header -->
-            <div class="text-center mb-8 fade-in">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Registration Confirmation</h2>
-                <p class="text-gray-600">
-                    নিবন্ধন যাচাই করুন | Verify your registration details by searching with your mobile number or transaction ID
+            <div class="text-center mb-12 fade-in">
+                <div class="inline-block bg-white/20 backdrop-filter backdrop-blur-lg rounded-full px-6 py-2 mb-6">
+                    <span class="text-main font-semibold">🏃‍♂️ Registration Verification System</span>
+                </div>
+                <h2 class="text-4xl font-bold section-title mb-6">Registration Confirmation</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                    নিবন্ধন যাচাই করুন | Verify your registration.
                 </p>
             </div>
 
             <!-- Search Form -->
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 scale-in">
-                <form id="searchForm" class="space-y-4">
+            <div class="modern-card p-8 mb-12 scale-in">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Search Your Registration</h3>
+                    <p class="text-gray-600">Enter your mobile number or transaction ID to find your registration</p>
+                </div>
+                
+                <form id="searchForm" class="space-y-6">
                     <div>
-                        <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-3">
+                            <i class="fas fa-search mr-2 text-main"></i>
                             Mobile Number or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি
                         </label>
                         <input 
                             type="text" 
                             id="searchInput" 
-                            placeholder="Enter mobile number or transaction ID | মোবাইল নম্বর বা লেনদেন আইডি লিখুন"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-main focus:border-transparent transition duration-300"
+                            placeholder="01XXXXXXXXX or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি লিখুন"
+                            class="modern-input w-full px-6 py-4 text-lg focus:outline-none focus:ring-0"
                             required
                         >
                     </div>
                     <button 
                         type="submit" 
                         id="searchBtn"
-                        class="w-full bg-main text-white py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+                        class="modern-btn w-full text-white py-4 px-8 text-lg font-semibold flex items-center justify-center space-x-3"
                     >
+                        <i class="fas fa-search"></i>
                         <span id="searchBtnText">Search Registration | নিবন্ধন খুঁজুন</span>
                         <div id="loadingSpinner" class="loading-spinner hidden"></div>
                     </button>
                 </form>
+                
+                <!-- Quick Tips -->
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-2">
+                        <i class="fas fa-lightbulb mr-2"></i>
+                        Search Tips | অনুসন্ধান টিপস
+                    </h4>
+                    <ul class="text-blue-700 text-sm space-y-1">
+                        <li>• Mobile number format: 01XXXXXXXXX (11 digits)</li>
+                        <li>• Transaction ID: Exact ID from your payment receipt</li>
+                        <li>• মোবাইল নম্বর ফরম্যাট: ০১XXXXXXXXX (১১ ডিজিট)</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Results Container -->
             <div id="resultsContainer" class="hidden"></div>
 
             <!-- Support Section -->
-            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 fade-in">
-                <h3 class="text-lg font-semibold text-yellow-800 mb-3">
-                    Need Help? | সাহায্য প্রয়োজন?
-                </h3>
-                <p class="text-yellow-700 mb-4">
-                    If you can't find your registration or need to make corrections, please contact us:
-                    <br>
-                    যদি আপনার নিবন্ধন খুঁজে না পান বা সংশোধন করতে চান, আমাদের সাথে যোগাযোগ করুন:
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <a 
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform"
-                        target="_blank"
-                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300 text-center"
-                    >
-                        Report Issue | সমস্যা রিপোর্ট করুন
-                    </a>
-                    <a 
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdA9K1wnkW8Z9v6gDqeR8t5i6Q0EFQIoELwNvG6p6jCGjPePQ/viewform"
-                        target="_blank"
-                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 text-center"
-                    >
-                        Correction Request | সংশোধনের অনুরোধ
-                    </a>
+            <div class="modern-card p-8 fade-in">
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+                        <i class="fas fa-headset mr-2 text-main"></i>
+                        Need Help? | সাহায্য প্রয়োজন?
+                    </h3>
+                    <p class="text-gray-600">
+                        Our support team is here to help you with any registration issues
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
+                        <i class="fas fa-edit text-3xl text-blue-600 mb-4"></i>
+                        <h4 class="font-semibold text-blue-800 mb-2">Request Data Correction | তথ্য সংশোধন</h4>
+                        <p class="text-blue-700 text-sm mb-4">
+                            Want to change your name or T-shirt size? Submit a correction request to update your registration details.
+                            <br>আপনার নাম বা টি-শার্টের সাইজ পরিবর্তন করতে চান? আপনার নিবন্ধনের তথ্য আপডেট করার জন্য সংশোধনের অনুরোধ জমা দিন।
+                        </p>
+                        <a 
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSdbV1CVKnpNBauOilA4CeTvjaOSrBWJL-lFrRW4JryXMAv6GA/viewform?usp=dialog"
+                            target="_blank"
+                            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+                        >
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Data Correction
+                        </a>
+                    </div>
+                    
+                    <div class="text-center p-6 bg-gradient-to-br from-red-50 to-pink-50 rounded-lg border border-red-200">
+                        <i class="fas fa-search-plus text-3xl text-red-600 mb-4"></i>
+                        <h4 class="font-semibold text-red-800 mb-2">Report Missing Registration | হারিয়ে যাওয়া নিবন্ধন</h4>
+                        <p class="text-red-700 text-sm mb-4">
+                            Can't find your registration in our system? Submit your payment details for verification.
+                            <br>আমাদের সিস্টেমে আপনার নিবন্ধন নেই? যাচাইয়ের জন্য পেমেন্টের বিস্তারিত জমা দিন।
+                        </p>
+                        <a 
+                            href="https://docs.google.com/forms/d/1ePfnrbZaOFLf7iZuqHS9QUggghhdsdsxxLY3wT6BiolIwk9URMyI/edit"
+                            target="_blank"
+                            class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 font-semibold"
+                        >
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Missing Registration
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-main text-white text-center py-6 mt-12">
-        <div class="container mx-auto px-4">
-            <p class="mb-2">© 2025 Justice Half Marathon | Army IBA Hiking & Trekking Club, Sylhet</p>
-            <p class="text-green-200 text-sm">Making Justice Accessible Through Sports</p>
+    <!-- Professional Single Footer -->
+    <footer class="bg-gradient-to-br from-main via-[#004a35] to-[#003d2b] text-white mt-16">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Main Footer Content -->
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-4">
+                    <img src="photos/mini logo 2.jpg" alt="Marathon Logo" class="h-12 w-auto mr-3" loading="lazy">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Justice Half Marathon 2025</h3>
+                        <p class="text-gray-300 text-sm">Army IBA Hiking & Trekking Club, Sylhet</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed max-w-2xl mx-auto">
+                    Join Bangladesh's premier running event on September 26th, 2025. Experience the thrill of running through the scenic routes of Sylhet while being part of a community that values fitness, determination, and unity.
+                </p>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-400 pt-4 mt-6">
+                <div class="text-center space-y-2">
+                    <p class="text-white text-sm">
+                        © 2025 Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. All rights reserved.
+                    </p>
+                    <p class="text-white text-sm">
+                        Design and developed by 
+                        <a href="https://me.gmrafi.com/" target="_blank" rel="noopener" class="text-white hover:text-yellow-300 transition font-semibold underline">
+                            MD Golam Mubasshir Rafi
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -207,6 +451,8 @@
             
             // Form URLs for support
             ISSUE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform',
+            DATA_CORRECTION_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdbV1CVKnpNBauOilA4CeTvjaOSrBWJL-lFrRW4JryXMAv6GA/viewform?usp=dialog',
+            MISSING_REGISTRATION_URL: 'https://docs.google.com/forms/d/1ePfnrbZaOFLf7iZuqHS9QUggghhdsdsxxLY3wT6BiolIwk9URMyI/edit',
             CORRECTION_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdA9K1wnkW8Z9v6gDqeR8t5i6Q0EFQIoELwNvG6p6jCGjPePQ/viewform'
         };
 
@@ -421,92 +667,161 @@
         // Display registration details
         function displayRegistrationDetails(registration) {
             const html = `
-                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
-                    <div class="text-center mb-6">
-                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block mb-4">
-                            <i class="fas fa-check-circle mr-2"></i>
-                            Registration Found | নিবন্ধন পাওয়া গেছে
+                <div class="modern-card p-8 slide-up">
+                    <!-- Success Header -->
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                            <i class="fas fa-check-circle text-3xl text-green-600"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800">Registration Details</h3>
+                        <h3 class="text-3xl font-bold section-title mb-2">Registration Found!</h3>
+                        <p class="text-gray-600">নিবন্ধন পাওয়া গেছে | Your registration details are displayed below</p>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Registration Details Grid -->
+                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                        <!-- Personal Information -->
                         <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Name | নাম</label>
+                            <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-user mr-3 text-main"></i>
+                                Personal Information
+                            </h4>
+                            
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-id-card mr-2"></i>Full Name | নাম
+                                </label>
                                 <p class="text-lg font-semibold text-gray-800">${registration.name || 'N/A'}</p>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Serial Number | সিরিয়াল নম্বর</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.serialNumber || 'Pending'}</p>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-hashtag mr-2"></i>Serial Number | সিরিয়াল নম্বর
+                                </label>
+                                <p class="text-lg font-semibold ${registration.serialNumber && registration.serialNumber !== 'Pending' ? 'text-green-600' : 'text-yellow-600'}">${registration.serialNumber || 'Pending Assignment'}</p>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Mobile | মোবাইল</label>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-mobile-alt mr-2"></i>Mobile | মোবাইল
+                                </label>
                                 <p class="text-lg font-semibold text-gray-800">${registration.mobile || 'N/A'}</p>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Email | ইমেইল</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.email || 'N/A'}</p>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-envelope mr-2"></i>Email | ইমেইল
+                                </label>
+                                <p class="text-lg font-semibold text-gray-800 break-all">${registration.email || 'N/A'}</p>
                             </div>
                         </div>
                         
+                        <!-- Registration Details -->
                         <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">T-Shirt Size | টি-শার্ট সাইজ</label>
+                            <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                                <i class="fas fa-clipboard-list mr-3 text-main"></i>
+                                Registration Details
+                            </h4>
+                            
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-tshirt mr-2"></i>T-Shirt Size | টি-শার্ট সাইজ
+                                </label>
                                 <p class="text-lg font-semibold text-gray-800">${registration.tshirtSize || 'N/A'}</p>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Status | পেমেন্ট স্ট্যাটাস</label>
-                                <p class="text-lg font-semibold ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'text-green-600' : 'text-yellow-600'}">
-                                    ${registration.paymentStatus || 'Pending'}
-                                </p>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-running mr-2"></i>Category | ক্যাটাগরি
+                                </label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.category || 'N/A'}</p>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Correction Status | সংশোধনের অবস্থা</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.correctionStatus || 'No Change Request'}</p>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-credit-card mr-2"></i>Payment Status | পেমেন্ট স্ট্যাটাস
+                                </label>
+                                <div class="${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'status-confirmed' : 'status-pending'}">
+                                    <i class="fas ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'fa-check-circle' : 'fa-clock'}"></i>
+                                    <span>${registration.paymentStatus || 'Pending'}</span>
+                                </div>
                             </div>
                             
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Comments | মন্তব্য</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.comment || 'No comments'}</p>
+                            <div class="data-item">
+                                <label class="block text-sm font-medium text-gray-600 mb-2">
+                                    <i class="fas fa-edit mr-2"></i>Correction Status | সংশোধনের অবস্থা
+                                </label>
+                                <p class="text-lg font-semibold ${registration.correctionStatus && registration.correctionStatus !== 'No Change Request' ? 'text-blue-600' : 'text-gray-600'}">${registration.correctionStatus || 'No Change Request'}</p>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- Status Alerts -->
+                    ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? `
+                        <div class="alert-success p-6 mb-6">
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-check-circle text-2xl text-green-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-800 mb-2">Registration Confirmed! | নিবন্ধন নিশ্চিত!</h4>
+                                    <p class="text-green-700">
+                                        🎉 Congratulations! Your registration is confirmed. You will receive your BIB and race kit during the packet pickup.
+                                        <br><br>
+                                        অভিনন্দন! আপনার নিবন্ধন নিশ্চিত হয়েছে। প্যাকেট পিকআপের সময় আপনি আপনার BIB এবং রেস কিট পাবেন।
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ` : `
+                        <div class="alert-warning p-6 mb-6">
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-exclamation-triangle text-2xl text-yellow-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-yellow-800 mb-2">Payment Verification Pending | পেমেন্ট যাচাইকরণ বাকি</h4>
+                                    <p class="text-yellow-700">
+                                        ⏳ Your registration is received but payment verification is pending. Please complete payment if not done yet.
+                                        <br><br>
+                                        আপনার নিবন্ধন পাওয়া গেছে কিন্তু পেমেন্ট যাচাইকরণ বাকি। যদি পেমেন্ট না করে থাকেন তাহলে দ্রুত সম্পন্ন করুন।
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    `}
+                    
+                    <!-- Correction Status -->
                     ${registration.correctionStatus && registration.correctionStatus !== 'No Change Request' ? `
-                        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                            <h4 class="font-semibold text-blue-800 mb-2">Correction Status | সংশোধনের অবস্থা</h4>
-                            <p class="text-blue-700">${registration.correctionStatus}</p>
-                            ${registration.comment && registration.comment !== 'No comments' ? `
-                                <p class="text-blue-600 text-sm mt-2">Comment: ${registration.comment}</p>
-                            ` : ''}
+                        <div class="alert-warning p-6 mb-6">
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-edit text-2xl text-blue-600 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-blue-800 mb-2">Correction Request Status | সংশোধনের অবস্থা</h4>
+                                    <p class="text-blue-700 font-medium">${registration.correctionStatus}</p>
+                                    ${registration.comment && registration.comment !== 'No comments' ? `
+                                        <p class="text-blue-600 text-sm mt-2 bg-blue-50 p-3 rounded-lg">
+                                            <strong>Comment:</strong> ${registration.comment}
+                                        </p>
+                                    ` : ''}
+                                </div>
+                            </div>
                         </div>
                     ` : ''}
                     
-                    ${registration.paymentStatus !== 'Confirmed' ? `
-                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                            <p class="text-yellow-800">
-                                <i class="fas fa-exclamation-triangle mr-2"></i>
-                                Payment verification pending. Please complete payment if not done yet.
-                                <br>
-                                পেমেন্ট যাচাইকরণ বাকি। যদি পেমেন্ট না করে থাকেন তাহলে দ্রুত সম্পন্ন করুন।
-                            </p>
-                        </div>
-                    ` : `
-                        <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                            <p class="text-green-800">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                Your registration is confirmed! You will receive your BIB and race kit during the packet pickup.
-                                <br>
-                                আপনার নিবন্ধন নিশ্চিত! প্যাকেট পিকআপের সময় আপনি আপনার BIB এবং রেস কিট পাবেন।
-                            </p>
-                        </div>
-                    `}
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6 border-t border-gray-200">
+                        <button 
+                            onclick="clearResults()" 
+                            class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition duration-300 font-semibold"
+                        >
+                            <i class="fas fa-search mr-2"></i>
+                            Search Again | আবার খুঁজুন
+                        </button>
+                        
+                        <button 
+                            onclick="window.print()" 
+                            class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+                        >
+                            <i class="fas fa-print mr-2"></i>
+                            Print Details | প্রিন্ট করুন
+                        </button>
+                    </div>
                 </div>
             `;
             
@@ -518,48 +833,83 @@
         // Display not found message
         function displayNotFoundMessage(backendMessage = null) {
             const html = `
-                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                <div class="modern-card p-8 slide-up">
                     <div class="text-center">
-                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block mb-4">
-                            <i class="fas fa-times-circle mr-2"></i>
-                            নিবন্ধন পাওয়া যায়নি | Registration Not Found
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6">
+                            <i class="fas fa-search-minus text-3xl text-red-600"></i>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Registration Not Found</h3>
+                        <h3 class="text-3xl font-bold section-title mb-4">Registration Not Found</h3>
+                        <p class="text-xl text-red-600 font-semibold mb-2">নিবন্ধন পাওয়া যায়নি</p>
                         
-                        <p class="text-gray-600 mb-6">
-                            ${backendMessage && backendMessage.includes('নিবন্ধন পাওয়া যায়নি') ? 
-                                backendMessage + ' | No registration found for the provided information.' :
-                                'আপনার দেয়া তথ্যের সাথে কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর বা লেনদেন আইডি দিয়ে আবার চেষ্টা করুন।'
-                            }
-                            <br><br>
-                            We couldn't find any registration with the provided information. Please double-check your mobile number or transaction ID and try again.
-                        </p>
+                        <div class="max-w-md mx-auto">
+                            <p class="text-gray-600 mb-8 leading-relaxed">
+                                ${backendMessage && backendMessage.includes('নিবন্ধন পাওয়া যায়নি') ? 
+                                    backendMessage :
+                                    'আপনার দেয়া তথ্যের সাথে কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর বা লেনদেন আইডি দিয়ে আবার চেষ্টা করুন।'
+                                }
+                                <br><br>
+                                We couldn't find any registration with the provided information. Please double-check your mobile number or transaction ID and try again.
+                            </p>
+                        </div>
                         
-                        <div class="space-y-3">
+                        <!-- Troubleshooting Tips -->
+                        <div class="bg-blue-50 p-6 rounded-lg mb-8 text-left max-w-lg mx-auto">
+                            <h4 class="font-semibold text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb mr-2"></i>
+                                Troubleshooting Tips | সমস্যা সমাধানের টিপস
+                            </h4>
+                            <ul class="text-blue-700 space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    Verify your mobile number format: 01XXXXXXXXX
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    Check your transaction ID from payment receipt
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    Try alternative phone number if provided
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                    মোবাইল নম্বর ফরম্যাট যাচাই করুন: ০১XXXXXXXXX
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                             <button 
                                 onclick="clearResults()" 
-                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                                class="modern-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold"
                             >
-                                Try Again | আবার চেষ্টা করুন
+                                <i class="fas fa-search mr-2"></i>
+                                Try Again
                             </button>
                             
-                            <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                                <a 
-                                    href="${CONFIG.ISSUE_FORM_URL}"
-                                    target="_blank"
-                                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300"
-                                >
-                                    Report Issue | সমস্যা রিপোর্ট করুন
-                                </a>
-                                <a 
-                                    href="register.html"
-                                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300"
-                                >
-                                    Register Now | এখনই নিবন্ধন করুন
-                                </a>
-                            </div>
+                            <a 
+                                href="${CONFIG.ISSUE_FORM_URL}"
+                                target="_blank"
+                                class="modern-btn bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold text-center block"
+                            >
+                                <i class="fas fa-bug mr-2"></i>
+                                Report Issue
+                            </a>
+                            
+                            <a 
+                                href="register.html"
+                                class="modern-btn bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold text-center block"
+                            >
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Register Now
+                            </a>
                         </div>
+                        
+                        <p class="text-gray-500 text-sm mt-6">
+                            আবার চেষ্টা করুন | এখনই নিবন্ধন করুন | সমস্যা রিপোর্ট করুন
+                        </p>
                     </div>
                 </div>
             `;
@@ -572,33 +922,67 @@
         // Display error message
         function displayErrorMessage(message) {
             const html = `
-                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                <div class="modern-card p-8 slide-up">
                     <div class="text-center">
-                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block mb-4">
-                            <i class="fas fa-exclamation-triangle mr-2"></i>
-                            System Error | সিস্টেম ত্রুটি
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6">
+                            <i class="fas fa-exclamation-triangle text-3xl text-red-600"></i>
                         </div>
                         
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">System Error</h3>
+                        <h3 class="text-3xl font-bold section-title mb-4">System Error</h3>
+                        <p class="text-xl text-red-600 font-semibold mb-6">সিস্টেম ত্রুটি</p>
                         
-                        <p class="text-gray-600 mb-6">${message}</p>
+                        <div class="alert-error p-6 mb-8 max-w-md mx-auto">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-info-circle text-red-600 text-xl"></i>
+                                <p class="text-red-700 font-medium">${message}</p>
+                            </div>
+                        </div>
                         
-                        <div class="space-y-3">
+                        <!-- Common Solutions -->
+                        <div class="bg-gray-50 p-6 rounded-lg mb-8 text-left max-w-lg mx-auto">
+                            <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                                <i class="fas fa-tools mr-2"></i>
+                                Common Solutions | সাধারণ সমাধান
+                            </h4>
+                            <ul class="text-gray-700 space-y-2 text-sm">
+                                <li class="flex items-start">
+                                    <i class="fas fa-wifi text-gray-500 mr-2 mt-1"></i>
+                                    Check your internet connection | ইন্টারনেট সংযোগ চেক করুন
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-refresh text-gray-500 mr-2 mt-1"></i>
+                                    Try refreshing the page | পেজ রিফ্রেশ করে দেখুন
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-clock text-gray-500 mr-2 mt-1"></i>
+                                    Wait a moment and try again | কিছুক্ষণ অপেক্ষা করে আবার চেষ্টা করুন
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="grid sm:grid-cols-2 gap-4 max-w-md mx-auto">
                             <button 
                                 onclick="clearResults()" 
-                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                                class="modern-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold"
                             >
-                                Try Again | আবার চেষ্টা করুন
+                                <i class="fas fa-redo mr-2"></i>
+                                Try Again
                             </button>
                             
                             <a 
                                 href="${CONFIG.ISSUE_FORM_URL}"
                                 target="_blank"
-                                class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300"
+                                class="modern-btn bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold text-center block"
                             >
-                                Report Technical Issue | টেকনিক্যাল সমস্যা রিপোর্ট করুন
+                                <i class="fas fa-bug mr-2"></i>
+                                Report Error
                             </a>
                         </div>
+                        
+                        <p class="text-gray-500 text-sm mt-6">
+                            আবার চেষ্টা করুন | টেকনিক্যাল সমস্যা রিপোর্ট করুন
+                        </p>
                     </div>
                 </div>
             `;
@@ -636,6 +1020,6 @@
     </script>
 
     <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 </body>
 </html>
