@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Confirmation | Justice Half Marathon 2025</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Verify your Justice Half Marathon 2025 registration. Search by mobile number or transaction ID to confirm your registration details.">
+    <meta name="keywords" content="Justice Half Marathon confirmation, Bangladesh marathon registration verification, Sylhet running event confirmation">
+    <meta name="author" content="Army IBA Hiking & Trekking Club, Sylhet">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (Facebook/Social Media) -->
+    <meta property="og:title" content="Registration Confirmation | Justice Half Marathon 2025">
+    <meta property="og:description" content="Verify your Justice Half Marathon 2025 registration. Search by mobile number or transaction ID.">
+    <meta property="og:image" content="https://justicehalfmarathon.com/photos/marathon.png">
+    <meta property="og:url" content="https://justicehalfmarathon.com/confirmation.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Registration Confirmation | Justice Half Marathon 2025">
+    <meta name="twitter:description" content="Verify your Justice Half Marathon 2025 registration details.">
+    <meta name="twitter:image" content="https://justicehalfmarathon.com/photos/marathon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://justicehalfmarathon.com/confirmation.html">
+    <link rel="icon" type="image/png" href="photos/aiba.jpg">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -19,59 +42,50 @@
         }
     </script>
     
-             } catch (error) {
-                console.error('Search error:', error);
-                
-                // Better error handling
-                let errorMsg = 'সিস্টেমে সমস্যা হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন। | System error occurred. Please try again later.';
-                
-                if (error.message.includes('Failed to fetch')) {
-                    errorMsg = 'Google Apps Script এর সাথে সংযোগ হচ্ছে না। নতুন script deploy করুন। | Cannot connect to Google Apps Script. Deploy new script.';
-                } else if (error.message.includes('HTTP error')) {
-                    errorMsg = 'Script URL ভুল বা script deploy হয়নি। Script deploy করে URL আপডেট করুন। | Wrong script URL or script not deployed. Deploy script and update URL.';
-                }
-                
-                displayErrorMessage(errorMsg);
-                
-            } finally {Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NK9Z5DRC');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Hotjar Tracking Code -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:6463281,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
     
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-            min-height: 100vh;
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        .scale-in { animation: scaleIn 0.3s ease-out; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .search-container {
-            background: linear-gradient(135deg, rgba(0, 88, 64, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 88, 64, 0.2);
-        }
-        
-        .result-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid #005840;
-            box-shadow: 0 20px 40px rgba(0, 88, 64, 0.1);
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         
         .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #005840;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #005840;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 20px;
+            height: 20px;
             animation: spin 1s linear infinite;
         }
         
@@ -79,571 +93,469 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        .status-confirmed {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-        
-        .status-pending {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
-        
-        .correction-status {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        
-        .no-change {
-            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-            color: #374151;
-        }
-        
-        .corrected {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            color: white;
-        }
-        
-        .updated {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-        }
     </style>
 </head>
-<body class="antialiased">
-    
-    <!-- Header Section -->
-    <header class="bg-white shadow-lg border-b-4 border-main">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center gap-4 mb-4 md:mb-0">
-                    <img src="photos/logo3.png" alt="Marathon Logo" class="h-16 w-auto object-contain">
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900">
-                            Justice Half Marathon <span class="text-main">2025</span>
-                        </h1>
-                        <p class="text-main font-medium">Registration Confirmation</p>
-                    </div>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/gtm.ns.html?id=GTM-NK9Z5DRC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navigation -->
+    <nav class="bg-main text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="photos/aiba.jpg" alt="Army IBA Hiking & Trekking Club Logo" class="h-12 w-12 rounded-full">
+                <div>
+                    <h1 class="text-xl font-bold">Justice Half Marathon 2025</h1>
+                    <p class="text-green-200 text-sm">Registration Confirmation</p>
                 </div>
-                <nav class="flex gap-4">
-                    <a href="index.html" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Home</a>
-                    <a href="registration.html" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Register</a>
-                    <a href="#google-forms" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Forms</a>
-                    <a href="#contact" class="text-gray-600 hover:text-main transition px-4 py-2 rounded-lg hover:bg-main/10">Contact</a>
-                </nav>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-green-200 transition duration-300">Home</a>
+                <a href="register.html" class="hover:text-green-200 transition duration-300">Register</a>
+                <a href="confirmation.html" class="text-green-200 font-semibold">Confirmation</a>
+                <a href="payment-verification.html" class="hover:text-green-200 transition duration-300">Payment</a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-        
-        <!-- Page Introduction -->
-        <div class="text-center mb-12 fade-in">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
-                আপনার নিবন্ধন যাচাই করুন
-                <span class="block text-2xl md:text-3xl text-gray-600 mt-2">Verify Your Registration</span>
-            </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                আপনার মোবাইল নম্বর বা ট্রানজেকশন আইডি ব্যবহার করে আপনার নিবন্ধনের বিবরণ খুঁজুন।
-                <br>
-                <span class="text-lg">Search for your registration details using your mobile number or transaction ID.</span>
-                <br>
-                কনফার্মেশন সিস্টেম ১০ আগস্ট ২০২৫ নিবন্ধন বন্ধ হওয়ার পর উপলব্ধ।
-            </p>
-            <div class="mt-6 inline-flex items-center gap-2 bg-main/10 text-main px-6 py-3 rounded-full">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="font-semibold">১১ আগস্ট ২০২৫ থেকে উপলব্ধ | Available from August 11, 2025</span>
-            </div>
-        </div>
-
-        <!-- Search Form -->
-        <div class="search-container rounded-3xl p-8 mb-8 fade-in">
-            <form id="searchForm" class="max-w-lg mx-auto">
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-lg font-semibold mb-4">অনুসন্ধান করুন | Search by:</label>
-                    <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="radio" name="searchType" value="mobile" checked class="w-4 h-4 text-main bg-gray-100 border-gray-300 focus:ring-main focus:ring-2">
-                            <span class="ml-2 text-gray-700 font-medium">মোবাইল নম্বর | Mobile Number</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="radio" name="searchType" value="transaction" class="w-4 h-4 text-main bg-gray-100 border-gray-300 focus:ring-main focus:ring-2">
-                            <span class="ml-2 text-gray-700 font-medium">ট্রানজেকশন আইডি | Transaction ID</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="আপনার মোবাইল নম্বর বা ট্রানজেকশন আইডি লিখুন"
-                        class="w-full px-6 py-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-main/20 focus:border-main transition text-lg"
-                        required
-                    >
-                    <p id="inputHelp" class="text-sm text-gray-500 mt-2">
-                        আপনার ১১ সংখ্যার মোবাইল নম্বর লিখুন (উদাহরণ: ০১৭১২৩৪৫৬৭৮) | Enter your 11-digit mobile number (e.g., 01712345678)
-                    </p>
-                </div>
-                
-                <button 
-                    type="submit" 
-                    class="w-full bg-gradient-to-r from-main to-main/80 text-white px-8 py-4 rounded-xl text-xl font-bold hover:from-main/90 hover:to-main transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                    <span id="searchText">নিবন্ধন খুঁজুন | Search Registration</span>
-                    <div id="searchSpinner" class="loading-spinner mx-auto hidden"></div>
-                </button>
-            </form>
-        </div>
-
-        <!-- Search Results -->
-        <div id="searchResults" class="hidden">
-            <!-- Success Result -->
-            <div id="successResult" class="result-card rounded-3xl p-8 mb-8 fade-in">
-                <div class="flex items-center justify-between mb-6">
-                    <h3 class="text-2xl font-bold text-gray-800">নিবন্ধন পাওয়া গেছে! | Registration Found!</h3>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span class="text-green-600 font-semibold">যাচাইকৃত | Verified</span>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">পূর্ণ নাম | Full Name</label>
-                            <p id="runnerName" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">সিরিয়াল নম্বর | Serial Number</label>
-                            <p id="serialNumber" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">মোবাইল নম্বর | Mobile Number</label>
-                            <p id="mobileNumber" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">ইমেইল | Email</label>
-                            <p id="emailAddress" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">টি-শার্ট সাইজ | T-shirt Size</label>
-                            <p id="tshirtSize" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">পেমেন্ট স্ট্যাটাস | Payment Status</label>
-                            <div id="paymentStatus" class="text-white px-4 py-2 rounded-lg font-semibold">-</div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">সংশোধনের স্ট্যাটাস | Correction Status</label>
-                            <div id="correctionStatus" class="correction-status inline-block">-</div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-600 mb-1">মন্তব্য | Comments</label>
-                            <p id="comments" class="text-lg font-medium text-gray-800 bg-gray-50 px-4 py-2 rounded-lg">-</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="border-t border-gray-200 pt-6">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-4">পরিবর্তন প্রয়োজন? | Need to make changes?</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <a href="https://forms.gle/YOUR_CORRECTION_FORM_ID" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl text-center font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                            </svg>
-                            <span>তথ্য সংশোধনের অনুরোধ<br><small>Request Data Correction</small></span>
-                        </a>
-                        <a href="https://forms.gle/YOUR_MISSING_DATA_FORM_ID" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl text-center font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>অনুপস্থিত নিবন্ধনের রিপোর্ট<br><small>Report Missing Registration</small></span>
-                        </a>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <p class="text-sm text-gray-600">উপরের যে কোনো বাটনে ক্লিক করুন নতুন ট্যাবে সংশ্লিষ্ট গুগল ফর্ম খুলতে<br>Click any button above to open the respective Google Form in a new tab</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Error Messages -->
-        <div id="errorMessage" class="hidden bg-red-50 border-2 border-red-200 rounded-3xl p-8 mb-8 fade-in">
-            <div class="flex items-center gap-3 mb-4">
-                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <h3 class="text-xl font-bold text-red-800">নিবন্ধন পাওয়া যায়নি | Registration Not Found</h3>
-            </div>
-            <p class="text-red-700 mb-6" id="errorText">
-                প্রদত্ত তথ্যের জন্য কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে আপনার ইনপুট চেক করে আবার চেষ্টা করুন।<br>
-                No registration found for the provided information. Please check your input and try again.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="https://forms.gle/YOUR_MISSING_DATA_FORM_ID" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl text-center font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>অনুপস্থিত নিবন্ধনের রিপোর্ট<br><small>Report Missing Registration</small></span>
-                </a>
-                <a href="https://forms.gle/YOUR_GENERAL_QUERY_FORM_ID" target="_blank" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-xl text-center font-semibold transition-colors duration-300 flex items-center justify-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>সাপোর্টে যোগাযোগ<br><small>Contact Support</small></span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Google Forms Section -->
-        <div id="google-forms" class="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 fade-in mt-8">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">গুগল ফর্মের মাধ্যমে অনুরোধ জমা দিন | Submit Requests via Google Forms</h3>
-            <p class="text-center text-gray-600 mb-8">
-                সংশোধন, অনুপস্থিত তথ্য রিপোর্ট বা প্রশ্ন জিজ্ঞাসার জন্য আমাদের গুগল ফর্ম ব্যবহার করুন। প্রতিটি ফর্ম সুবিধার জন্য নতুন ট্যাবে খুলবে।<br>
-                Use our Google Forms to submit corrections, report missing data, or ask questions. Each form opens in a new tab for your convenience.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <!-- Data Correction Form -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-2 border-blue-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-blue-800">তথ্য সংশোধন | Data Correction</h4>
-                    </div>
-                    <p class="text-blue-700 mb-4 text-sm">
-                        আপনার নিবন্ধনে ত্রুটি পেয়েছেন? সংশোধনের জন্য জমা দিন:<br>
-                        Found an error in your registration? Submit corrections for:
-                    </p>
-                    <ul class="text-blue-600 text-sm mb-6 space-y-1">
-                        <li>• নামের বানান সংশোধন | Name spelling correction</li>
-                        <li>• টি-শার্ট সাইজ পরিবর্তন | T-shirt size change</li>
-                        <li>• যোগাযোগের তথ্য আপডেট | Contact information updates</li>
-                    </ul>
-                    <a href="https://forms.gle/YOUR_CORRECTION_FORM_ID" target="_blank" class="block w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-xl text-center font-semibold transition-colors duration-300">
-                        সংশোধন ফর্ম খুলুন | Open Correction Form
-                    </a>
-                </div>
-
-                <!-- Missing Registration Form -->
-                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 hover:shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h4 class="text-xl font-bold text-orange-800">অনুপস্থিত নিবন্ধন | Missing Registration</h4>
-                    </div>
-                    <p class="text-orange-700 mb-4 text-sm">
-                        আপনার নিবন্ধন খুঁজে পাচ্ছেন না? রিপোর্ট করুন:<br>
-                        Can't find your registration? Report with:
-                    </p>
-                    <ul class="text-orange-600 text-sm mb-6 space-y-1">
-                        <li>• পেমেন্ট ট্রানজেকশনের বিস্তারিত | Payment transaction details</li>
-                        <li>• নিবন্ধনের তথ্য | Registration information</li>
-                        <li>• যাচাইকরণ নথি | Verification documents</li>
-                    </ul>
-                    <a href="https://forms.gle/YOUR_MISSING_DATA_FORM_ID" target="_blank" class="block w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-xl text-center font-semibold transition-colors duration-300">
-                        অনুপস্থিত তথ্য রিপোর্ট করুন | Report Missing Data
-                    </a>
-                </div>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-8 fade-in">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Registration Confirmation</h2>
+                <p class="text-gray-600">
+                    নিবন্ধন যাচাই করুন | Verify your registration details by searching with your mobile number or transaction ID
+                </p>
             </div>
 
-            <!-- General Support Form - Full Width at Bottom -->
-            <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 hover:shadow-lg">
-                <div class="flex items-center justify-center mb-4">
-                    <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="text-xl font-bold text-purple-800">সাধারণ সহায়তা | General Support</h4>
-                </div>
-                <div class="text-center mb-6">
-                    <p class="text-purple-700 mb-4 text-sm">
-                        অন্য কোনো প্রশ্ন আছে? সাহায্য পান:<br>
-                        Have other questions? Get help with:
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-purple-600 text-sm">
-                        <div>• ইভেন্ট তথ্য | Event information</div>
-                        <div>• প্রযুক্তিগত সমস্যা | Technical issues</div>
-                        <div>• রেস দিনের প্রশ্ন | Race day queries</div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <a href="https://forms.gle/YOUR_GENERAL_QUERY_FORM_ID" target="_blank" class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors duration-300">
-                        সাধারণ প্রশ্ন জমা দিন | Submit General Query
-                    </a>
-                    <div class="mt-4">
-                        <p class="text-sm text-purple-600">
-                            অথবা সরাসরি হোয়াটসঅ্যাপে যোগাযোগ করুন: <strong>+880-1700-123456</strong><br>
-                            Or contact directly via WhatsApp: <strong>+880-1700-123456</strong>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 bg-gray-50 rounded-xl p-4">
-                <div class="flex items-start gap-3">
-                    <svg class="w-6 h-6 text-gray-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+            <!-- Search Form -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 scale-in">
+                <form id="searchForm" class="space-y-4">
                     <div>
-                        <h4 class="font-semibold text-gray-800 mb-1">ফর্ম জমাদানের নির্দেশিকা | Form Submission Guidelines</h4>
-                        <ul class="text-gray-700 text-sm space-y-1">
-                            <li>• সব ফর্ম নতুন ব্রাউজার ট্যাবে খুলবে | All forms open in a new browser tab</li>
-                            <li>• <strong>১৫ আগস্ট ২০২৫</strong> এর মধ্যে অনুরোধ জমা দিন | Submit requests by <strong>August 15, 2025</strong></li>
-                            <li>• জমাদানের পর ইমেইল নিশ্চিতকরণ পাবেন | You'll receive email confirmation after submission</li>
-                            <li>• প্রক্রিয়াকরণের সময়: ২-৩ কার্যদিবস | Processing time: 2-3 business days</li>
-                            <li>• জরুরি বিষয়ের জন্য সরাসরি হোয়াটসঅ্যাপে যোগাযোগ করুন | For urgent matters, contact us directly via WhatsApp</li>
-                        </ul>
+                        <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-2">
+                            Mobile Number or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি
+                        </label>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Enter mobile number or transaction ID | মোবাইল নম্বর বা লেনদেন আইডি লিখুন"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-main focus:border-transparent transition duration-300"
+                            required
+                        >
                     </div>
-                </div>
+                    <button 
+                        type="submit" 
+                        id="searchBtn"
+                        class="w-full bg-main text-white py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+                    >
+                        <span id="searchBtnText">Search Registration | নিবন্ধন খুঁজুন</span>
+                        <div id="loadingSpinner" class="loading-spinner hidden"></div>
+                    </button>
+                </form>
             </div>
-        </div>
 
-        <!-- FAQ Section -->
-        <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-200 fade-in">
-            <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">প্রায়শই জিজ্ঞাসিত প্রশ্ন | Frequently Asked Questions</h3>
-            <div class="space-y-6">
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">আমার বিবরণ ভুল হলে কি করব? | What if my details are incorrect?</h4>
-                    <p class="text-gray-600">সংশোধনের অনুরোধ জমা দিতে "তথ্য সংশোধনের অনুরোধ" বাটন ব্যবহার করুন। আমাদের টিম পর্যালোচনা করে আপনার তথ্য আপডেট করবে।<br>Use the "Request Data Correction" button to submit a correction request. Our team will review and update your information.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">আমার নিবন্ধন খুঁজে না পেলে কি করব? | What if I can't find my registration?</h4>
-                    <p class="text-gray-600">"অনুপস্থিত নিবন্ধনের রিপোর্ট" ক্লিক করুন এবং আপনার ট্রানজেকশনের বিবরণ প্রদান করুন। আমরা যাচাই করে আপনার তথ্য আমাদের সিস্টেমে যোগ করব।<br>Click "Report Missing Registration" and provide your transaction details. We'll verify and add your information to our system.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">কখন আমার নিশ্চিতকরণ চেক করব? | When should I check my confirmation?</h4>
-                    <p class="text-gray-600">নিশ্চিতকরণ সিস্টেম ১১ আগস্ট ২০২৫ থেকে উপলব্ধ হবে, নিবন্ধন বন্ধ হওয়ার পর। অনুগ্রহ করে ১৫ আগস্ট ২০২৫ এর মধ্যে কোনো সংশোধন জমা দিন।<br>The confirmation system will be available from August 11, 2025, after registration closes. Please submit any corrections by August 15, 2025.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">কিভাবে সাহায্য পাব? | How do I contact support?</h4>
-                    <p class="text-gray-600">"সাধারণ প্রশ্ন" অপশন ব্যবহার করুন অথবা সরাসরি যোগাযোগ করুন <a href="mailto:marathon@aiba.edu.bd" class="text-main hover:underline">marathon@aiba.edu.bd</a> বা হোয়াটসঅ্যাপে: +880-1700-123456<br>Use the "General Query" option or contact us directly at <a href="mailto:marathon@aiba.edu.bd" class="text-main hover:underline">marathon@aiba.edu.bd</a> or WhatsApp: +880-1700-123456</p>
-                </div>
-            </div>
-        </div>
-    </main>
+            <!-- Results Container -->
+            <div id="resultsContainer" class="hidden"></div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="bg-main text-white py-16 mt-16">
-        <div class="container mx-auto px-4 text-center">
-            <h3 class="text-3xl font-bold mb-6">সাহায্য প্রয়োজন? | Need Help?</h3>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">
-                আপনার নিবন্ধন সংক্রান্ত যেকোনো প্রশ্ন বা সমস্যায় সাহায্যের জন্য আমাদের সাপোর্ট টিম এখানে আছে।<br>
-                Our support team is here to assist you with any questions or issues regarding your registration.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl">
-                    <svg class="w-8 h-8 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                    <h4 class="font-semibold mb-2">ইমেইল সাপোর্ট | Email Support</h4>
-                    <p class="text-sm">marathon@aiba.edu.bd</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl">
-                    <svg class="w-8 h-8 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                    <h4 class="font-semibold mb-2">হোয়াটসঅ্যাপ | WhatsApp</h4>
-                    <p class="text-sm">+880-1700-123456</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl">
-                    <svg class="w-8 h-8 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <h4 class="font-semibold mb-2">সাপোর্ট সময় | Support Hours</h4>
-                    <p class="text-sm">সকাল ৯টা - সন্ধ্যা ৬টা (প্রতিদিন)<br>9 AM - 6 PM (Daily)</p>
+            <!-- Support Section -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 fade-in">
+                <h3 class="text-lg font-semibold text-yellow-800 mb-3">
+                    Need Help? | সাহায্য প্রয়োজন?
+                </h3>
+                <p class="text-yellow-700 mb-4">
+                    If you can't find your registration or need to make corrections, please contact us:
+                    <br>
+                    যদি আপনার নিবন্ধন খুঁজে না পান বা সংশোধন করতে চান, আমাদের সাথে যোগাযোগ করুন:
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform"
+                        target="_blank"
+                        class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300 text-center"
+                    >
+                        Report Issue | সমস্যা রিপোর্ট করুন
+                    </a>
+                    <a 
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdA9K1wnkW8Z9v6gDqeR8t5i6Q0EFQIoELwNvG6p6jCGjPePQ/viewform"
+                        target="_blank"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 text-center"
+                    >
+                        Correction Request | সংশোধনের অনুরোধ
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Army Institute of Business Administration - Hiking & Trekking Club. All rights reserved.</p>
-            <p class="mt-2 text-sm">Design and developed by <span class="text-main font-semibold">MD Golam Mubasshir Rafi</span></p>
+    <footer class="bg-main text-white text-center py-6 mt-12">
+        <div class="container mx-auto px-4">
+            <p class="mb-2">© 2025 Justice Half Marathon | Army IBA Hiking & Trekking Club, Sylhet</p>
+            <p class="text-green-200 text-sm">Making Justice Accessible Through Sports</p>
         </div>
     </footer>
 
     <script>
-        // ✅ UPDATED WITH YOUR GOOGLE APPS SCRIPT PROJECT
-        // আপনার Google Apps Script project ID: 1GxmF8XPQWogUP-W8MEdTG8FUYDaOUU1BB3MZSkyNaP5EuEFX5F7dztPc
-        // Deploy করার পর ACTUAL deployment URL ব্যবহার করুন (project ID থেকে আলাদা হতে পারে)
-        
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/YOUR_ACTUAL_DEPLOYMENT_ID/exec';
-        
-        // Google Forms URLs - Replace these with your actual Google Form links
-        // Example: https://forms.gle/1FAIpQLSd... (get this from Google Forms share link)
-        const GOOGLE_FORMS = {
-            CORRECTION: 'https://forms.gle/YOUR_CORRECTION_FORM_ID',
-            MISSING_DATA: 'https://forms.gle/YOUR_MISSING_DATA_FORM_ID', 
-            GENERAL_QUERY: 'https://forms.gle/YOUR_GENERAL_QUERY_FORM_ID'
+        // Configuration
+        const CONFIG = {
+            // Replace this with your actual Google Apps Script deployment URL
+            GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+            
+            // Form URLs for support
+            ISSUE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform',
+            CORRECTION_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdA9K1wnkW8Z9v6gDqeR8t5i6Q0EFQIoELwNvG6p6jCGjPePQ/viewform'
         };
-        
+
         // DOM Elements
         const searchForm = document.getElementById('searchForm');
         const searchInput = document.getElementById('searchInput');
-        const inputHelp = document.getElementById('inputHelp');
-        const searchText = document.getElementById('searchText');
-        const searchSpinner = document.getElementById('searchSpinner');
-        const searchResults = document.getElementById('searchResults');
-        const successResult = document.getElementById('successResult');
-        const errorMessage = document.getElementById('errorMessage');
-        const errorText = document.getElementById('errorText');
-        
-        // Radio button change handler
-        document.querySelectorAll('input[name="searchType"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'mobile') {
-                    searchInput.placeholder = 'আপনার মোবাইল নম্বর লিখুন';
-                    inputHelp.textContent = 'আপনার ১১ সংখ্যার মোবাইল নম্বর লিখুন (উদাহরণ: ০১৭১২৩৪৫৬৭৮) | Enter your 11-digit mobile number (e.g., 01712345678)';
-                } else {
-                    searchInput.placeholder = 'আপনার ট্রানজেকশন আইডি লিখুন';
-                    inputHelp.textContent = 'পেমেন্ট নিশ্চিতকরণ থেকে আপনার ট্রানজেকশন আইডি লিখুন | Enter your transaction ID from payment confirmation';
-                }
-                searchInput.focus();
-            });
-        });
-        
+        const searchBtn = document.getElementById('searchBtn');
+        const searchBtnText = document.getElementById('searchBtnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const resultsContainer = document.getElementById('resultsContainer');
+
         // Form submission handler
         searchForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const searchType = document.querySelector('input[name="searchType"]:checked').value;
             const searchValue = searchInput.value.trim();
-            
             if (!searchValue) {
-                alert('Please enter a search value');
+                alert('অনুগ্রহ করে মোবাইল নম্বর বা লেনদেন আইডি দিন | Please enter mobile number or transaction ID');
                 return;
             }
             
-            // Remove strict mobile validation - accept any number
-            
-            await performSearch(searchType, searchValue);
+            await searchRegistration(searchValue);
         });
-        
+
         // Search function
-        async function performSearch(searchType, searchValue) {
+        async function searchRegistration(searchValue) {
             // Show loading state
-            searchText.classList.add('hidden');
-            searchSpinner.classList.remove('hidden');
-            searchResults.classList.add('hidden');
-            errorMessage.classList.add('hidden');
-
+            setLoadingState(true);
+            
             try {
-                console.log('Searching for:', searchType, searchValue);
-                console.log('Using URL:', GOOGLE_SHEETS_URL);
-
-                const response = await fetch(GOOGLE_SHEETS_URL, {
+                // Check if script URL is configured
+                if (CONFIG.GOOGLE_SHEETS_URL.includes('YOUR_SCRIPT_ID')) {
+                    displayConfigurationMessage();
+                    return;
+                }
+                
+                // Determine search type
+                const searchType = isNumeric(searchValue) && searchValue.length === 11 ? 'mobile' : 'transaction';
+                
+                const response = await fetch(CONFIG.GOOGLE_SHEETS_URL, {
                     method: 'POST',
-                    mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
                         action: 'searchRegistration',
                         searchType: searchType,
-                        searchValue: searchValue,
-                    }),
+                        searchValue: searchValue
+                    })
                 });
-
-                console.log('Response status:', response.status);
-
+                
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
-                const result = await response.json();
-                console.log('Response data:', result);
-
-                if (result.success && result.data) {
-                    displaySuccessResult(result.data);
+                
+                const data = await response.json();
+                
+                if (data.success && data.data) {
+                    displayRegistrationDetails(data.data);
                 } else {
-                    displayErrorMessage(result.message || 'No registration found for the provided information');
+                    displayNotFoundMessage();
                 }
+                
             } catch (error) {
                 console.error('Search error:', error);
-                displayErrorMessage('System error occurred. Please try again later.');
+                displayErrorMessage(getErrorMessage(error));
+                
             } finally {
-                // Hide loading state
-                searchText.classList.remove('hidden');
-                searchSpinner.classList.add('hidden');
+                setLoadingState(false);
             }
         }
-        
-        // Display success result
-        function displaySuccessResult(data) {
-            console.log('Displaying success result with data:', data);
-            
-            document.getElementById('runnerName').textContent = data.name || '-';
-            document.getElementById('serialNumber').textContent = data.serialNumber || '-';
-            document.getElementById('mobileNumber').textContent = data.mobile || '-';
-            document.getElementById('emailAddress').textContent = data.email || '-';
-            document.getElementById('tshirtSize').textContent = data.tshirtSize || '-';
-            document.getElementById('comments').textContent = data.comment || 'No comments';
-            
-            // Set payment status (no processing, just show raw value)
-            const paymentStatusEl = document.getElementById('paymentStatus');
-            paymentStatusEl.className = 'text-white px-4 py-2 rounded-lg font-semibold bg-gray-500';
-            paymentStatusEl.textContent = data.paymentStatus || '-';
-            
-            // Set correction status (no processing, just show raw value)
-            const correctionStatusEl = document.getElementById('correctionStatus');
-            correctionStatusEl.className = 'correction-status inline-block bg-gray-200 text-gray-800';
-            correctionStatusEl.textContent = data.correctionStatus || '-';
-            
-            // Show the results
-            searchResults.classList.remove('hidden');
-            successResult.classList.add('visible');
-            
-            console.log('Success result displayed successfully');
+
+        // Helper function to check if string is numeric
+        function isNumeric(str) {
+            return /^\d+$/.test(str);
         }
-        
+
+        // Get appropriate error message
+        function getErrorMessage(error) {
+            if (error.message.includes('Failed to fetch')) {
+                return 'Google Apps Script এর সাথে সংযোগ হচ্ছে না। নতুন script deploy করুন। | Cannot connect to Google Apps Script. Deploy new script.';
+            } else if (error.message.includes('HTTP error')) {
+                return 'Script URL ভুল বা script deploy হয়নি। Script deploy করে URL আপডেট করুন। | Wrong script URL or script not deployed. Deploy script and update URL.';
+            } else {
+                return 'সিস্টেমে সমস্যা হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন। | System error occurred. Please try again later.';
+            }
+        }
+
+        // Display configuration message
+        function displayConfigurationMessage() {
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                    <div class="text-center">
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full inline-block mb-4">
+                            <i class="fas fa-cog mr-2"></i>
+                            Configuration Required | কনফিগারেশন প্রয়োজন
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">System Configuration Required</h3>
+                        
+                        <div class="text-left bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold mb-2">To enable the confirmation system:</h4>
+                            <ol class="list-decimal list-inside space-y-1 text-sm">
+                                <li>Deploy the Google Apps Script using <code>google-apps-script-confirmation-updated.js</code></li>
+                                <li>Copy the deployment URL</li>
+                                <li>Replace <code>YOUR_SCRIPT_ID</code> in CONFIG with the actual URL</li>
+                                <li>Update the Google Sheets ID in the Apps Script file</li>
+                                <li>Test the connection</li>
+                            </ol>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6">
+                            সিস্টেম কনফিগার করা হয়নি। Google Apps Script deploy করে URL আপডেট করুন।
+                            <br>
+                            System not configured. Deploy Google Apps Script and update URL.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <button 
+                                onclick="clearResults()" 
+                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                            >
+                                OK | ঠিক আছে
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Display registration details
+        function displayRegistrationDetails(registration) {
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block mb-4">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Registration Found | নিবন্ধন পাওয়া গেছে
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Registration Details</h3>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Name | নাম</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.name || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Serial Number | সিরিয়াল নম্বর</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.serialNumber || 'Pending'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Mobile | মোবাইল</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.mobile || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Category | ক্যাটেগরি</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.category || 'N/A'}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Transaction ID | লেনদেন আইডি</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.transactionId || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Status | পেমেন্ট স্ট্যাটাস</label>
+                                <p class="text-lg font-semibold ${registration.paymentStatus === 'Confirmed' ? 'text-green-600' : 'text-yellow-600'}">
+                                    ${registration.paymentStatus || 'Pending'}
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">T-Shirt Size | টি-শার্ট সাইজ</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.tshirtSize || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Method | পেমেন্ট পদ্ধতি</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.paymentMethod || 'N/A'}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${registration.correctionStatus && registration.correctionStatus !== 'No Change Request' ? `
+                        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">Correction Status | সংশোধনের অবস্থা</h4>
+                            <p class="text-blue-700">${registration.correctionStatus}</p>
+                            ${registration.comment && registration.comment !== 'No comments' ? `
+                                <p class="text-blue-600 text-sm mt-2">Comment: ${registration.comment}</p>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+                    
+                    ${registration.paymentStatus !== 'Confirmed' ? `
+                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <p class="text-yellow-800">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Payment verification pending. Please complete payment if not done yet.
+                                <br>
+                                পেমেন্ট যাচাইকরণ বাকি। যদি পেমেন্ট না করে থাকেন তাহলে দ্রুত সম্পন্ন করুন।
+                            </p>
+                        </div>
+                    ` : `
+                        <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <p class="text-green-800">
+                                <i class="fas fa-check-circle mr-2"></i>
+                                Your registration is confirmed! You will receive your BIB and race kit during the packet pickup.
+                                <br>
+                                আপনার নিবন্ধন নিশ্চিত! প্যাকেট পিকআপের সময় আপনি আপনার BIB এবং রেস কিট পাবেন।
+                            </p>
+                        </div>
+                    `}
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Display not found message
+        function displayNotFoundMessage() {
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                    <div class="text-center">
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block mb-4">
+                            <i class="fas fa-times-circle mr-2"></i>
+                            নিবন্ধন পাওয়া যায়নি | Registration Not Found
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Registration Not Found</h3>
+                        
+                        <p class="text-gray-600 mb-6">
+                            আপনার দেয়া তথ্যের সাথে কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর বা লেনদেন আইডি দিয়ে আবার চেষ্টা করুন।
+                            <br><br>
+                            We couldn't find any registration with the provided information. Please double-check your mobile number or transaction ID and try again.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <button 
+                                onclick="clearResults()" 
+                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                            >
+                                Try Again | আবার চেষ্টা করুন
+                            </button>
+                            
+                            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                                <a 
+                                    href="${CONFIG.ISSUE_FORM_URL}"
+                                    target="_blank"
+                                    class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300"
+                                >
+                                    Report Issue | সমস্যা রিপোর্ট করুন
+                                </a>
+                                <a 
+                                    href="register.html"
+                                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300"
+                                >
+                                    Register Now | এখনই নিবন্ধন করুন
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         // Display error message
         function displayErrorMessage(message) {
-            console.log('Displaying error message:', message);
-            errorText.textContent = message;
-            errorMessage.classList.remove('hidden');
-            errorMessage.classList.add('visible');
-            console.log('Error message displayed');
-        }
-        
-        // Fade in animation on scroll
-        const observeElements = () => {
-            const elements = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            });
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
+                    <div class="text-center">
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block mb-4">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            System Error | সিস্টেম ত্রুটি
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">System Error</h3>
+                        
+                        <p class="text-gray-600 mb-6">${message}</p>
+                        
+                        <div class="space-y-3">
+                            <button 
+                                onclick="clearResults()" 
+                                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+                            >
+                                Try Again | আবার চেষ্টা করুন
+                            </button>
+                            
+                            <a 
+                                href="${CONFIG.ISSUE_FORM_URL}"
+                                target="_blank"
+                                class="inline-block bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition duration-300"
+                            >
+                                Report Technical Issue | টেকনিক্যাল সমস্যা রিপোর্ট করুন
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            elements.forEach(el => observer.observe(el));
-        };
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            observeElements();
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Set loading state
+        function setLoadingState(isLoading) {
+            if (isLoading) {
+                searchBtn.disabled = true;
+                searchBtnText.textContent = 'Searching... | খোঁজ করা হচ্ছে...';
+                loadingSpinner.classList.remove('hidden');
+            } else {
+                searchBtn.disabled = false;
+                searchBtnText.textContent = 'Search Registration | নিবন্ধন খুঁজুন';
+                loadingSpinner.classList.add('hidden');
+            }
+        }
+
+        // Clear results
+        function clearResults() {
+            resultsContainer.classList.add('hidden');
+            resultsContainer.innerHTML = '';
+            searchInput.value = '';
+            searchInput.focus();
+        }
+
+        // Auto-focus search input on page load
+        window.addEventListener('load', function() {
+            searchInput.focus();
         });
     </script>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
