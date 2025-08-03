@@ -202,8 +202,8 @@
     <script>
         // Configuration
         const CONFIG = {
-            // Replace this with your actual Google Apps Script deployment URL
-            GOOGLE_SHEETS_URL: 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec',
+            // Google Apps Script deployment URL - UPDATED WITH YOUR ACTUAL URL
+            API_URL: 'https://script.google.com/macros/s/AKfycbxa6-hycDC9W4Ze6aH-Ja3Wo1amI_nIeqiXhfawWgrBH7Sf25gZ15ses-wtFBYfc1vD/exec',
             
             // Form URLs for support
             ISSUE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform',
@@ -238,40 +238,114 @@
             
             try {
                 // Check if script URL is configured
-                if (CONFIG.GOOGLE_SHEETS_URL.includes('YOUR_SCRIPT_ID')) {
+                if (CONFIG.API_URL.includes('YOUR_NEW_DEPLOYMENT_URL')) {
                     displayConfigurationMessage();
                     return;
                 }
                 
-                // Determine search type
-                const searchType = isNumeric(searchValue) && searchValue.length === 11 ? 'mobile' : 'transaction';
-                
-                const response = await fetch(CONFIG.GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'searchRegistration',
-                        searchType: searchType,
-                        searchValue: searchValue
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Determine search type - improved logic
+                let searchType;
+                if (/^01\d{9}$/.test(searchValue)) {
+                    // Bangladesh mobile number format: 01xxxxxxxxx (11 digits)
+                    searchType = 'mobile';
+                } else {
+                    // Anything else is considered transaction ID
+                    searchType = 'transaction';
                 }
                 
-                const data = await response.json();
+                console.log('Search type determined:', searchType, 'for value:', searchValue);
+                
+                // Try multiple fetch methods
+                let response;
+                let data;
+                
+                // Method 1: Form data (most reliable for Google Apps Script)
+                try {
+                    const formData = new FormData();
+                    formData.append('action', 'searchRegistration');
+                    formData.append('searchType', searchType);
+                    formData.append('searchValue', searchValue);
+                    
+                    response = await fetch(CONFIG.API_URL, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        data = await response.json();
+                        console.log('Method 1 (FormData) success:', data);
+                    } else {
+                        throw new Error('Method 1 failed');
+                    }
+                } catch (error1) {
+                    console.log('Method 1 failed, trying Method 2:', error1.message);
+                    
+                    // Method 2: URL encoded data
+                    try {
+                        const params = new URLSearchParams({
+                            action: 'searchRegistration',
+                            searchType: searchType,
+                            searchValue: searchValue
+                        });
+                        
+                        response = await fetch(CONFIG.API_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: params
+                        });
+                        
+                        if (response.ok) {
+                            data = await response.json();
+                            console.log('Method 2 (URLEncoded) success:', data);
+                        } else {
+                            throw new Error('Method 2 failed');
+                        }
+                    } catch (error2) {
+                        console.log('Method 2 failed, trying Method 3:', error2.message);
+                        
+                        // Method 3: GET request with parameters
+                        try {
+                            const getParams = new URLSearchParams({
+                                action: 'searchRegistration',
+                                searchType: searchType,
+                                searchValue: searchValue
+                            });
+                            
+                            response = await fetch(`${CONFIG.API_URL}?${getParams}`, {
+                                method: 'GET'
+                            });
+                            
+                            if (response.ok) {
+                                data = await response.json();
+                                console.log('Method 3 (GET) success:', data);
+                            } else {
+                                throw new Error('All methods failed');
+                            }
+                        } catch (error3) {
+                            console.log('All methods failed:', error3.message);
+                            throw new Error('Failed to connect to server');
+                        }
+                    }
+                }
+                
+                console.log('Final response status:', response.status);
+                console.log('Final response ok:', response.ok);
+                console.log('Final response data:', data);
                 
                 if (data.success && data.data) {
                     displayRegistrationDetails(data.data);
                 } else {
-                    displayNotFoundMessage();
+                    displayNotFoundMessage(data.message || 'Registration not found');
                 }
                 
             } catch (error) {
                 console.error('Search error:', error);
+                console.log('Error type:', typeof error);
+                console.log('Error name:', error.name);
+                console.log('Error message:', error.message);
+                
                 displayErrorMessage(getErrorMessage(error));
                 
             } finally {
@@ -286,12 +360,15 @@
 
         // Get appropriate error message
         function getErrorMessage(error) {
-            if (error.message.includes('Failed to fetch')) {
-                return 'Google Apps Script এর সাথে সংযোগ হচ্ছে না। নতুন script deploy করুন। | Cannot connect to Google Apps Script. Deploy new script.';
+            console.log('Full error:', error);
+            if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                return 'নেটওয়ার্ক সমস্যা। আবার চেষ্টা করুন। | Network issue. Please try again.';
             } else if (error.message.includes('HTTP error')) {
-                return 'Script URL ভুল বা script deploy হয়নি। Script deploy করে URL আপডেট করুন। | Wrong script URL or script not deployed. Deploy script and update URL.';
+                return 'সার্ভার সমস্যা। আবার চেষ্টা করুন। | Server issue. Please try again.';
+            } else if (error.message.includes('CORS')) {
+                return 'CORS সমস্যা। Google Apps Script সেটিং চেক করুন। | CORS issue. Check Google Apps Script settings.';
             } else {
-                return 'সিস্টেমে সমস্যা হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন। | System error occurred. Please try again later.';
+                return 'সিস্টেমে সমস্যা হয়েছে। আবার চেষ্টা করুন। | System error. Please try again.';
             }
         }
 
@@ -371,32 +448,32 @@
                             </div>
                             
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Category | ক্যাটেগরি</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.category || 'N/A'}</p>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Email | ইমেইল</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.email || 'N/A'}</p>
                             </div>
                         </div>
                         
                         <div class="space-y-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Transaction ID | লেনদেন আইডি</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.transactionId || 'N/A'}</p>
-                            </div>
-                            
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Status | পেমেন্ট স্ট্যাটাস</label>
-                                <p class="text-lg font-semibold ${registration.paymentStatus === 'Confirmed' ? 'text-green-600' : 'text-yellow-600'}">
-                                    ${registration.paymentStatus || 'Pending'}
-                                </p>
-                            </div>
-                            
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <label class="block text-sm font-medium text-gray-600 mb-1">T-Shirt Size | টি-শার্ট সাইজ</label>
                                 <p class="text-lg font-semibold text-gray-800">${registration.tshirtSize || 'N/A'}</p>
                             </div>
                             
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Method | পেমেন্ট পদ্ধতি</label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.paymentMethod || 'N/A'}</p>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Status | পেমেন্ট স্ট্যাটাস</label>
+                                <p class="text-lg font-semibold ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'text-green-600' : 'text-yellow-600'}">
+                                    ${registration.paymentStatus || 'Pending'}
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Correction Status | সংশোধনের অবস্থা</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.correctionStatus || 'No Change Request'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Comments | মন্তব্য</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.comment || 'No comments'}</p>
                             </div>
                         </div>
                     </div>
@@ -439,7 +516,7 @@
         }
 
         // Display not found message
-        function displayNotFoundMessage() {
+        function displayNotFoundMessage(backendMessage = null) {
             const html = `
                 <div class="bg-white rounded-lg shadow-lg p-6 fade-in">
                     <div class="text-center">
@@ -451,7 +528,10 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Registration Not Found</h3>
                         
                         <p class="text-gray-600 mb-6">
-                            আপনার দেয়া তথ্যের সাথে কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর বা লেনদেন আইডি দিয়ে আবার চেষ্টা করুন।
+                            ${backendMessage && backendMessage.includes('নিবন্ধন পাওয়া যায়নি') ? 
+                                backendMessage + ' | No registration found for the provided information.' :
+                                'আপনার দেয়া তথ্যের সাথে কোনো নিবন্ধন পাওয়া যায়নি। অনুগ্রহ করে সঠিক মোবাইল নম্বর বা লেনদেন আইডি দিয়ে আবার চেষ্টা করুন।'
+                            }
                             <br><br>
                             We couldn't find any registration with the provided information. Please double-check your mobile number or transaction ID and try again.
                         </p>
