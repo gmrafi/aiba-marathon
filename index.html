@@ -971,32 +971,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 Join the Justice Half Marathon 2025 and be part of an unforgettable experience! Choose your category and register today.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Registration Card Template -->
+                <!-- Half Marathon -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-main/20">
-                    <h3 class="text-2xl font-bold text-main mb-4">Half Marathon</h3>
+                    <h3 class="text-2xl font-bold text-main mb-4">Half Marathon (Open for All)</h3>
                     <p class="text-lg text-gray-700 mb-4">Entry Fee: <span class="text-main font-bold">1250 BDT</span></p>
-                    <button class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-lg text-gray-700 mb-4">Route:</p>
+                    <ul class="text-lg text-gray-700 mb-4 list-disc list-inside">
+                    <li>Start from Army Institute of Business Administration, Sylhet</li>
+                    <li>Cross Humayun Rashid Chattar, Sylhet</li>
+                    <li>End at Army Institute of Business Administration, Sylhet Campus</li>
+                    </ul>
+                    <button onclick="registerCategory('Half Marathon')" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
                         Register
                     </button>
                 </div>
+                <!-- 10 KM Long Run -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-yellow-200">
-                    <h3 class="text-2xl font-bold text-yellow-700 mb-4">10 KM Run</h3>
+                    <h3 class="text-2xl font-bold text-yellow-700 mb-4">10 KM Long Run</h3>
                     <p class="text-lg text-gray-700 mb-4">Entry Fee: <span class="text-yellow-700 font-bold">1050 BDT</span></p>
-                    <button class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-lg text-gray-700 mb-4">Route:</p>
+                    <ul class="text-lg text-gray-700 mb-4 list-disc list-inside">
+                    <li>Start from Army Institute of Business Administration, Sylhet Campus</li>
+                    <li>U-turn at Academia Chattar</li>
+                    <li>End at Army Institute of Business Administration, Sylhet Campus</li>
+                    </ul>
+                    <button onclick="registerCategory('10 KM Long Run')" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
                         Register
                     </button>
                 </div>
+                <!-- 10 KM Long Run (Students) -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-green-200">
-                    <h3 class="text-2xl font-bold text-green-700 mb-4">10 KM Student Run</h3>
+                    <h3 class="text-2xl font-bold text-green-700 mb-4">10 KM Long Run (Students)</h3>
                     <p class="text-lg text-gray-700 mb-4">Entry Fee: <span class="text-green-700 font-bold">800 BDT</span></p>
-                    <button class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-lg text-gray-700 mb-4">Route:</p>
+                    <ul class="text-lg text-gray-700 mb-4 list-disc list-inside">
+                    <li>Start from Army Institute of Business Administration, Sylhet Campus</li>
+                    <li>U-turn at Academia Chattar</li>
+                    <li>End at Army Institute of Business Administration, Sylhet Campus</li>
+                    </ul>
+                    <button onclick="registerCategory('10 KM Long Run (Students)')" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
                         Register
                     </button>
                 </div>
+                <!-- 1 KM Fun Run (Kids) -->
                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-blue-200">
-                    <h3 class="text-2xl font-bold text-blue-700 mb-4">1 KM Kids Fun Run</h3>
+                    <h3 class="text-2xl font-bold text-blue-700 mb-4">1 KM Fun Run (Kids)</h3>
                     <p class="text-lg text-gray-700 mb-4">Entry Fee: <span class="text-blue-700 font-bold">600 BDT</span></p>
-                    <button class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
+                    <p class="text-lg text-gray-700 mb-4">Route:</p>
+                    <ul class="text-lg text-gray-700 mb-4 list-disc list-inside">
+                    <li>Start from Army Institute of Business Administration, Sylhet Campus</li>
+                    <li>Take a U-turn at BKSP 1st Gate</li>
+                    <li>End at Army Institute of Business Administration, Sylhet Campus</li>
+                    </ul>
+                    <button onclick="registerCategory('1 KM Fun Run (Kids)')" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
                         Register
                     </button>
                 </div>
@@ -1007,36 +1034,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Race Route Section -->
+    <script>
+        function registerCategory(category) {
+            alert(`You have selected the ${category} category. Proceed to registration.`);
+            // Add logic to redirect to the registration form or handle registration
+        }
+    </script>
 
+    <!-- Race Route Section -->
     <section id="route" class="py-12 md:py-16 bg-gradient-to-br from-main/10 via-white to-main/5 rounded-2xl mx-auto my-8 section-fade-in">
         <div class="container max-w-7xl mx-auto px-4">
             <h2 class="text-5xl font-extrabold text-center text-main mb-10 drop-shadow-lg">🏁 Race Route</h2>
             <p class="text-center text-xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
             Explore the scenic routes of the Justice Half Marathon 2025. Each route is designed to challenge and inspire runners of all levels.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Route Card Template -->
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-main/20">
-                    <h3 class="text-2xl font-bold text-main mb-4">21 KM Half Marathon</h3>
-                    <p class="text-lg text-gray-700 mb-4">Army IBA → Cross Humayun Rashid Chattar → Army IBA</p>
-                    <a href="https://www.google.com/maps/d/u/0/embed?mid=1R_vW9tcGcCf2DqLPtW6UrBNTVy6QKzc&ehbc=2E312F" target="_blank" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
-                        View Map
-                    </a>
+            <div class="flex flex-col gap-6">
+                <!-- Half Marathon Route -->
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start border-4 border-main/20">
+                    <h3 class="text-2xl font-bold text-main mb-4">Half Marathon</h3>
+                    <p class="text-lg text-gray-700">Army IBA → Cross Humayun Rashid Chattar → Army IBA</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-yellow-200">
-                    <h3 class="text-2xl font-bold text-yellow-700 mb-4">10 KM Run</h3>
-                    <p class="text-lg text-gray-700 mb-4">Army IBA → U-turn at Academia Chattar → Army IBA</p>
-                    <a href="https://www.google.com/maps/d/u/0/embed?mid=1R_vW9tcGcCf2DqLPtW6UrBNTVy6QKzc&ehbc=2E312F" target="_blank" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
-                        View Map
-                    </a>
+                <!-- 10 KM Long Run Route -->
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start border-4 border-yellow-200">
+                    <h3 class="text-2xl font-bold text-yellow-700 mb-4">10 KM Long Run</h3>
+                    <p class="text-lg text-gray-700">Army IBA → U-turn in Academia Chattar → Army IBA</p>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center border-4 border-blue-200">
-                    <h3 class="text-2xl font-bold text-blue-700 mb-4">1 KM Kids Fun Run</h3>
-                    <p class="text-lg text-gray-700 mb-4">Army IBA Campus Loop</p>
-                    <a href="https://www.google.com/maps/d/u/0/embed?mid=1R_vW9tcGcCf2DqLPtW6UrBNTVy6QKzc&ehbc=2E312F" target="_blank" class="btn-primary text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md transition-transform transform hover:scale-105">
-                        View Map
-                    </a>
+                <!-- 10 KM Long Run (Students) Route -->
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start border-4 border-green-200">
+                    <h3 class="text-2xl font-bold text-green-700 mb-4">10 KM Long Run (Students)</h3>
+                    <p class="text-lg text-gray-700">Army IBA → U-turn in Academia Chattar → Army IBA</p>
+                </div>
+                <!-- 1 KM Fun Run (Kids) Route -->
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-start border-4 border-blue-200">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-4">1 KM Fun Run (Kids)</h3>
+                    <p class="text-lg text-gray-700">Army IBA → BKSP 1st Gate → Army IBA Sylhet</p>
                 </div>
             </div>
             <div class="mt-8">
@@ -1051,6 +1082,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h2 class="text-5xl font-extrabold text-center text-gray-800 mb-10">Contact Us</h2>
             <p class="text-center text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed">
                 Have questions? We're here to help!
+           
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -1064,7 +1096,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="bg-gradient-to-br from-main/10 to-main/5 p-6 rounded-2xl shadow-lg border-l-4 border-main">
                         <div class="flex items-start gap-4">
                             <div class="bg-main text-white p-3 rounded-full">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"></svg>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
