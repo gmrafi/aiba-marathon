@@ -1,0 +1,131 @@
+/* Mobile Performance Optimizations */
+
+/* Optimize image loading for mobile devices */
+@media (max-width: 768px) {
+    /* Reduce image quality on mobile to improve loading speed */
+    img {
+        image-rendering: auto;
+        image-rendering: -webkit-optimize-contrast;
+    }
+    
+    /* Add will-change for smooth animations on mobile */
+    .transform, .transition {
+        will-change: transform;
+    }
+    
+    /* Optimize scrolling performance */
+    .overflow-y-auto {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    /* Reduce complexity of shadows on mobile */
+    .shadow-lg, .shadow-xl, .shadow-2xl {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Optimize pacer and partner sections */
+    .grid {
+        contain: layout style;
+    }
+    
+    /* Improve touch targets for mobile */
+    .btn, button, .cal-com-embed {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Lazy loading placeholder optimization */
+img[loading="lazy"] {
+    background-color: #f3f4f6;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23d1d5db"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+}
+
+/* Performance optimizations for heavy sections */
+.pacer-section, .partner-section {
+    contain: layout style paint;
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+    contain: layout;
+}
+
+/* Optimize fonts for mobile */
+@media (max-width: 768px) {
+    body {
+        font-display: swap;
+        text-rendering: optimizeSpeed;
+    }
+    
+    /* Reduce font weights on mobile for faster rendering */
+    .font-bold {
+        font-weight: 600;
+    }
+    
+    .font-black {
+        font-weight: 700;
+    }
+}
+
+/* Improve scroll performance */
+html {
+    scroll-behavior: smooth;
+    -webkit-scroll-behavior: smooth;
+}
+
+/* Optimize modal performance */
+.modal-overlay {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Mobile-specific grid optimizations */
+@media (max-width: 640px) {
+    .grid {
+        gap: 1rem;
+    }
+    
+    .grid-cols-1 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Optimize Cal.com embed for mobile */
+@media (max-width: 768px) {
+    .cal-com-embed {
+        height: auto;
+        min-height: 500px;
+    }
+    
+    iframe[src*="cal.com"] {
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+/* Critical resource hints for performance */
+.preload-images {
+    display: none;
+}
+
+/* Optimize background images */
+@media (max-width: 768px) {
+    .bg-gradient-to-br,
+    .bg-gradient-to-r {
+        background-attachment: scroll;
+    }
+}
