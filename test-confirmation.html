@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Confirmation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">Test Confirmation System</h1>
+        
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Step 1: Update API URL</h2>
+            <p class="mb-4">Replace YOUR_NEW_DEPLOYMENT_URL with your actual Google Apps Script deployment ID:</p>
+            <input type="text" id="apiUrl" placeholder="Paste your Google Apps Script URL here" 
+                   class="w-full p-2 border rounded mb-4">
+            <button onclick="updateApiUrl()" class="bg-blue-600 text-white px-4 py-2 rounded">Update URL</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-semibold mb-4">Step 2: Test Search</h2>
+            <input type="text" id="searchInput" placeholder="Enter mobile number: 01611741684" 
+                   class="w-full p-2 border rounded mb-4">
+            <button onclick="testSearch()" class="bg-green-600 text-white px-4 py-2 rounded">Test Search</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Results & Debug Info</h2>
+            <div id="results" class="bg-gray-50 p-4 rounded min-h-32"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentApiUrl = 'https://script.google.com/macros/s/YOUR_NEW_DEPLOYMENT_URL/exec';
+
+        function updateApiUrl() {
+            const input = document.getElementById('apiUrl');
+            if (input.value.trim()) {
+                currentApiUrl = input.value.trim();
+                log('✅ API URL updated: ' + currentApiUrl);
+            } else {
+                log('❌ Please enter a valid URL');
+            }
+        }
+
+        async function testSearch() {
+            const searchValue = document.getElementById('searchInput').value.trim() || '01611741684';
+            
+            log('🔄 Starting test search...');
+            log('Search value: ' + searchValue);
+            log('API URL: ' + currentApiUrl);
+
+            if (currentApiUrl.includes('YOUR_NEW_DEPLOYMENT_URL')) {
+                log('❌ ERROR: Please update the API URL first!');
+                return;
+            }
+
+            try {
+                // Determine search type
+                let searchType = /^01\d{9}$/.test(searchValue) ? 'mobile' : 'transaction';
+                log('Search type: ' + searchType);
+
+                const requestData = {
+                    action: 'searchRegistration',
+                    searchType: searchType,
+                    searchValue: searchValue
+                };
+
+                log('Request data: ' + JSON.stringify(requestData));
+
+                const response = await fetch(currentApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                log('Response status: ' + response.status);
+                log('Response ok: ' + response.ok);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                log('Response data: ' + JSON.stringify(data, null, 2));
+
+                if (data.success && data.data) {
+                    log('✅ SUCCESS: Registration found!');
+                    log('Name: ' + data.data.name);
+                    log('Mobile: ' + data.data.mobile);
+                    log('Payment Status: ' + data.data.paymentStatus);
+                } else {
+                    log('❌ Registration not found: ' + (data.message || 'Unknown error'));
+                }
+
+            } catch (error) {
+                log('❌ ERROR: ' + error.message);
+                
+                if (error.message.includes('Failed to fetch')) {
+                    log('💡 This usually means:');
+                    log('   - Google Apps Script not deployed correctly');
+                    log('   - Wrong URL');
+                    log('   - CORS issues');
+                }
+            }
+        }
+
+        function log(message) {
+            const results = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            results.scrollTop = results.scrollHeight;
+        }
+
+        // Initial log
+        log('🚀 Test page loaded. Follow the steps above to test your system.');
+    </script>
+</body>
+</html>

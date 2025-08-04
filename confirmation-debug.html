@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmation | Justice Half Marathon 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#005840',
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #005840;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-main text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="photos/aiba.jpg" alt="Army IBA Logo" class="h-12 w-12 rounded-full">
+                <div>
+                    <h1 class="text-xl font-bold">Justice Half Marathon 2025</h1>
+                    <p class="text-green-200 text-sm">Registration Confirmation</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-2xl mx-auto">
+            <!-- Page Header -->
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Registration Confirmation</h2>
+                <p class="text-gray-600">
+                    নিবন্ধন যাচাই করুন | Verify your registration details by searching with your mobile number or transaction ID
+                </p>
+            </div>
+
+            <!-- Test Section -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-lg font-semibold mb-4">🔧 Debug Mode - Test Your System</h3>
+                <div class="space-y-4">
+                    <button onclick="testConnection()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Test Connection
+                    </button>
+                    <button onclick="testWithKnownNumber()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                        Test with 01611741684
+                    </button>
+                    <div id="testResults" class="bg-gray-50 p-4 rounded min-h-20 text-sm font-mono"></div>
+                </div>
+            </div>
+
+            <!-- Search Form -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <form id="searchForm" class="space-y-4">
+                    <div>
+                        <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-2">
+                            Mobile Number or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি
+                        </label>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Enter mobile number or transaction ID"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-main focus:border-transparent transition duration-300"
+                            required
+                        >
+                    </div>
+                    <button 
+                        type="submit" 
+                        id="searchBtn"
+                        class="w-full bg-main text-white py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+                    >
+                        <span id="searchBtnText">Search Registration | নিবন্ধন খুঁজুন</span>
+                        <div id="loadingSpinner" class="loading-spinner hidden"></div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Results Container -->
+            <div id="resultsContainer" class="hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            API_URL: 'https://script.google.com/macros/s/AKfycbxa6-hycDC9W4Ze6aH-Ja3Wo1amI_nIeqiXhfawWgrBH7Sf25gZ15ses-wtFBYfc1vD/exec'
+        };
+
+        // DOM Elements
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchBtnText = document.getElementById('searchBtnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const testResults = document.getElementById('testResults');
+
+        // Logging function
+        function log(message, isError = false) {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = isError ? 'text-red-600' : 'text-gray-800';
+            testResults.innerHTML += `<div class="${color}">[${timestamp}] ${message}</div>`;
+            testResults.scrollTop = testResults.scrollHeight;
+        }
+
+        // Test connection to Google Apps Script
+        async function testConnection() {
+            log('🔄 Testing connection to Google Apps Script...');
+            
+            try {
+                const response = await fetch(CONFIG.API_URL, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                log(`✅ Connection successful! Status: ${response.status}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`📄 Response: ${JSON.stringify(data)}`);
+                } else {
+                    log(`❌ HTTP Error: ${response.status}`, true);
+                }
+                
+            } catch (error) {
+                log(`❌ Connection failed: ${error.message}`, true);
+                
+                if (error.message.includes('CORS')) {
+                    log('💡 CORS issue detected. Make sure your Google Apps Script is deployed with "Anyone" access.', true);
+                } else if (error.message.includes('Failed to fetch')) {
+                    log('💡 Network issue. Check your internet connection or script deployment.', true);
+                }
+            }
+        }
+
+        // Test with known mobile number
+        async function testWithKnownNumber() {
+            log('🔄 Testing search with known mobile number: 01611741684');
+            await performSearch('01611741684');
+        }
+
+        // Perform search function
+        async function performSearch(searchValue) {
+            try {
+                // Determine search type
+                let searchType = /^01\d{9}$/.test(searchValue) ? 'mobile' : 'transaction';
+                log(`🔍 Search type: ${searchType}, Value: ${searchValue}`);
+
+                const requestData = {
+                    action: 'searchRegistration',
+                    searchType: searchType,
+                    searchValue: searchValue
+                };
+
+                log(`📤 Sending request: ${JSON.stringify(requestData)}`);
+
+                const response = await fetch(CONFIG.API_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                log(`📥 Response status: ${response.status}, OK: ${response.ok}`);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                log(`📄 Response data: ${JSON.stringify(data, null, 2)}`);
+
+                if (data.success && data.data) {
+                    log(`✅ SUCCESS: Registration found for ${data.data.name}`);
+                    displayRegistrationDetails(data.data);
+                } else {
+                    log(`❌ Registration not found: ${data.message || 'Unknown error'}`, true);
+                    displayNotFoundMessage(data.message);
+                }
+
+            } catch (error) {
+                log(`❌ Search error: ${error.message}`, true);
+                
+                if (error.message.includes('Failed to fetch')) {
+                    log('💡 Possible causes:', true);
+                    log('   - Google Apps Script not deployed correctly', true);
+                    log('   - Script permissions not set to "Anyone"', true);
+                    log('   - Network connectivity issues', true);
+                }
+            }
+        }
+
+        // Form submission handler
+        searchForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const searchValue = searchInput.value.trim();
+            if (!searchValue) {
+                alert('Please enter mobile number or transaction ID');
+                return;
+            }
+            
+            // Show loading state
+            searchBtn.disabled = true;
+            searchBtnText.textContent = 'Searching...';
+            loadingSpinner.classList.remove('hidden');
+            
+            try {
+                await performSearch(searchValue);
+            } finally {
+                // Hide loading state
+                searchBtn.disabled = false;
+                searchBtnText.textContent = 'Search Registration';
+                loadingSpinner.classList.add('hidden');
+            }
+        });
+
+        // Display registration details
+        function displayRegistrationDetails(registration) {
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-center mb-6">
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full inline-block mb-4">
+                            ✅ Registration Found | নিবন্ধন পাওয়া গেছে
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Registration Details</h3>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Name | নাম</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.name || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Mobile | মোবাইল</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.mobile || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Email | ইমেইল</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.email || 'N/A'}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Payment Status | পেমেন্ট স্ট্যাটাস</label>
+                                <p class="text-lg font-semibold ${registration.paymentStatus === 'Confirmed' ? 'text-green-600' : 'text-yellow-600'}">
+                                    ${registration.paymentStatus || 'Pending'}
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Transaction ID</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.transactionId || 'N/A'}</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-600 mb-1">Category</label>
+                                <p class="text-lg font-semibold text-gray-800">${registration.category || 'N/A'}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <button onclick="clearResults()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Search Again | আবার খুঁজুন
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+        }
+
+        // Display not found message
+        function displayNotFoundMessage(message) {
+            const html = `
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-center">
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full inline-block mb-4">
+                            ❌ নিবন্ধন পাওয়া যায়নি | Registration Not Found
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Registration Not Found</h3>
+                        
+                        <p class="text-gray-600 mb-6">
+                            ${message || 'No registration found for the provided information.'}
+                        </p>
+                        
+                        <button onclick="clearResults()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Try Again | আবার চেষ্টা করুন
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+        }
+
+        // Clear results
+        function clearResults() {
+            resultsContainer.classList.add('hidden');
+            resultsContainer.innerHTML = '';
+            searchInput.value = '';
+            searchInput.focus();
+        }
+
+        // Auto-focus search input on page load
+        window.addEventListener('load', function() {
+            searchInput.focus();
+        });
+
+        // Initial connection test
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                log('🚀 Page loaded. Testing initial connection...');
+                testConnection();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

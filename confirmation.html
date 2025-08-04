@@ -296,62 +296,64 @@
     </header>
 
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-12">
-        <div class="max-w-4xl mx-auto">
+    <div class="container mx-auto px-4 py-6">
+        <div class="max-w-3xl mx-auto">
             <!-- Page Header -->
-            <div class="text-center mb-12 fade-in">
-                <div class="inline-block bg-white/20 backdrop-filter backdrop-blur-lg rounded-full px-6 py-2 mb-6">
-                    <span class="text-main font-semibold">🏃‍♂️ Registration Verification System</span>
+            <div class="text-center mb-8 fade-in">
+                <div class="inline-block bg-white/20 backdrop-filter backdrop-blur-lg rounded-full px-4 py-1 mb-4">
+                    <span class="text-main font-semibold text-sm">🏃‍♂️ Registration Information Confirmation</span>
                 </div>
-                <h2 class="text-4xl font-bold section-title mb-6">Registration Confirmation</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-                    নিবন্ধন যাচাই করুন | Verify your registration.
+                <h2 class="text-3xl font-bold section-title mb-4">Registration Verification</h2>
+                <p class="text-gray-600 text-base max-w-xl mx-auto leading-relaxed">
+                    Verify your registration for BIB number & certificate processing
+                    <br>
+                    <span class="text-sm text-gray-500">বিব নম্বর ও সার্টিফিকেটের জন্য রেজিস্ট্রেশন যাচাই করুন</span>
                 </p>
             </div>
 
             <!-- Search Form -->
-            <div class="modern-card p-8 mb-12 scale-in">
-                <div class="text-center mb-6">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">Search Your Registration</h3>
-                    <p class="text-gray-600">Enter your mobile number or transaction ID to find your registration</p>
+            <div class="modern-card p-6 mb-8 scale-in">
+                <div class="text-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🔍 Search Your Registration</h3>
+                    <p class="text-gray-600 text-sm">Enter mobile number or transaction ID | মোবাইল নম্বর বা ট্রানজেকশন আইডি দিন</p>
                 </div>
                 
-                <form id="searchForm" class="space-y-6">
+                <form id="searchForm" class="space-y-4">
                     <div>
                         <label for="searchInput" class="block text-sm font-medium text-gray-700 mb-3">
                             <i class="fas fa-search mr-2 text-main"></i>
-                            Mobile Number or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি
+                            Mobile or Transaction ID | মোবাইল বা ট্রানজেকশন আইডি
                         </label>
                         <input 
                             type="text" 
                             id="searchInput" 
-                            placeholder="01XXXXXXXXX or Transaction ID | মোবাইল নম্বর বা লেনদেন আইডি লিখুন"
-                            class="modern-input w-full px-6 py-4 text-lg focus:outline-none focus:ring-0"
+                            placeholder="01XXXXXXXXX or bKash/Nagad ID | ০১XXXXXXXXX বা বিকাশ/নগদ আইডি"
+                            class="modern-input w-full px-4 py-3 text-base focus:outline-none focus:ring-0"
                             required
                         >
                     </div>
                     <button 
                         type="submit" 
                         id="searchBtn"
-                        class="modern-btn w-full text-white py-4 px-8 text-lg font-semibold flex items-center justify-center space-x-3"
+                        class="modern-btn w-full text-white py-3 px-6 text-base font-semibold flex items-center justify-center space-x-3"
                     >
                         <i class="fas fa-search"></i>
-                        <span id="searchBtnText">Search Registration | নিবন্ধন খুঁজুন</span>
+                        <span id="searchBtnText">Search | খুঁজুন</span>
                         <div id="loadingSpinner" class="loading-spinner hidden"></div>
                     </button>
                 </form>
                 
                 <!-- Quick Tips -->
-                <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h4 class="font-semibold text-blue-800 mb-2">
-                        <i class="fas fa-lightbulb mr-2"></i>
-                        Search Tips | অনুসন্ধান টিপস
+                <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-2 text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Tips | টিপস
                     </h4>
-                    <ul class="text-blue-700 text-sm space-y-1">
-                        <li>• Mobile number format: 01XXXXXXXXX (11 digits)</li>
-                        <li>• Transaction ID: Exact ID from your payment receipt</li>
-                        <li>• মোবাইল নম্বর ফরম্যাট: ০১XXXXXXXXX (১১ ডিজিট)</li>
-                    </ul>
+                    <div class="text-blue-700 text-xs space-y-1">
+                        <div>📱 <strong>Mobile:</strong> 01XXXXXXXXX (11 digits) | ০১XXXXXXXXX (১১ ডিজিট)</div>
+                        <div>💳 <strong>Transaction ID:</strong> Exact ID from payment receipt | পেমেন্ট রিসিটের সঠিক আইডি</div>
+                        <div>🔄 <strong>Multiple registrations:</strong> Use transaction ID | একাধিক রেজিস্ট্রেশনে ট্রানজেকশন আইডি ব্যবহার করুন</div>
+                    </div>
                 </div>
             </div>
 
@@ -359,51 +361,85 @@
             <div id="resultsContainer" class="hidden"></div>
 
             <!-- Support Section -->
-            <div class="modern-card p-8 fade-in">
-                <div class="text-center mb-6">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-2">
-                        <i class="fas fa-headset mr-2 text-main"></i>
+            <div class="modern-card p-6 fade-in">
+                <div class="text-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                        <i class="fas fa-tools mr-2 text-main"></i>
                         Need Help? | সাহায্য প্রয়োজন?
                     </h3>
-                    <p class="text-gray-600">
-                        Our support team is here to help you with any registration issues
+                    <p class="text-gray-600 text-sm">
+                        Select the appropriate option below | নিচের উপযুক্ত অপশন বেছে নিন
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
-                        <i class="fas fa-edit text-3xl text-blue-600 mb-4"></i>
-                        <h4 class="font-semibold text-blue-800 mb-2">Request Data Correction | তথ্য সংশোধন</h4>
-                        <p class="text-blue-700 text-sm mb-4">
-                            Want to change your name or T-shirt size? Submit a correction request to update your registration details.
-                            <br>আপনার নাম বা টি-শার্টের সাইজ পরিবর্তন করতে চান? আপনার নিবন্ধনের তথ্য আপডেট করার জন্য সংশোধনের অনুরোধ জমা দিন।
-                        </p>
-                        <a 
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSdbV1CVKnpNBauOilA4CeTvjaOSrBWJL-lFrRW4JryXMAv6GA/viewform?usp=dialog"
-                            target="_blank"
-                            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
-                        >
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Data Correction
-                        </a>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Data Correction Card -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-4 border border-blue-200 hover:shadow-lg transition-all">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-edit text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-blue-800 mb-2">Change Name/T-shirt</h4>
+                            <p class="text-blue-600 text-xs mb-3 leading-relaxed">
+                                নাম বা টি-শার্ট সাইজ পরিবর্তন
+                                <br>
+                                Modify your registration details
+                            </p>
+                            <a 
+                                href="https://forms.gle/1YHTnEGaTNVR8jYH9"
+                                target="_blank"
+                                class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold text-sm w-full"
+                            >
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Correction Form
+                            </a>
+                        </div>
                     </div>
                     
-                    <div class="text-center p-6 bg-gradient-to-br from-red-50 to-pink-50 rounded-lg border border-red-200">
-                        <i class="fas fa-search-plus text-3xl text-red-600 mb-4"></i>
-                        <h4 class="font-semibold text-red-800 mb-2">Report Missing Registration | হারিয়ে যাওয়া নিবন্ধন</h4>
-                        <p class="text-red-700 text-sm mb-4">
-                            Can't find your registration in our system? Submit your payment details for verification.
-                            <br>আমাদের সিস্টেমে আপনার নিবন্ধন নেই? যাচাইয়ের জন্য পেমেন্টের বিস্তারিত জমা দিন।
-                        </p>
-                        <a 
-                            href="https://docs.google.com/forms/d/1ePfnrbZaOFLf7iZuqHS9QUggghhdsdsxxLY3wT6BiolIwk9URMyI/edit"
-                            target="_blank"
-                            class="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 font-semibold"
-                        >
-                            <i class="fas fa-external-link-alt mr-2"></i>
-                            Missing Registration
-                        </a>
+                    <!-- Missing Registration Card -->
+                    <div class="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-4 border border-red-200 hover:shadow-lg transition-all">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-search-plus text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-red-800 mb-2">Registration Missing</h4>
+                            <p class="text-red-600 text-xs mb-3 leading-relaxed">
+                                তথ্য পাওয়া যাচ্ছে না
+                                <br>
+                                Can't find your registration
+                            </p>
+                            <a 
+                                href="https://forms.gle/j3EXf7eThBjNRp7m7"
+                                target="_blank"
+                                class="inline-block bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition font-semibold text-sm w-full"
+                            >
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Report Missing
+                            </a>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Important Deadline -->
+                <div class="mt-6 p-4 bg-gradient-to-r from-red-100 to-orange-100 border-l-4 border-red-500 rounded-lg">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-clock text-red-600 text-xl"></i>
+                        <div>
+                            <h4 class="font-bold text-red-800 mb-1">⚠️ DEADLINE: August 20, 2025</h4>
+                            <p class="text-red-700 text-sm">
+                                No changes after this date | এই তারিখের পর কোনো পরিবর্তন হবে না
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="mt-4 p-3 bg-gray-50 rounded-lg text-center">
+                    <p class="text-gray-600 text-xs">
+                        📧 <strong>Email:</strong> justicehalfmarathon@gmail.com
+                        <br>
+                        📞 <strong>Phone verification may be required</strong> | ফোন যাচাই প্রয়োজন হতে পারে
+                    </p>
                 </div>
             </div>
         </div>
@@ -449,11 +485,11 @@
             // Google Apps Script deployment URL - UPDATED WITH YOUR ACTUAL URL
             API_URL: 'https://script.google.com/macros/s/AKfycbxa6-hycDC9W4Ze6aH-Ja3Wo1amI_nIeqiXhfawWgrBH7Sf25gZ15ses-wtFBYfc1vD/exec',
             
-            // Form URLs for support
+            // Form URLs for support - UPDATED WITH NEW LINKS
             ISSUE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSeHw2YZlT-A9y_-dKZwFBgqLYOJX8TcSPbD4GGEObvEgY0Vrw/viewform',
-            DATA_CORRECTION_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdbV1CVKnpNBauOilA4CeTvjaOSrBWJL-lFrRW4JryXMAv6GA/viewform?usp=dialog',
-            MISSING_REGISTRATION_URL: 'https://docs.google.com/forms/d/1ePfnrbZaOFLf7iZuqHS9QUggghhdsdsxxLY3wT6BiolIwk9URMyI/edit',
-            CORRECTION_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdA9K1wnkW8Z9v6gDqeR8t5i6Q0EFQIoELwNvG6p6jCGjPePQ/viewform'
+            DATA_CORRECTION_URL: 'https://forms.gle/1YHTnEGaTNVR8jYH9',
+            MISSING_REGISTRATION_URL: 'https://forms.gle/j3EXf7eThBjNRp7m7',
+            CORRECTION_FORM_URL: 'https://forms.gle/1YHTnEGaTNVR8jYH9'
         };
 
         // DOM Elements
@@ -470,7 +506,7 @@
             
             const searchValue = searchInput.value.trim();
             if (!searchValue) {
-                alert('অনুগ্রহ করে মোবাইল নম্বর বা লেনদেন আইডি দিন | Please enter mobile number or transaction ID');
+                alert('Please enter mobile number or transaction ID | মোবাইল নম্বর বা ট্রানজেকশন আইডি দিন');
                 return;
             }
             
@@ -673,8 +709,8 @@
                         <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
                             <i class="fas fa-check-circle text-3xl text-green-600"></i>
                         </div>
-                        <h3 class="text-3xl font-bold section-title mb-2">Registration Found!</h3>
-                        <p class="text-gray-600">নিবন্ধন পাওয়া গেছে | Your registration details are displayed below</p>
+                        <h3 class="text-3xl font-bold section-title mb-2">Found! ✅</h3>
+                        <p class="text-gray-600">রেজিস্ট্রেশন পাওয়া গেছে | Registration details below</p>
                     </div>
                     
                     <!-- Registration Details Grid -->
@@ -996,11 +1032,11 @@
         function setLoadingState(isLoading) {
             if (isLoading) {
                 searchBtn.disabled = true;
-                searchBtnText.textContent = 'Searching... | খোঁজ করা হচ্ছে...';
+                searchBtnText.textContent = 'Searching... | খোঁজা হচ্ছে...';
                 loadingSpinner.classList.remove('hidden');
             } else {
                 searchBtn.disabled = false;
-                searchBtnText.textContent = 'Search Registration | নিবন্ধন খুঁজুন';
+                searchBtnText.textContent = 'Search | খুঁজুন';
                 loadingSpinner.classList.add('hidden');
             }
         }
