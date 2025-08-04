@@ -238,6 +238,25 @@
                 border-radius: 12px;
             }
         }
+        
+        /* Print and Screenshot Styles */
+        @media print {
+            .hidden { display: none !important; }
+            .modern-card { 
+                box-shadow: none !important; 
+                border: 2px solid #e5e7eb !important;
+                page-break-inside: avoid;
+            }
+            .bg-gradient-to-r { background: #2563eb !important; }
+            .bg-gradient-to-br { opacity: 0.9 !important; }
+            body { background: white !important; }
+            .container { max-width: none !important; }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .grid-cols-2 { gap: 0.75rem; }
+            .modern-card { padding: 1rem; }
+        }
     </style>
 </head>
 
@@ -1063,160 +1082,225 @@
 
         // Display registration details
         function displayRegistrationDetails(registration) {
+            // Debug: Log the complete registration object
+            console.log('Full registration object:', registration);
+            console.log('Comments field:', registration.comment);
+            console.log('Comments field (with s):', registration.comments);
+            console.log('All fields:', Object.keys(registration));
+            
             const html = `
-                <div class="modern-card p-8 slide-up">
-                    <!-- Success Header -->
-                    <div class="text-center mb-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                            <i class="fas fa-check-circle text-3xl text-green-600"></i>
+                <div class="modern-card p-4 slide-up">
+                    <!-- Beautiful Header (Main Website Style) -->
+                    <!-- Desktop Version -->
+                    <div class="hidden md:block bg-white border-b-4 border-[#005840]/60 shadow-2xl rounded-xl p-6 mb-6">
+                        <div class="flex items-center justify-between">
+                            <!-- Left: Multiple Logos -->
+                            <div class="flex items-center gap-4">
+                                <img src="photos/logo3.png" alt="Event Logo" class="h-16 w-auto object-contain shadow-lg">
+                                <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-12 w-12 rounded-full object-cover shadow-md">
+                                <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-12 w-12 rounded-full object-cover shadow-md">
+                            </div>
+                            
+                            <!-- Center: Title and Subtitle -->
+                            <div class="flex flex-col items-center min-w-[300px]">
+                                <span class="block text-2xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">
+                                    Justice Half Marathon <span class="text-[#005840]">2025</span>
+                                </span>
+                                <span class="block text-sm text-[#005840] font-medium tracking-wide whitespace-nowrap mt-1">
+                                    Army IBA Hiking & Trekking Club, Sylhet
+                                </span>
+                                <span class="block text-xs text-gray-600 font-medium mt-1">
+                                    Registration Confirmation
+                                </span>
+                            </div>
+                            
+                            <!-- Right: Verified Badge -->
+                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-full shadow-lg">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check-circle text-lg"></i>
+                                    <span class="font-bold text-sm">VERIFIED</span>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-3xl font-bold section-title mb-2">Found! ✅</h3>
-                        <p class="text-gray-600">রেজিস্ট্রেশন পাওয়া গেছে | Registration details below</p>
                     </div>
                     
-                    <!-- Registration Details Grid -->
-                    <div class="grid lg:grid-cols-2 gap-8 mb-8">
-                        <!-- Personal Information -->
+                    <!-- Mobile Version -->
+                    <div class="block md:hidden bg-white border-b-4 border-[#005840]/60 shadow-2xl rounded-xl p-4 mb-6">
+                        <div class="flex flex-col items-center space-y-4">
+                            <!-- Main Logo -->
+                            <img src="photos/logo3.png" alt="Event Logo" class="h-20 w-auto object-contain shadow-lg">
+                            
+                            <!-- Side Logos -->
+                            <div class="flex items-center gap-6">
+                                <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-14 w-14 rounded-full object-cover shadow-md">
+                                <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-14 w-14 rounded-full object-cover shadow-md">
+                            </div>
+                            
+                            <!-- Title and Subtitle -->
+                            <div class="text-center">
+                                <span class="block text-xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight">
+                                    Justice Half Marathon <span class="text-[#005840]">2025</span>
+                                </span>
+                                <span class="block text-sm text-[#005840] font-medium tracking-wide mt-1">
+                                    Army IBA Hiking & Trekking Club, Sylhet
+                                </span>
+                                <span class="block text-xs text-gray-600 font-medium mt-1">
+                                    Registration Confirmation
+                                </span>
+                            </div>
+                            
+                            <!-- Verified Badge -->
+                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-full shadow-lg">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="font-bold text-sm">VERIFIED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Info Cards (2x2 Layout) -->
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <!-- Top Row -->
+                        <!-- Serial Number Card -->
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200 text-center">
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-hashtag text-green-600 text-lg mr-2"></i>
+                                <span class="font-bold text-green-800">Serial Number</span>
+                            </div>
+                            <p class="text-green-900 font-bold text-2xl">${registration.serialNumber || registration.bibNumber || 'Pending'}</p>
+                        </div>
+                        
+                        <!-- Name Card -->
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200 text-center">
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-user text-blue-600 text-lg mr-2"></i>
+                                <span class="font-bold text-blue-800">Name</span>
+                            </div>
+                            <p class="text-blue-900 font-bold text-lg leading-tight">${registration.name || 'N/A'}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Row -->
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <!-- Category Card -->
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg border border-orange-200 text-center">
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-running text-orange-600 text-lg mr-2"></i>
+                                <span class="font-bold text-orange-800">Category</span>
+                            </div>
+                            <p class="text-orange-900 font-bold text-lg">${registration.category || 'N/A'}</p>
+                        </div>
+                        
+                        <!-- T-Shirt Card -->
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg border border-purple-200 text-center">
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-tshirt text-purple-600 text-lg mr-2"></i>
+                                <span class="font-bold text-purple-800">T-Shirt Size</span>
+                            </div>
+                            <p class="text-purple-900 font-bold text-lg">${registration.tshirtSize || 'N/A'}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information Grid -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <!-- Left Column -->
                         <div class="space-y-4">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-user mr-3 text-main"></i>
-                                Personal Information
-                            </h4>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-id-card mr-2"></i>Full Name | নাম
-                                </label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.name || 'N/A'}</p>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-hashtag mr-2"></i>Serial Number | সিরিয়াল নম্বর
-                                </label>
-                                <p class="text-lg font-semibold ${registration.serialNumber && registration.serialNumber !== 'Pending' ? 'text-green-600' : 'text-yellow-600'}">${registration.serialNumber || 'Pending Assignment'}</p>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-mobile-alt mr-2"></i>Mobile | মোবাইল
-                                </label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.mobile || 'N/A'}</p>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-envelope mr-2"></i>Email | ইমেইল
-                                </label>
-                                <p class="text-lg font-semibold text-gray-800 break-all">${registration.email || 'N/A'}</p>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-id-card text-gray-600 mr-3"></i>
+                                    <h4 class="font-semibold text-gray-800">Personal Information</h4>
+                                </div>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Email:</span>
+                                        <span class="font-medium text-xs">${registration.email || 'N/A'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Gender:</span>
+                                        <span class="font-medium">${registration.gender || 'N/A'}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <!-- Registration Details -->
+                        <!-- Right Column -->
                         <div class="space-y-4">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-clipboard-list mr-3 text-main"></i>
-                                Registration Details
-                            </h4>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-tshirt mr-2"></i>T-Shirt Size | টি-শার্ট সাইজ
-                                </label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.tshirtSize || 'N/A'}</p>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-running mr-2"></i>Category | ক্যাটাগরি
-                                </label>
-                                <p class="text-lg font-semibold text-gray-800">${registration.category || 'N/A'}</p>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-credit-card mr-2"></i>Payment Status | পেমেন্ট স্ট্যাটাস
-                                </label>
-                                <div class="${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'status-confirmed' : 'status-pending'}">
-                                    <i class="fas ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? 'fa-check-circle' : 'fa-clock'}"></i>
-                                    <span>${registration.paymentStatus || 'Pending'}</span>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-receipt text-gray-600 mr-3"></i>
+                                    <h4 class="font-semibold text-gray-800">Registration Details</h4>
                                 </div>
-                            </div>
-                            
-                            <div class="data-item">
-                                <label class="block text-sm font-medium text-gray-600 mb-2">
-                                    <i class="fas fa-edit mr-2"></i>Correction Status | সংশোধনের অবস্থা
-                                </label>
-                                <p class="text-lg font-semibold ${registration.correctionStatus && registration.correctionStatus !== 'No Change Request' ? 'text-blue-600' : 'text-gray-600'}">${registration.correctionStatus || 'No Change Request'}</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Serial Number:</span>
+                                        <span class="font-bold text-lg text-green-600">${registration.serialNumber || registration.bibNumber || 'Pending'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Registration Date:</span>
+                                        <span class="font-medium">${registration.timestamp || registration.registrationDate || 'N/A'}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Status Alerts -->
+                    <!-- Status Banner (Compact) -->
                     ${(registration.paymentStatus === 'Confirmed' || registration.paymentStatus === 'Confirm') ? `
-                        <div class="alert-success p-6 mb-6">
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-check-circle text-2xl text-green-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold text-green-800 mb-2">Registration Confirmed! | নিবন্ধন নিশ্চিত!</h4>
-                                    <p class="text-green-700">
-                                        🎉 Congratulations! Your registration is confirmed. You will receive your BIB and race kit during the packet pickup.
-                                        <br><br>
-                                        অভিনন্দন! আপনার নিবন্ধন নিশ্চিত হয়েছে। প্যাকেট পিকআপের সময় আপনি আপনার BIB এবং রেস কিট পাবেন।
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="bg-green-100 border border-green-300 p-3 rounded-lg mb-4 text-center">
+                            <p class="text-green-800 font-semibold text-sm">✅ Payment Confirmed - Ready for Race Day</p>
                         </div>
                     ` : `
-                        <div class="alert-warning p-6 mb-6">
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-exclamation-triangle text-2xl text-yellow-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold text-yellow-800 mb-2">Payment Verification Pending | পেমেন্ট যাচাইকরণ বাকি</h4>
-                                    <p class="text-yellow-700">
-                                        ⏳ Your registration is received but payment verification is pending. Please complete payment if not done yet.
-                                        <br><br>
-                                        আপনার নিবন্ধন পাওয়া গেছে কিন্তু পেমেন্ট যাচাইকরণ বাকি। যদি পেমেন্ট না করে থাকেন তাহলে দ্রুত সম্পন্ন করুন।
-                                    </p>
-                                </div>
-                            </div>
+                        <div class="bg-yellow-100 border border-yellow-300 p-3 rounded-lg mb-4 text-center">
+                            <p class="text-yellow-800 font-semibold text-sm">⏳ Payment Verification in Progress</p>
                         </div>
                     `}
                     
-                    <!-- Correction Status -->
-                    ${registration.correctionStatus && registration.correctionStatus !== 'No Change Request' ? `
-                        <div class="alert-warning p-6 mb-6">
-                            <div class="flex items-start space-x-4">
-                                <i class="fas fa-edit text-2xl text-blue-600 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold text-blue-800 mb-2">Correction Request Status | সংশোধনের অবস্থা</h4>
-                                    <p class="text-blue-700 font-medium">${registration.correctionStatus}</p>
-                                    ${registration.comment && registration.comment !== 'No comments' ? `
-                                        <p class="text-blue-600 text-sm mt-2 bg-blue-50 p-3 rounded-lg">
-                                            <strong>Comment:</strong> ${registration.comment}
-                                        </p>
-                                    ` : ''}
-                                </div>
-                            </div>
+                    <!-- Correction Status & Comments (Compact) -->
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 text-sm mb-1">Correction Status</h4>
+                            <p class="text-blue-700 text-xs">${registration.correctionStatus || 'No Change Request'}</p>
                         </div>
-                    ` : ''}
+                        <div class="bg-gray-50 border border-gray-200 p-3 rounded-lg">
+                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Comments</h4>
+                            <p class="text-gray-700 text-xs">
+                                ${(() => {
+                                    // Try all possible comment field variations and log them
+                                    const commentValue = registration.comment || registration.comments || registration.Comment || registration.Comments || null;
+                                    console.log('Comment debug - trying all variations:', {
+                                        'registration.comment': registration.comment,
+                                        'registration.comments': registration.comments,
+                                        'registration.Comment': registration.Comment,
+                                        'registration.Comments': registration.Comments,
+                                        'final selected value': commentValue
+                                    });
+                                    
+                                    // Return the comment if exists, otherwise default message
+                                    if (commentValue && commentValue.trim() !== '' && commentValue.trim() !== 'No comments') {
+                                        return commentValue;
+                                    } else {
+                                        return 'No Comments';
+                                    }
+                                })()}
+                            </p>
+                        </div>
+                    </div>
                     
-                    <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-6 border-t border-gray-200">
-                        <button 
-                            onclick="clearResults()" 
-                            class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition duration-300 font-semibold"
+                    <!-- Action Buttons (Compact) -->
+                    <div class="flex gap-2 justify-center pt-3 border-t border-gray-200">
+                        <a 
+                            href="https://forms.gle/1YHTnEGaTNVR8jYH9"
+                            target="_blank"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all"
                         >
-                            <i class="fas fa-search mr-2"></i>
-                            Search Again | আবার খুঁজুন
-                        </button>
-                        
+                            Make Corrections
+                        </a>
                         <button 
-                            onclick="window.print()" 
-                            class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+                            onclick="searchForm.reset(); resultsContainer.classList.add('hidden'); searchInput.focus();" 
+                            class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all"
                         >
-                            <i class="fas fa-print mr-2"></i>
-                            Print Details | প্রিন্ট করুন
+                            Search Again
                         </button>
                     </div>
                 </div>
