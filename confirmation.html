@@ -322,9 +322,11 @@
                         <i class="fas fa-chevron-down instructions-toggle-icon ml-2"></i>
                     </button>
                 </div>
-                
-                <!-- Instructions Panel (Hidden by default) -->
-                <div id="instructionsPanel" class="hidden mt-6 max-w-4xl mx-auto">
+            </div>
+
+            <!-- Instructions Panel Card (Hidden by default) -->
+            <div id="instructionsPanel" class="hidden max-w-4xl mx-auto mb-8">
+                <div class="modern-card p-6 fade-in">
                     <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl border border-blue-200 text-left shadow-lg">
                         <h3 class="text-lg font-bold text-blue-800 mb-4 text-center">
                             <i class="fas fa-book mr-2"></i>
@@ -363,7 +365,58 @@
                                         <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">4</div>
                                         <div>
                                             <p class="font-semibold text-blue-700">Get Help if Required</p>
-                                            <p class="text-blue-600 text-sm">Contact us for missing registrations or technical issues</p>
+                                            <p class="text-blue-600 text-sm mb-3">Contact us for missing registrations or technical issues</p>
+                                            
+                                            <!-- Help Options -->
+                                            <div class="grid grid-cols-1 gap-3 mt-3">
+                                                <!-- Correction Form -->
+                                                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-edit text-blue-600 text-sm"></i>
+                                                        <span class="text-blue-800 font-semibold text-sm">Data Correction</span>
+                                                    </div>
+                                                    <p class="text-blue-600 text-xs mb-2">Change name/T-shirt size</p>
+                                                    <a href="https://forms.gle/1YHTnEGaTNVR8jYH9" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 transform hover:scale-105">
+                                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                                        Open Form
+                                                    </a>
+                                                </div>
+                                                
+                                                <!-- Missing Registration -->
+                                                <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-search-plus text-red-600 text-sm"></i>
+                                                        <span class="text-red-800 font-semibold text-sm">Missing Registration</span>
+                                                    </div>
+                                                    <p class="text-red-600 text-xs mb-2">Report registration not found</p>
+                                                    <a href="https://forms.gle/j3EXf7eThBjNRp7m7" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 transform hover:scale-105">
+                                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                                        Open Form
+                                                    </a>
+                                                </div>
+                                                
+                                                <!-- Contact Information -->
+                                                <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-phone text-green-600 text-sm"></i>
+                                                        <span class="text-green-800 font-semibold text-sm">Direct Contact</span>
+                                                    </div>
+                                                    <div class="text-xs space-y-1">
+                                                        <div>
+                                                            <span class="text-green-700 font-medium">Email:</span>
+                                                            <a href="mailto:justicehalfmarathon@gmail.com" class="text-green-600 hover:text-green-800 ml-1">
+                                                                justicehalfmarathon@gmail.com
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-green-700 font-medium">WhatsApp:</span>
+                                                            <a href="https://wa.me/8801521334388" target="_blank" class="text-green-600 hover:text-green-800 ml-1">
+                                                                +880 1521-334388
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -400,7 +453,58 @@
                                         <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">৪</div>
                                         <div>
                                             <p class="font-semibold text-blue-700">প্রয়োজনে সাহায্য নিন</p>
-                                            <p class="text-blue-600 text-sm">অনুপস্থিত নিবন্ধন বা প্রযুক্তিগত সমস্যার জন্য আমাদের সাথে যোগাযোগ করুন</p>
+                                            <p class="text-blue-600 text-sm mb-3">অনুপস্থিত নিবন্ধন বা প্রযুক্তিগত সমস্যার জন্য আমাদের সাথে যোগাযোগ করুন</p>
+                                            
+                                            <!-- সাহায্যের অপশন -->
+                                            <div class="grid grid-cols-1 gap-3 mt-3">
+                                                <!-- সংশোধন ফর্ম -->
+                                                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-edit text-blue-600 text-sm"></i>
+                                                        <span class="text-blue-800 font-semibold text-sm">তথ্য সংশোধন</span>
+                                                    </div>
+                                                    <p class="text-blue-600 text-xs mb-2">নাম/টি-শার্ট সাইজ পরিবর্তন</p>
+                                                    <a href="https://forms.gle/1YHTnEGaTNVR8jYH9" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 transform hover:scale-105">
+                                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                                        ফর্ম খুলুন
+                                                    </a>
+                                                </div>
+                                                
+                                                <!-- অনুপস্থিত নিবন্ধন -->
+                                                <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-search-plus text-red-600 text-sm"></i>
+                                                        <span class="text-red-800 font-semibold text-sm">অনুপস্থিত নিবন্ধন</span>
+                                                    </div>
+                                                    <p class="text-red-600 text-xs mb-2">নিবন্ধন খুঁজে পাওয়া যায়নি রিপোর্ট করুন</p>
+                                                    <a href="https://forms.gle/j3EXf7eThBjNRp7m7" target="_blank" class="inline-block bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-300 transform hover:scale-105">
+                                                        <i class="fas fa-external-link-alt mr-1"></i>
+                                                        ফর্ম খুলুন
+                                                    </a>
+                                                </div>
+                                                
+                                                <!-- যোগাযোগের তথ্য -->
+                                                <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                                                    <div class="flex items-center space-x-2 mb-2">
+                                                        <i class="fas fa-phone text-green-600 text-sm"></i>
+                                                        <span class="text-green-800 font-semibold text-sm">সরাসরি যোগাযোগ</span>
+                                                    </div>
+                                                    <div class="text-xs space-y-1">
+                                                        <div>
+                                                            <span class="text-green-700 font-medium">ইমেইল:</span>
+                                                            <a href="mailto:justicehalfmarathon@gmail.com" class="text-green-600 hover:text-green-800 ml-1">
+                                                                justicehalfmarathon@gmail.com
+                                                            </a>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-green-700 font-medium">হোয়াটসঅ্যাপ:</span>
+                                                            <a href="https://wa.me/8801521334388" target="_blank" class="text-green-600 hover:text-green-800 ml-1">
+                                                                +৮৮০ ১৫২১-৩৩৪৩৮৮
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -408,45 +512,70 @@
                         </div>
                         
                         <!-- Important Notes -->
-                        <div class="mt-6 p-4 bg-white rounded-lg border border-blue-300">
-                            <h4 class="font-bold text-gray-800 mb-4 border-b border-gray-200 pb-2">
+                        <div class="mt-6 p-4 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 rounded-lg border border-purple-200 shadow-lg">
+                            <h4 class="font-bold text-purple-800 mb-4 border-b border-purple-200 pb-2 text-center">
+                                <i class="fas fa-star text-yellow-500 mr-2"></i>
                                 Important Information | গুরুত্বপূর্ণ তথ্য
                             </h4>
                             <div class="grid md:grid-cols-2 gap-6 text-sm">
-                                <div class="space-y-3">
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">Search Methods</p>
-                                        <p class="text-gray-600">Use either your mobile number OR transaction ID</p>
+                                <div class="space-y-4">
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-blue-500">
+                                        <p class="font-bold text-blue-800 mb-1 flex items-center">
+                                            <i class="fas fa-search text-blue-600 mr-2"></i>
+                                            Search Methods
+                                        </p>
+                                        <p class="text-blue-700">Use either your mobile number OR transaction ID</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">Payment Status</p>
-                                        <p class="text-gray-600">"Confirmed" status means you're ready for race day</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-green-500">
+                                        <p class="font-bold text-green-800 mb-1 flex items-center">
+                                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                            Payment Status
+                                        </p>
+                                        <p class="text-green-700">"Confirmed" status means you're ready for race day</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">Available Corrections</p>
-                                        <p class="text-gray-600">Only name and T-shirt size can be modified</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-orange-500">
+                                        <p class="font-bold text-orange-800 mb-1 flex items-center">
+                                            <i class="fas fa-edit text-orange-600 mr-2"></i>
+                                            Available Corrections
+                                        </p>
+                                        <p class="text-orange-700">Only name and T-shirt size can be modified</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">Final Deadline</p>
-                                        <p class="text-gray-600">August 20, 2025 - No changes after this date</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-red-500">
+                                        <p class="font-bold text-red-800 mb-1 flex items-center">
+                                            <i class="fas fa-clock text-red-600 mr-2"></i>
+                                            Final Deadline
+                                        </p>
+                                        <p class="text-red-700">August 20, 2025 - No changes after this date</p>
                                     </div>
                                 </div>
-                                <div class="space-y-3">
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">অনুসন্ধানের পদ্ধতি</p>
-                                        <p class="text-gray-600">মোবাইল নম্বর অথবা ট্রানজেকশন আইডি ব্যবহার করুন</p>
+                                <div class="space-y-4">
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-blue-500">
+                                        <p class="font-bold text-blue-800 mb-1 flex items-center">
+                                            <i class="fas fa-search text-blue-600 mr-2"></i>
+                                            অনুসন্ধানের পদ্ধতি
+                                        </p>
+                                        <p class="text-blue-700">মোবাইল নম্বর অথবা ট্রানজেকশন আইডি ব্যবহার করুন</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">পেমেন্ট স্ট্যাটাস</p>
-                                        <p class="text-gray-600">"Confirmed" মানে আপনি রেস ডের জন্য প্রস্তুত</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-green-500">
+                                        <p class="font-bold text-green-800 mb-1 flex items-center">
+                                            <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                            পেমেন্ট স্ট্যাটাস
+                                        </p>
+                                        <p class="text-green-700">"Confirmed" মানে আপনি রেস ডের জন্য প্রস্তুত</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">সংশোধনের সুবিধা</p>
-                                        <p class="text-gray-600">শুধুমাত্র নাম ও টি-শার্ট সাইজ পরিবর্তন করা যাবে</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-orange-500">
+                                        <p class="font-bold text-orange-800 mb-1 flex items-center">
+                                            <i class="fas fa-edit text-orange-600 mr-2"></i>
+                                            সংশোধনের সুবিধা
+                                        </p>
+                                        <p class="text-orange-700">শুধুমাত্র নাম ও টি-শার্ট সাইজ পরিবর্তন করা যাবে</p>
                                     </div>
-                                    <div>
-                                        <p class="font-semibold text-gray-800 mb-1">চূড়ান্ত সময়সীমা</p>
-                                        <p class="text-gray-600">২০ আগস্ট ২০২৫ - এর পর কোনো পরিবর্তন নয়</p>
+                                    <div class="p-3 bg-white/70 rounded-lg border-l-4 border-red-500">
+                                        <p class="font-bold text-red-800 mb-1 flex items-center">
+                                            <i class="fas fa-clock text-red-600 mr-2"></i>
+                                            চূড়ান্ত সময়সীমা
+                                        </p>
+                                        <p class="text-red-700">২০ আগস্ট ২০২৫ - এর পর কোনো পরিবর্তন নয়</p>
                                     </div>
                                 </div>
                             </div>
@@ -460,12 +589,12 @@
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <p class="text-green-700 text-sm leading-relaxed">
-                                        This verification system connects directly to our secure registration database. All information displayed is real-time and accurate. After successful verification, you will receive your BIB number assignment and race kit collection details.
+                                        This verification system connects directly to our secure registration database. All information displayed is real-time and accurate.
                                     </p>
                                 </div>
                                 <div>
                                     <p class="text-green-700 text-sm leading-relaxed">
-                                        এই যাচাইকরণ সিস্টেম সরাসরি আমাদের নিরাপদ নিবন্ধন ডেটাবেসের সাথে সংযুক্ত। প্রদর্শিত সকল তথ্য রিয়েল-টাইম এবং নির্ভুল। সফল যাচাইয়ের পর আপনি আপনার বিব নম্বর এবং রেস কিট সংগ্রহের বিস্তারিত তথ্য পাবেন।
+                                        এই যাচাইকরণ সিস্টেম সরাসরি আমাদের নিরাপদ নিবন্ধন ডেটাবেসের সাথে সংযুক্ত। প্রদর্শিত সকল তথ্য রিয়েল-টাইম এবং নির্ভুল।
                                     </p>
                                 </div>
                             </div>
@@ -473,8 +602,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Search Form -->
             <div class="modern-card p-6 mb-8 scale-in">
                 <div class="text-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Search Your Registration</h3>
@@ -626,7 +753,7 @@
                     </h4>
                     
                     <!-- Primary Contact -->
-                    <div class="grid md:grid-cols-2 gap-4 text-center mb-4">
+                    <div class="grid md:grid-cols-2 gap-4 text-center">
                         <div class="space-y-2">
                             <div class="flex items-center justify-center space-x-2">
                                 <i class="fas fa-envelope text-blue-600"></i>
@@ -648,48 +775,6 @@
                                     +880 1521-334388
                                 </a>
                             </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Additional Contact Numbers -->
-                    <div class="border-t border-gray-300 pt-4">
-                        <h5 class="font-semibold text-gray-700 text-center mb-3">
-                            Alternative Contact Numbers | বিকল্প যোগাযোগ নম্বর
-                        </h5>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                            <div class="space-y-1">
-                                <div class="flex items-center justify-center space-x-2">
-                                    <i class="fas fa-phone text-blue-600 text-sm"></i>
-                                    <span class="text-gray-600 text-sm">Contact 1</span>
-                                </div>
-                                <p class="text-blue-600 text-sm font-mono">
-                                    <a href="tel:+8801568082587" class="hover:underline">
-                                        01568-082587
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="space-y-1">
-                                <div class="flex items-center justify-center space-x-2">
-                                    <i class="fas fa-phone text-blue-600 text-sm"></i>
-                                    <span class="text-gray-600 text-sm">Contact 2</span>
-                                </div>
-                                <p class="text-blue-600 text-sm font-mono">
-                                    <a href="tel:+8801316891926" class="hover:underline">
-                                        01316891926
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="space-y-1">
-                                <div class="flex items-center justify-center space-x-2">
-                                    <i class="fas fa-phone text-blue-600 text-sm"></i>
-                                    <span class="text-gray-600 text-sm">Contact 3</span>
-                                </div>
-                                <p class="text-blue-600 text-sm font-mono">
-                                    <a href="tel:+8801757763615" class="hover:underline">
-                                        01757763615
-                                    </a>
-                                </p>
-                            </div>
                         </div>
                     </div>
                     
