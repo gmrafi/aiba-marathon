@@ -1116,20 +1116,49 @@
                                 </span>
                             </div>
                             
-                            <!-- Ultra Modern Verified Badge -->
-                            <div class="relative">
-                                <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
-                                    <div class="bg-white rounded-2xl px-6 py-3">
-                                        <div class="flex items-center space-x-3">
-                                            <div class="relative">
-                                                <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                                                    <i class="fas fa-check text-white text-sm font-bold"></i>
-                                                </div>
-                                                <div class="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+                            <!-- Status Row with Payment, Verified, and Data Status -->
+                            <div class="flex items-center justify-between w-full gap-6">
+                                <!-- Left: Payment Status -->
+                                <div class="flex-1 max-w-xs">
+                                    <div class="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                                        <div class="bg-white rounded-2xl px-4 py-2">
+                                            <div class="text-center" id="paymentStatusDesktop">
+                                                <span class="block font-bold text-gray-800 text-sm">Payment Pending</span>
+                                                <span class="block text-xs text-gray-500">Processing</span>
                                             </div>
-                                            <div class="text-left">
-                                                <span class="block font-bold text-gray-800 text-base">VERIFIED</span>
-                                                <span class="block text-xs text-gray-500">Registration Confirmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center: Ultra Modern Verified Badge -->
+                                <div class="flex-1 flex justify-center">
+                                    <div class="relative" id="verificationBadgeDesktop">
+                                        <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                                            <div class="bg-white rounded-2xl px-6 py-3">
+                                                <div class="flex items-center space-x-3">
+                                                    <div class="relative">
+                                                        <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                                                            <i class="fas fa-check text-white text-sm font-bold"></i>
+                                                        </div>
+                                                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+                                                    </div>
+                                                    <div class="text-left">
+                                                        <span class="block font-bold text-gray-800 text-base">VERIFIED</span>
+                                                        <span class="block text-xs text-gray-500">Registration Confirmed</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right: Data Connected -->
+                                <div class="flex-1 max-w-xs flex justify-end">
+                                    <div class="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 p-0.5 rounded-2xl shadow-lg">
+                                        <div class="bg-white rounded-2xl px-4 py-2">
+                                            <div class="text-center">
+                                                <span class="block font-bold text-gray-800 text-sm">Data Connected</span>
+                                                <span class="block text-xs text-gray-500">Live Status</span>
                                             </div>
                                         </div>
                                     </div>
@@ -1163,21 +1192,44 @@
                                 </span>
                             </div>
                             
-                            <!-- Ultra Modern Verified Badge -->
-                            <div class="relative">
-                                <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
-                                    <div class="bg-white rounded-2xl px-5 py-2">
-                                        <div class="flex items-center space-x-2">
-                                            <div class="relative">
-                                                <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                                                    <i class="fas fa-check text-white text-xs font-bold"></i>
+                            <!-- Status Row with Payment, Verified, and Data Status -->
+                            <div class="flex flex-col space-y-3 w-full">
+                                <!-- Payment Status -->
+                                <div class="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                                    <div class="bg-white rounded-2xl px-4 py-2">
+                                        <div class="text-center" id="paymentStatusMobile">
+                                            <span class="block font-bold text-gray-800 text-sm">Payment Pending</span>
+                                            <span class="block text-xs text-gray-500">Processing</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Ultra Modern Verified Badge -->
+                                <div class="relative flex justify-center" id="verificationBadgeMobile">
+                                    <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                                        <div class="bg-white rounded-2xl px-5 py-2">
+                                            <div class="flex items-center space-x-2">
+                                                <div class="relative">
+                                                    <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                                                        <i class="fas fa-check text-white text-xs font-bold"></i>
+                                                    </div>
+                                                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
                                                 </div>
-                                                <div class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+                                                <div class="text-center">
+                                                    <span class="block font-bold text-gray-800 text-sm">VERIFIED</span>
+                                                    <span class="block text-xs text-gray-500">Confirmed</span>
+                                                </div>
                                             </div>
-                                            <div class="text-center">
-                                                <span class="block font-bold text-gray-800 text-sm">VERIFIED</span>
-                                                <span class="block text-xs text-gray-500">Confirmed</span>
-                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Data Connected -->
+                                <div class="bg-gradient-to-r from-green-500 via-teal-500 to-blue-500 p-0.5 rounded-2xl shadow-lg">
+                                    <div class="bg-white rounded-2xl px-4 py-2">
+                                        <div class="text-center">
+                                            <span class="block font-bold text-gray-800 text-sm">Data Connected</span>
+                                            <span class="block text-xs text-gray-500">Live Status</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1335,6 +1387,144 @@
             resultsContainer.innerHTML = html;
             resultsContainer.classList.remove('hidden');
             resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Update payment status in header badges
+            updatePaymentStatusBadges(registration.paymentStatus);
+        }
+
+        // Update payment status badges in header
+        function updatePaymentStatusBadges(paymentStatus) {
+            const isConfirmed = paymentStatus === 'Confirmed' || paymentStatus === 'Confirm';
+            
+            // Update desktop version
+            const desktopStatus = document.getElementById('paymentStatusDesktop');
+            const desktopVerification = document.getElementById('verificationBadgeDesktop');
+            
+            if (desktopStatus) {
+                if (isConfirmed) {
+                    desktopStatus.innerHTML = `
+                        <span class="block font-bold text-gray-800 text-sm">Payment Verified</span>
+                        <span class="block text-xs text-gray-500">Confirmed</span>
+                    `;
+                    desktopStatus.parentElement.parentElement.className = 'bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 p-0.5 rounded-2xl shadow-lg';
+                } else {
+                    desktopStatus.innerHTML = `
+                        <span class="block font-bold text-gray-800 text-sm">Payment Pending</span>
+                        <span class="block text-xs text-gray-500">Processing</span>
+                    `;
+                    desktopStatus.parentElement.parentElement.className = 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0.5 rounded-2xl shadow-lg';
+                }
+            }
+            
+            // Update verification badge based on payment status
+            if (desktopVerification) {
+                if (isConfirmed) {
+                    // Payment confirmed - show verified
+                    desktopVerification.innerHTML = `
+                        <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                            <div class="bg-white rounded-2xl px-6 py-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="relative">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-check text-white text-sm font-bold"></i>
+                                        </div>
+                                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="block font-bold text-gray-800 text-base">VERIFIED</span>
+                                        <span class="block text-xs text-gray-500">Registration Confirmed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Payment not confirmed - show not confirmed
+                    desktopVerification.innerHTML = `
+                        <div class="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 p-0.5 rounded-2xl shadow-lg">
+                            <div class="bg-white rounded-2xl px-6 py-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="relative">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-red-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-exclamation text-white text-sm font-bold"></i>
+                                        </div>
+                                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-red-400 to-pink-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="text-left">
+                                        <span class="block font-bold text-gray-800 text-base">NOT CONFIRMED</span>
+                                        <span class="block text-xs text-gray-500">Payment Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Update mobile version
+            const mobileStatus = document.getElementById('paymentStatusMobile');
+            const mobileVerification = document.getElementById('verificationBadgeMobile');
+            
+            if (mobileStatus) {
+                if (isConfirmed) {
+                    mobileStatus.innerHTML = `
+                        <span class="block font-bold text-gray-800 text-sm">Payment Verified</span>
+                        <span class="block text-xs text-gray-500">Confirmed</span>
+                    `;
+                    mobileStatus.parentElement.parentElement.className = 'bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 p-0.5 rounded-2xl shadow-lg';
+                } else {
+                    mobileStatus.innerHTML = `
+                        <span class="block font-bold text-gray-800 text-sm">Payment Pending</span>
+                        <span class="block text-xs text-gray-500">Processing</span>
+                    `;
+                    mobileStatus.parentElement.parentElement.className = 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 p-0.5 rounded-2xl shadow-lg';
+                }
+            }
+            
+            // Update mobile verification badge
+            if (mobileVerification) {
+                if (isConfirmed) {
+                    // Payment confirmed - show verified
+                    mobileVerification.innerHTML = `
+                        <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-0.5 rounded-2xl shadow-lg">
+                            <div class="bg-white rounded-2xl px-5 py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="relative">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-check text-white text-xs font-bold"></i>
+                                        </div>
+                                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="block font-bold text-gray-800 text-sm">VERIFIED</span>
+                                        <span class="block text-xs text-gray-500">Confirmed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Payment not confirmed - show not confirmed
+                    mobileVerification.innerHTML = `
+                        <div class="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 p-0.5 rounded-2xl shadow-lg">
+                            <div class="bg-white rounded-2xl px-5 py-2">
+                                <div class="flex items-center space-x-2">
+                                    <div class="relative">
+                                        <div class="w-8 h-8 bg-gradient-to-r from-red-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                                            <i class="fas fa-exclamation text-white text-xs font-bold"></i>
+                                        </div>
+                                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-red-400 to-pink-500 rounded-full animate-pulse"></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="block font-bold text-gray-800 text-sm">NOT CONFIRMED</span>
+                                        <span class="block text-xs text-gray-500">Payment Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
         }
 
         // Display not found message
