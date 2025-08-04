@@ -7,14 +7,32 @@ Allow: /registration.html
 Allow: /race-day.html
 Allow: /notices.html
 Allow: /team.html
+Allow: /org.html
+Allow: /bib.html
+Allow: /payment-verification.html
+Allow: /confirmation.html
+Allow: /weather.html
+Allow: /general-query.html
+Allow: /correction.html
 
 # Allow images and CSS
 Allow: /photos/
 Allow: /*.css
 Allow: /*.js
 
+# Disallow admin/test files
+Disallow: /confirmation-debug.html
+Disallow: /confirmation-fixed.html
+Disallow: /test-confirmation.html
+Disallow: /simple-confirmation.html
+Disallow: /index copy.html
+Disallow: /README copy.md
+
 # Sitemap location
 Sitemap: https://justicehalfmarathon.com/sitemap.xml
 
 # Crawl delay (optional - 1 second between requests)
 Crawl-delay: 1
+
+# Website developed by GM Rafi
+# Contact: https://me.gmrafi.com

@@ -173,6 +173,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 margin-right: auto !important;
             }
             
+            /* Mobile Header Specific Styles */
+            header {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            
+            header .block.xl\\:hidden {
+                padding: 1.5rem 1rem !important;
+            }
+            
+            header .block.xl\\:hidden img[alt="Event Logo"] {
+                height: 9rem !important; /* h-36 = 144px = 9rem */
+                margin-bottom: 1rem !important;
+                filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+            }
+            
+            header .block.xl\\:hidden img[alt*="Logo"]:not([alt="Event Logo"]) {
+                height: 5rem !important; /* h-20 = 80px = 5rem */
+                width: 5rem !important;
+                border: 3px solid #005840;
+            }
+            
+            header .block.xl\\:hidden span {
+                font-size: 1.875rem !important; /* text-3xl */
+                line-height: 2.25rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            header .block.xl\\:hidden .text-base {
+                font-size: 1.125rem !important; /* text-lg */
+                line-height: 1.75rem !important;
+                font-weight: 600 !important;
+            }
+            
+            header .block.xl\\:hidden a {
+                padding: 0.75rem 1.25rem !important;
+                font-size: 1rem !important;
+                font-weight: 600 !important;
+                border: 1px solid #005840;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(4px);
+            }
+            
             section, header, footer {
                 border-radius: 0 !important;
                 margin-left: 0 !important;
@@ -290,7 +333,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .flex-wrap {
                 gap: 0.5rem !important;
             }
+        }
+
+        /* Tablet specific styles */
+        @media (min-width: 641px) and (max-width: 1279px) {
+            header .block.xl\\:hidden {
+                padding: 2rem 1.5rem !important;
+            }
             
+            header .block.xl\\:hidden img[alt="Event Logo"] {
+                height: 10rem !important; /* h-40 = 160px = 10rem */
+                margin-bottom: 1.5rem !important;
+            }
+            
+            header .block.xl\\:hidden img[alt*="Logo"]:not([alt="Event Logo"]) {
+                height: 6rem !important; /* h-24 = 96px = 6rem */
+                width: 6rem !important;
+                border: 3px solid #005840;
+            }
+            
+            header .block.xl\\:hidden span:first-of-type {
+                font-size: 2.25rem !important; /* text-4xl */
+                line-height: 2.5rem !important;
+            }
+            
+            header .block.xl\\:hidden .text-base {
+                font-size: 1.25rem !important; /* text-xl */
+                line-height: 1.75rem !important;
+            }
+            
+            header .block.xl\\:hidden a {
+                padding: 1rem 1.5rem !important;
+                font-size: 1.125rem !important; /* text-lg */
+                font-weight: 600 !important;
+            }
+        }
+        
+        @media (max-width: 640px) {
             /* Countdown timer responsiveness */
             .flex.justify-center.gap-4 {
                 gap: 0.5rem !important;
@@ -488,21 +567,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <!-- Mobile & Tablet: show same header for all screens below xl, NOT sticky/fixed -->
             <div class="block xl:hidden">
-                <div class="flex flex-col items-center w-full gap-4 py-4">
-                    <img src="photos/logo3.png" alt="Event Logo" class="h-28 w-auto sm:h-32 object-contain mb-3 shadow-2xl">
-                    <div class="flex flex-row items-center justify-center gap-8 w-full mb-2">
-                        <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
-                        <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover">
+                <div class="flex flex-col items-center w-full gap-6 py-6">
+                    <img src="photos/logo3.png" alt="Event Logo" class="h-36 w-auto sm:h-40 object-contain mb-4 shadow-2xl">
+                    <div class="flex flex-row items-center justify-center gap-10 w-full mb-4">
+                        <img src="photos/aiba.jpg" alt="AIBA Logo" class="h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover shadow-lg">
+                        <img src="photos/aibahtc.jpg" alt="Club Logo" class="h-20 w-20 sm:h-24 sm:w-24 rounded-full object-cover shadow-lg">
                     </div>
-                    <span class="block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight whitespace-nowrap">Justice Half Marathon <span class="text-[#005840]">2025</span></span>
-                    <span class="block text-xs sm:text-base text-[#005840] font-medium tracking-wide whitespace-nowrap mb-2">Army IBA Hiking & Trekking Club, Sylhet</span>
-                    <div class="flex flex-wrap justify-center items-center gap-2 text-gray-900 font-semibold text-sm sm:text-base mt-2">
-                        <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Home</a>
-                        <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">About</a>
-                        <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Register</a>
-                        <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Route</a>
-                        <a href="team.html" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Team</a>
-                        <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-4 py-2 rounded-xl transition">Contact</a>
+                    <span class="block text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-wide drop-shadow-lg leading-tight text-center px-2">Justice Half Marathon <span class="text-[#005840]">2025</span></span>
+                    <span class="block text-base sm:text-lg text-[#005840] font-semibold tracking-wide text-center mb-4 px-2">Army IBA Hiking & Trekking Club, Sylhet</span>
+                    <div class="flex flex-wrap justify-center items-center gap-3 text-gray-900 font-semibold text-base sm:text-lg mt-4">
+                        <a href="index.html#home" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">Home</a>
+                        <a href="index.html#about" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">About</a>
+                        <a href="registration.html" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">Register</a>
+                        <a href="index.html#route" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">Route</a>
+                        <a href="team.html" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">Team</a>
+                        <a href="index.html#contact" class="hover:bg-[#005840] hover:text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md">Contact</a>
                     </div>
                 </div>
             </div>
