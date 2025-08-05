@@ -6,14 +6,43 @@
 [![Website](https://img.shields.io/website?url=https%3A//justicehalfmarathon.com)](https://justicehalfmarathon.com)
 [![License](https://img.shields.io/badge/License-Copyright%202025-red)](LICENSE.md)
 [![Event Date](https://img.shields.io/badge/Event%20Date-26%20September%202025-green)](https://justicehalfmarathon.com)
+[![Version](https://img.shields.io/badge/Version-v2.0.0-blue)](https://github.com/gmrafi/aiba-marathon/releases)
+
+## 🚀 Latest Release - v2.0.0
+
+**Multi-Domain Accessibility Enhancement** - The Justice Half Marathon website is now accessible through multiple primary domains for enhanced user experience:
+
+### 🌐 Access Points:
+- **Main Website**: [justicehalfmarathon.com](https://www.justicehalfmarathon.com/)
+- **Alternative Domains**: 
+  - [aiba-marathon.gmrafi.com](https://aiba-marathon.gmrafi.com/)
+  - [marathon.gmrafi.com](https://marathon.gmrafi.com/)
+  - [aiba-marathon.vercel.app](https://aiba-marathon.vercel.app)
+- **GitHub Repository**: [github.com/gmrafi/aiba-marathon](https://github.com/gmrafi/aiba-marathon)
+- **GitHub Pages**: [gmrafi.github.io/aiba-marathon](https://gmrafi.github.io/aiba-marathon)
+
+### 🏃‍♂️ About Justice Half Marathon 2025
+Organized by the Army IBA Hiking and Trekking Club, Sylhet, the Justice Half Marathon 2025 is an **on-ground event only**, bringing together runners from all over Bangladesh. Join us for a scenic run, professional organization, and a host of facilities and rewards!
 
 ## 🎯 About the Project
 
 Justice Half Marathon 2025 is a comprehensive web-based platform for Bangladesh's premier running event organized by Army Institute of Business Administration - Hiking & Trekking Club, Sylhet. This platform handles everything from event promotion to registration, payment processing, and participant management.
 
+### 🏫 About Army Institute of Business Administration (AIBA), Sylhet
+
+Army Institute of Business Administration (AIBA), Sylhet is a prestigious educational institution affiliated with Bangladesh University of Professionals (BUP). Established as part of Bangladesh's defense education system, AIBA Sylhet offers high-quality business education with a focus on leadership development, strategic thinking, and professional excellence.
+
+**Key Features of AIBA Sylhet:**
+- **Affiliation**: Bangladesh University of Professionals (BUP)
+- **Location**: Jalalabad Cantonment, Sylhet
+- **Programs**: Bachelor of Business Administration (BBA) and related business programs
+- **Focus**: Leadership development, business ethics, and professional competency
+- **Environment**: Disciplined academic atmosphere with military precision
+- **Student Activities**: Active clubs including Hiking & Trekking Club, ICT Club, Business Club, Debate Club, and Sports AIBA
+
 **🌐 Live Website**: [justicehalfmarathon.com](https://justicehalfmarathon.com)  
 **📅 Event Date**: 26th September, 2025  
-**📍 Location**: Army IBA Sylhet ↔ Gotatikor Point, Sylhet Cantonment
+**📍 Location**: Army IBA Sylhet, Sylhet Cantonment, Sylhet
 
 ## 🏃‍♀️ Event Categories
 
@@ -61,13 +90,6 @@ Justice Half Marathon 2025 is a comprehensive web-based platform for Bangladesh'
 - **Missing Data Reports**: Handle incomplete registrations
 - **General Query System**: Support request management
 - **Privacy Protection**: Masked email display for security
-
-### 👥 Admin Dashboard
-- **Real-time Statistics**: Registration and payment analytics
-- **Participant Management**: View and manage registrations
-- **Payment Verification**: Manual payment confirmation tools
-- **Export Functionality**: Data export for race management
-- **Communication Tools**: Bulk SMS and email capabilities
 
 ## 🏗️ Technical Architecture
 
@@ -199,13 +221,6 @@ cd aiba-marathon
 - **Missing Data**: Report incomplete registrations
 - **Support Queries**: General support request system
 
-### Admin Dashboard (`org.html`)
-- **Real-time Analytics**: Registration and payment statistics
-- **Participant Management**: Search and view registrations
-- **Payment Verification**: Manual payment confirmation
-- **Bulk Operations**: Mass communications and updates
-- **Data Export**: Excel/CSV export functionality
-
 ## 🎨 Design & Branding
 
 ### Color Scheme
@@ -316,14 +331,20 @@ cd aiba-marathon
 - **Visuals & Editing**: Ahmed Hamim Enan - 01757763615
 
 ### Official Channels
-- **Email**: marathon@aiba.edu.bd
-- **Website**: justicehalfmarathon.com
+- **Email**: info@aibasylhet.edu.bd
+- **Website**: aibasylhet.edu.bd
 - **Address**: Army Institute of Business Administration, Sylhet
 
 ### Technical Support
 - **Developer**: MD Golam Mubasshir Rafi
-- **Email**: gmrafi365@gmail.com
-- **Platform**: Advanced web development and system integration
+- **Position**: 2nd Year BBA Student
+- **Institution**: Army Institute of Business Administration, Sylhet
+
+- **Email**: gmrafi365@gmail.com, rafi@gmrafi.com
+- **Website**: [gmrafi.com](https://gmrafi.com)
+- **GitHub**: [github.com/gmrafi](https://github.com/gmrafi)
+- **LinkedIn**: [linkedin.com/in/gmrafi](https://linkedin.com/in/gmrafi)
+- **Specialization**: Business Research, Open-source Contribution, Web Development
 
 ## 📅 Important Dates
 
@@ -377,6 +398,3 @@ This project is the intellectual property of MD Golam Mubasshir Rafi. The websit
 For licensing inquiries or permission requests, contact: **gmrafi365@gmail.com**
 
 ---
-
-**Built with ❤️ for Justice Half Marathon 2025**  
-*Empowering Bangladesh's running community through technology*
