@@ -6,18 +6,20 @@
 [![Website](https://img.shields.io/website?url=https%3A//justicehalfmarathon.com)](https://justicehalfmarathon.com)
 [![License](https://img.shields.io/badge/License-Copyright%202025-red)](LICENSE.md)
 [![Event Date](https://img.shields.io/badge/Event%20Date-26%20September%202025-green)](https://justicehalfmarathon.com)
-[![Version](https://img.shields.io/badge/Version-v2.0.0-blue)](https://github.com/gmrafi/aiba-marathon/releases)
+[![Version](https://img.shields.io/badge/Version-v3.0.0-blue)](https://github.com/gmrafi/aiba-marathon/releases)
 
-## 🚀 Latest Release - v2.0.0
+## 🚀 Latest Release - v3.0.0
 
-**Multi-Domain Accessibility Enhancement** - The Justice Half Marathon website is now accessible through multiple primary domains for enhanced user experience:
+**Major Feature Release** - The Justice Half Marathon website now includes comprehensive confirmation system, data correction features, and enhanced multi-platform deployment:
 
 ### 🌐 Access Points:
 - **Main Website**: [justicehalfmarathon.com](https://www.justicehalfmarathon.com/)
 - **Alternative Domains**: 
-  - [aiba-marathon.gmrafi.com](https://aiba-marathon.gmrafi.com/)
-  - [marathon.gmrafi.com](https://marathon.gmrafi.com/)
-  - [aiba-marathon.vercel.app](https://aiba-marathon.vercel.app)
+  - [jhm25.onrender.com](https://jhm25.onrender.com/) - Render hosting (**NEW**)
+  - [web.justicehalfmarathon.com](http://web.justicehalfmarathon.com/) - Netlify hosting (**NEW**)
+  - [aiba-marathon.vercel.app](https://aiba-marathon.vercel.app) - Vercel hosting
+  - [aiba-marathon.gmrafi.com](https://aiba-marathon.gmrafi.com/) - Custom subdomain
+  - [marathon.gmrafi.com](https://marathon.gmrafi.com/) - Alternative subdomain
 - **GitHub Repository**: [github.com/gmrafi/aiba-marathon](https://github.com/gmrafi/aiba-marathon)
 - **GitHub Pages**: [gmrafi.github.io/aiba-marathon](https://gmrafi.github.io/aiba-marathon)
 
@@ -113,9 +115,13 @@ Army Institute of Business Administration (AIBA), Sylhet is a prestigious educat
 
 ### Deployment & Hosting
 - **Vercel**: Primary hosting platform
-- **GitHub Pages**: Backup hosting option
+- **Render**: Backup hosting platform
+- **Netlify**: Secondary backup hosting
+- **GitHub Pages**: Development and backup hosting
 - **Custom Domain**: justicehalfmarathon.com
-- **CDN**: Global content delivery network
+- **Alternative Subdomains**: aiba-marathon.gmrafi.com, marathon.gmrafi.com
+- **Cloudflare**: CDN and security services
+- **SSL**: Automatic HTTPS certificate
 
 ## 📁 Project Structure
 
@@ -365,7 +371,11 @@ cd aiba-marathon
 
 ### Third-party Services
 - **bKash**: Payment processing
-- **Vercel**: Hosting platform
+- **Vercel**: Primary hosting platform
+- **Render**: Backup hosting platform
+- **Netlify**: Secondary backup hosting
+- **GitHub Pages**: Development hosting
+- **Cloudflare**: CDN and security services
 - **Google Analytics**: Usage tracking
 - **Hotjar**: User experience monitoring
 
