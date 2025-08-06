@@ -16,7 +16,7 @@
 - **Main Website**: [justicehalfmarathon.com](https://www.justicehalfmarathon.com/)
 - **Alternative Domains**: 
   - [jhm25.onrender.com](https://jhm25.onrender.com/) - Render hosting (**NEW**)
-  - [web.justicehalfmarathon.com](http://web.justicehalfmarathon.com/) - Netlify hosting (**NEW**)
+  - [web.justicehalfmarathon.com](http://web.justicehalfmarathon.com/) - Cloudflare Page hosting (**NEW**)
   - [aiba-marathon.vercel.app](https://aiba-marathon.vercel.app) - Vercel hosting
   - [aiba-marathon.gmrafi.com](https://aiba-marathon.gmrafi.com/) - Custom subdomain
   - [marathon.gmrafi.com](https://marathon.gmrafi.com/) - Alternative subdomain
@@ -115,8 +115,8 @@ Army Institute of Business Administration (AIBA), Sylhet is a prestigious educat
 
 ### Deployment & Hosting
 - **Vercel**: Primary hosting platform
-- **Render**: Backup hosting platform
-- **Netlify**: Secondary backup hosting
+- **Cloudflare Page**: Backup hosting platform
+- **Render**: Secondary backup hosting
 - **GitHub Pages**: Development and backup hosting
 - **Custom Domain**: justicehalfmarathon.com
 - **Alternative Subdomains**: aiba-marathon.gmrafi.com, marathon.gmrafi.com
@@ -292,7 +292,7 @@ cd aiba-marathon
 
 ### Production Hosting
 - **Primary**: Vercel with custom domain
-- **Backup**: GitHub Pages
+- **Backup**: Cloudflare Page, GitHub Pages
 - **CDN**: Global content delivery
 - **SSL**: Automatic HTTPS certificate
 
@@ -331,11 +331,6 @@ cd aiba-marathon
 
 ## 📞 Support & Contact
 
-### Event Organizers
-- **President**: Hasib Hasan Moon - 01568-082587
-- **Vice President**: Muftasim Fuad Zim - 01316891926
-- **Visuals & Editing**: Ahmed Hamim Enan - 01757763615
-
 ### Official Channels
 - **Email**: info@aibasylhet.edu.bd
 - **Website**: aibasylhet.edu.bd
@@ -372,22 +367,13 @@ cd aiba-marathon
 ### Third-party Services
 - **bKash**: Payment processing
 - **Vercel**: Primary hosting platform
-- **Render**: Backup hosting platform
-- **Netlify**: Secondary backup hosting
+- **Cloudflare Page**: Backup hosting platform
+- **Render**: Secondary backup hosting
 - **GitHub Pages**: Development hosting
 - **Cloudflare**: CDN and security services
 - **Google Analytics**: Usage tracking
 - **Hotjar**: User experience monitoring
 
-## 🏆 Recognition
-
-This project represents a comprehensive digital solution for marathon event management in Bangladesh, combining modern web technologies with local payment systems and organizational needs.
-
-### Awards & Recognition
-- Complete digital transformation of traditional marathon registration
-- Integration of local payment systems (bKash) with international standards
-- Multilingual support for diverse participant base
-- Professional race management system
 
 ## 📄 Copyright & License
 
@@ -406,5 +392,3 @@ This project is the intellectual property of MD Golam Mubasshir Rafi. The websit
 - **Sub-licensing**: Cannot grant licenses to third parties
 
 For licensing inquiries or permission requests, contact: **gmrafi365@gmail.com**
-
----
