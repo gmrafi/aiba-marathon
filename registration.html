@@ -189,23 +189,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Registration Deadline Countdown -->
         <div id="reg-deadline-countdown-wrapper" class="mt-4">
           <div class="text-base mt-2 font-normal"><span class="text-[#005840]">Registration Deadline:</span> <b>10th August, 2025</b></div>
-          <div id="reg-deadline-countdown" class="flex justify-center gap-4 text-center">
+          <div class="flex justify-center gap-4 text-center my-4">
             <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
-              <span id="reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
               <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Days</span>
             </div>
             <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
-              <span id="reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
               <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Hours</span>
             </div>
             <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
-              <span id="reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
               <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Minutes</span>
             </div>
             <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
-              <span id="reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]"></span>
+              <span class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
               <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Seconds</span>
             </div>
+          </div>
+          <div class="text-center mt-2">
+            <span class="text-red-600 font-bold text-lg">Registration Closed! ⏰</span>
           </div>
         </div>
                     <script>
@@ -327,11 +330,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </p>
             <div class="w-full flex justify-center">
         <div class="w-full text-center py-12">
-          <div class="inline-block bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-2xl shadow-lg">
-            <h2 class="text-3xl font-extrabold mb-2">Registration Closed</h2>
-            <p class="text-lg font-semibold">We are sorry, online registration for Justice Half Marathon 2025 is now closed.</p>
-            <p class="text-base mt-2">Thank you for your overwhelming response!<br>See you on race day!</p>
-          </div>
+                    <div class="flex flex-col items-center">
+                        <div id="reg-deadline-countdown" class="flex justify-center gap-4 text-center mb-6">
+                            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                              <span id="reg-days" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
+                              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Days</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                              <span id="reg-hours" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
+                              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Hours</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                              <span id="reg-minutes" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
+                              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Minutes</span>
+                            </div>
+                            <div class="bg-gradient-to-br from-[#e0e7ff] to-[#c7d2fe] border border-[#5271ff] rounded-xl px-4 py-2">
+                              <span id="reg-seconds" class="block text-3xl md:text-4xl font-extrabold text-[#5271ff]">00</span>
+                              <span class="block text-xs md:text-sm text-[#5271ff] font-semibold">Seconds</span>
+                            </div>
+                        </div>
+                        <div class="inline-block bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-2xl shadow-lg">
+                            <h2 class="text-3xl font-extrabold mb-2">Registration Closed</h2>
+                            <p class="text-lg font-semibold">We are sorry, online registration for Justice Half Marathon 2025 is now closed.</p>
+                            <p class="text-base mt-2">Thank you for your overwhelming response!<br>See you on race day!</p>
+                        </div>
+                    </div>
         </div>
             </div>
         </div>
