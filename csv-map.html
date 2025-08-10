@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অংশগ্রহণকারীদের ম্যাপ - Justice Half Marathon 2025</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .map-container {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .heat-legend {
+            background: linear-gradient(to right, #3b82f6, #06d6a0, #ffd60a, #ff8500, #e63946);
+            height: 20px;
+            border-radius: 10px;
+        }
+        .leaflet-popup-content {
+            font-family: 'SolaimanLipi', Arial, sans-serif;
+        }
+        .district-card {
+            transition: all 0.3s ease;
+        }
+        .district-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="photos/logo3.png" alt="Marathon Logo" class="h-12 w-auto">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">অংশগ্রহণকারীদের ম্যাপ</h1>
+                        <p class="text-gray-600">Justice Half Marathon 2025</p>
+                    </div>
+                </div>
+                <a href="index.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    হোমে ফিরে যান
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CSV Upload Section -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4">📊 আপনার ডেটা আপলোড করুন</h2>
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+                <div class="flex-1">
+                    <label for="csvFile" class="block text-sm font-medium text-gray-700 mb-2">
+                        CSV ফাইল বেছে নিন (নাম, জেলা, উপজেলা, ঠিকানা কলাম সহ)
+                    </label>
+                    <input type="file" id="csvFile" accept=".csv" 
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <button onclick="loadCSVData()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">
+                    ডেটা লোড করুন
+                </button>
+                <button onclick="loadSampleData()" class="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition">
+                    নমুনা ডেটা দেখুন
+                </button>
+            </div>
+            <div class="mt-4 text-sm text-gray-600">
+                <p><strong>ফাইল ফরম্যাট:</strong> CSV ফাইলে অবশ্যই থাকতে হবে: name, district, upazila, address কলাম</p>
+                <p><strong>উদাহরণ:</strong> জন ডো,ঢাকা,ধানমন্ডি,ধানমন্ডি ঢাকা</p>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" id="stats-container" style="display: none;">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">মোট অংশগ্রহণকারী</h3>
+                <p class="text-3xl font-bold text-blue-600" id="total-participants">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">মোট জেলা</h3>
+                <p class="text-3xl font-bold text-green-600" id="total-districts">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">সর্বোচ্চ অংশগ্রহণ</h3>
+                <p class="text-3xl font-bold text-orange-600" id="max-participation">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">গড় অংশগ্রহণ</h3>
+                <p class="text-3xl font-bold text-purple-600" id="avg-participation">0</p>
+            </div>
+        </div>
+
+        <!-- Map Controls -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" id="controls-container" style="display: none;">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <h3 class="text-lg font-semibold">ম্যাপ কন্ট্রোল:</h3>
+                    <select id="map-view" class="border border-gray-300 rounded-md px-3 py-2">
+                        <option value="district">জেলাভিত্তিক দেখুন</option>
+                        <option value="participants">অংশগ্রহণকারী দেখুন</option>
+                    </select>
+                </div>
+                
+                <!-- Legend -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm font-medium">কম</span>
+                    <div class="heat-legend w-32"></div>
+                    <span class="text-sm font-medium">বেশি</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8" id="map-container" style="display: none;">
+            <div id="map" class="map-container"></div>
+        </div>
+
+        <!-- District List -->
+        <div class="bg-white rounded-lg shadow-md p-6" id="district-list-container" style="display: none;">
+            <h3 class="text-xl font-bold mb-4">জেলাভিত্তিক অংশগ্রহণকারীর তালিকা</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="district-list">
+                <!-- District cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bangladesh district coordinates
+        const districtCoordinates = {
+            "ঢাকা": [23.8103, 90.4125], "চট্টগ্রাম": [22.3569, 91.7832], "সিলেট": [24.8949, 91.8687],
+            "রাজশাহী": [24.3745, 88.6042], "খুলনা": [22.8456, 89.5403], "বরিশাল": [22.7010, 90.3535],
+            "রংপুর": [25.7439, 89.2752], "ময়মনসিংহ": [24.7471, 90.4203], "কুমিল্লা": [23.4607, 91.1809],
+            "নারায়ণগঞ্জ": [23.6238, 90.4992], "গাজীপুর": [23.9999, 90.4203], "টাঙ্গাইল": [24.2513, 89.9167],
+            "নওগাঁ": [24.8171, 88.9298], "পাবনা": [24.0064, 89.2372], "সিরাজগঞ্জ": [24.4533, 89.7006],
+            "নাটোর": [24.4102, 88.9749], "চাঁপাইনবাবগঞ্জ": [24.6352, 88.2775], "কুষ্টিয়া": [23.9014, 89.1202],
+            "মেহেরপুর": [23.7627, 88.6318], "চুয়াডাঙ্গা": [23.6401, 88.8568], "ঝিনাইদহ": [23.5411, 89.1533],
+            "মাগুরা": [23.4855, 89.4198], "নড়াইল": [23.1727, 89.4912], "যশোর": [23.1634, 89.2182],
+            "সাতক্ষীরা": [22.7185, 89.0705], "বাগেরহাট": [22.6602, 89.7895], "পিরোজপুর": [22.5840, 89.9720],
+            "ঝালকাঠি": [22.6422, 90.1987], "বরগুনা": [22.0953, 90.1121], "পটুয়াখালী": [22.3590, 90.3298],
+            "ভোলা": [22.6859, 90.6482], "গোপালগঞ্জ": [23.0050, 89.8266], "ফরিদপুর": [23.6070, 89.8429],
+            "মাদারীপুর": [23.1641, 90.1896], "শরীয়তপুর": [23.2423, 90.4348], "রাজবাড়ী": [23.7574, 89.6444],
+            "মানিকগঞ্জ": [23.8644, 90.0047], "কিশোরগঞ্জ": [24.4449, 90.7766], "নেত্রকোনা": [24.8708, 90.7278],
+            "জামালপুর": [24.9375, 89.9775], "শেরপুর": [25.0204, 90.0174], "ব্রাহ্মণবাড়িয়া": [23.9571, 91.1115],
+            "হবিগঞ্জ": [24.3745, 91.4156], "মৌলভীবাজার": [24.4829, 91.7774], "সুনামগঞ্জ": [25.0658, 91.3950],
+            "নোয়াখালী": [22.8696, 91.0995], "লক্ষ্মীপুর": [22.9447, 90.8278], "ফেনী": [23.0159, 91.3976],
+            "চাঁদপুর": [23.2332, 90.6712], "মুন্সিগঞ্জ": [23.5422, 90.5305], "গাইবান্ধা": [25.3287, 89.5380],
+            "কুড়িগ্রাম": [25.8050, 89.6359], "লালমনিরহাট": [25.9165, 89.2832], "নীলফামারী": [25.9312, 88.8560],
+            "ঠাকুরগাঁও": [26.0336, 88.4616], "পঞ্চগড়": [26.3411, 88.5541], "দিনাজপুর": [25.6217, 88.6354],
+            "রাঙামাটি": [22.7324, 92.2985], "খাগড়াছড়ি": [23.1193, 91.9847], "বান্দরবান": [22.1953, 92.2183],
+            "কক্সবাজার": [21.4272, 92.0058]
+        };
+
+        let map;
+        let participantsData = {};
+        let allParticipants = [];
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([23.6850, 90.3563], 7);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+        }
+
+        // Load sample data for testing
+        function loadSampleData() {
+            const sampleData = [
+                { name: "আহমেদ আলী", district: "ঢাকা", upazila: "ধানমন্ডি", address: "ধানমন্ডি, ঢাকা" },
+                { name: "ফাতেমা খাতুন", district: "চট্টগ্রাম", upazila: "", address: "চট্টগ্রাম" },
+                { name: "মোহাম্মদ রহিম", district: "সিলেট", upazila: "সিলেট সদর", address: "সিলেট সদর" },
+                { name: "রাশিদা বেগম", district: "রাজশাহী", upazila: "", address: "রাজশাহী" },
+                { name: "করিম উদ্দিন", district: "খুলনা", upazila: "খুলনা সদর", address: "খুলনা সদর" },
+                // Add more sample data
+                { name: "সালমা খাতুন", district: "ঢাকা", upazila: "উত্তরা", address: "উত্তরা, ঢাকা" },
+                { name: "রফিক আহমেদ", district: "চট্টগ্রাম", upazila: "পাহাড়তলী", address: "পাহাড়তলী, চট্টগ্রাম" },
+                { name: "নাসির হোসেন", district: "সিলেট", upazila: "", address: "সিলেট" },
+                { name: "শাহিনুর রহমান", district: "রাজশাহী", upazila: "বোয়ালিয়া", address: "বোয়ালিয়া, রাজশাহী" },
+                { name: "আমিনা খাতুন", district: "বরিশাল", upazila: "", address: "বরিশাল" }
+            ];
+
+            processParticipantsData(sampleData);
+            showMessage("নমুনা ডেটা লোড হয়েছে!", "success");
+        }
+
+        // Load CSV data
+        function loadCSVData() {
+            const fileInput = document.getElementById('csvFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showMessage("দয়া করে একটি CSV ফাইল বেছে নিন!", "error");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const csv = e.target.result;
+                const data = parseCSV(csv);
+                processParticipantsData(data);
+                showMessage("ডেটা সফলভাবে লোড হয়েছে!", "success");
+            };
+            reader.readAsText(file);
+        }
+
+        // Parse CSV data
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const data = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim()) {
+                    const values = lines[i].split(',');
+                    const row = {};
+                    
+                    headers.forEach((header, index) => {
+                        row[header] = values[index] ? values[index].trim() : '';
+                    });
+                    
+                    data.push({
+                        name: row.name || row['নাম'] || '',
+                        district: row.district || row['জেলা'] || '',
+                        upazila: row.upazila || row['উপজেলা'] || '',
+                        address: row.address || row['ঠিকানা'] || ''
+                    });
+                }
+            }
+
+            return data;
+        }
+
+        // Process participants data
+        function processParticipantsData(data) {
+            allParticipants = data;
+            participantsData = {};
+
+            // Count participants by district
+            data.forEach(participant => {
+                const district = participant.district;
+                if (district && districtCoordinates[district]) {
+                    if (!participantsData[district]) {
+                        participantsData[district] = {
+                            count: 0,
+                            participants: [],
+                            lat: districtCoordinates[district][0],
+                            lng: districtCoordinates[district][1]
+                        };
+                    }
+                    participantsData[district].count++;
+                    participantsData[district].participants.push(participant);
+                }
+            });
+
+            // Show containers
+            document.getElementById('stats-container').style.display = 'grid';
+            document.getElementById('controls-container').style.display = 'block';
+            document.getElementById('map-container').style.display = 'block';
+            document.getElementById('district-list-container').style.display = 'block';
+
+            // Initialize map if not already done
+            if (!map) {
+                initMap();
+            }
+
+            updateMap();
+            updateStatistics();
+            updateDistrictList();
+        }
+
+        // Update map with markers
+        function updateMap() {
+            // Clear existing markers
+            map.eachLayer(function(layer) {
+                if (layer instanceof L.Marker || layer instanceof L.CircleMarker) {
+                    map.removeLayer(layer);
+                }
+            });
+
+            const maxCount = Math.max(...Object.values(participantsData).map(d => d.count));
+
+            Object.entries(participantsData).forEach(([district, data]) => {
+                const size = 10 + (data.count / maxCount) * 30;
+                const color = getColor(data.count, maxCount);
+
+                const marker = L.circleMarker([data.lat, data.lng], {
+                    radius: size,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                const popupContent = `
+                    <div class="p-3">
+                        <h3 class="font-bold text-lg text-gray-800">${district}</h3>
+                        <p class="text-gray-600">অংশগ্রহণকারী: <span class="font-semibold">${data.count} জন</span></p>
+                        <div class="mt-2">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: ${(data.count / maxCount) * 100}%"></div>
+                            </div>
+                        </div>
+                        <button onclick="showDistrictDetails('${district}')" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded text-sm">
+                            বিস্তারিত দেখুন
+                        </button>
+                    </div>
+                `;
+
+                marker.bindPopup(popupContent);
+            });
+        }
+
+        // Get color based on count
+        function getColor(count, maxCount) {
+            const intensity = count / maxCount;
+            
+            if (intensity > 0.8) return '#e63946'; // Red
+            if (intensity > 0.6) return '#ff8500'; // Orange
+            if (intensity > 0.4) return '#ffd60a'; // Yellow
+            if (intensity > 0.2) return '#06d6a0'; // Green
+            return '#3b82f6'; // Blue
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            const totalParticipants = allParticipants.length;
+            const totalDistricts = Object.keys(participantsData).length;
+            const maxParticipation = Math.max(...Object.values(participantsData).map(d => d.count));
+            const avgParticipation = Math.round(totalParticipants / totalDistricts);
+
+            document.getElementById('total-participants').textContent = totalParticipants;
+            document.getElementById('total-districts').textContent = totalDistricts;
+            document.getElementById('max-participation').textContent = maxParticipation;
+            document.getElementById('avg-participation').textContent = avgParticipation;
+        }
+
+        // Update district list
+        function updateDistrictList() {
+            const districtList = document.getElementById('district-list');
+            const sortedDistricts = Object.entries(participantsData)
+                .sort(([,a], [,b]) => b.count - a.count);
+
+            districtList.innerHTML = sortedDistricts.map(([district, data], index) => {
+                const color = getColor(data.count, Math.max(...Object.values(participantsData).map(d => d.count)));
+                return `
+                    <div class="district-card border border-gray-200 rounded-lg p-4 cursor-pointer" 
+                         onclick="flyToDistrict('${district}', ${data.lng}, ${data.lat})">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-gray-800">${index + 1}. ${district}</h4>
+                                <p class="text-sm text-gray-600">${data.count} জন অংশগ্রহণকারী</p>
+                            </div>
+                            <div class="w-8 h-8 rounded-full" style="background-color: ${color}"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Fly to district
+        function flyToDistrict(district, lng, lat) {
+            map.setView([lat, lng], 10);
+        }
+
+        // Show district details
+        function showDistrictDetails(district) {
+            const data = participantsData[district];
+            if (!data) return;
+
+            let details = `<h3 class="text-xl font-bold mb-4">${district} - অংশগ্রহণকারীদের তালিকা</h3>`;
+            details += `<p class="mb-4">মোট: ${data.count} জন</p>`;
+            details += `<div class="max-h-60 overflow-y-auto">`;
+            
+            data.participants.forEach((participant, index) => {
+                details += `
+                    <div class="border-b py-2">
+                        <p class="font-medium">${index + 1}. ${participant.name}</p>
+                        <p class="text-sm text-gray-600">${participant.upazila ? participant.upazila + ', ' : ''}${participant.address}</p>
+                    </div>
+                `;
+            });
+            
+            details += `</div>`;
+            
+            alert(details); // You can replace this with a proper modal
+        }
+
+        // Show message
+        function showMessage(message, type) {
+            const color = type === 'success' ? 'green' : 'red';
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `fixed top-4 right-4 bg-${color}-100 border border-${color}-400 text-${color}-700 px-4 py-3 rounded z-50`;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(messageDiv);
+            }, 3000);
+        }
+
+        // Map view change handler
+        document.getElementById('map-view').addEventListener('change', function(e) {
+            if (e.target.value === 'participants') {
+                // This could show individual participants if coordinates are available
+                alert('ব্যক্তিগত অংশগ্রহণকারী ভিউ শীঘ্রই আসছে!');
+                e.target.value = 'district';
+            }
+        });
+    </script>
+</body>
+</html>

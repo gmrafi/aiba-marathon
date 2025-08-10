@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অংশগ্রহণকারীদের ম্যাপ - Justice Half Marathon 2025</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .map-container {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+        }
+        .mapboxgl-popup-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .heat-legend {
+            background: linear-gradient(to right, #3b82f6, #06d6a0, #ffd60a, #ff8500, #e63946);
+            height: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="photos/logo3.png" alt="Marathon Logo" class="h-12 w-auto">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">অংশগ্রহণকারীদের ম্যাপ</h1>
+                        <p class="text-gray-600">Justice Half Marathon 2025</p>
+                    </div>
+                </div>
+                <a href="index.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                    হোমে ফিরে যান
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Map Section -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">মোট অংশগ্রহণকারী</h3>
+                <p class="text-3xl font-bold text-blue-600" id="total-participants">800</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">মোট জেলা</h3>
+                <p class="text-3xl font-bold text-green-600" id="total-districts">64</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">সর্বোচ্চ অংশগ্রহণ</h3>
+                <p class="text-3xl font-bold text-orange-600" id="max-participation">120</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                <h3 class="text-lg font-semibold text-gray-700">গড় অংশগ্রহণ</h3>
+                <p class="text-3xl font-bold text-purple-600" id="avg-participation">12</p>
+            </div>
+        </div>
+
+        <!-- Map Controls -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <h3 class="text-lg font-semibold">ম্যাপ কন্ট্রোল:</h3>
+                    <select id="map-view" class="border border-gray-300 rounded-md px-3 py-2">
+                        <option value="district">জেলাভিত্তিক দেখুন</option>
+                        <option value="upazila">উপজেলাভিত্তিক দেখুন</option>
+                    </select>
+                </div>
+                
+                <!-- Legend -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm font-medium">কম</span>
+                    <div class="heat-legend w-32"></div>
+                    <span class="text-sm font-medium">বেশি</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div id="map" class="map-container"></div>
+        </div>
+
+        <!-- District List -->
+        <div class="bg-white rounded-lg shadow-md p-6 mt-8">
+            <h3 class="text-xl font-bold mb-4">জেলাভিত্তিক অংশগ্রহণকারীর তালিকা</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="district-list">
+                <!-- District cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Mapbox access token - আপনার টোকেন দিয়ে প্রতিস্থাপন করুন
+        mapboxgl.accessToken = 'pk.eyJ1IjoieW91ci11c2VybmFtZSIsImEiOiJjbGotZXhhbXBsZSJ9.example';
+
+        // Sample data - আপনার প্রকৃত ডেটা দিয়ে প্রতিস্থাপন করুন
+        const participantsData = {
+            "ঢাকা": { count: 120, lat: 23.8103, lng: 90.4125 },
+            "চট্টগ্রাম": { count: 85, lat: 22.3569, lng: 91.7832 },
+            "সিলেট": { count: 95, lat: 24.8949, lng: 91.8687 },
+            "রাজশাহী": { count: 45, lat: 24.3745, lng: 88.6042 },
+            "খুলনা": { count: 38, lat: 22.8456, lng: 89.5403 },
+            "বরিশাল": { count: 25, lat: 22.7010, lng: 90.3535 },
+            "রংপুর": { count: 32, lat: 25.7439, lng: 89.2752 },
+            "ময়মনসিংহ": { count: 28, lat: 24.7471, lng: 90.4203 },
+            "কুমিল্লা": { count: 42, lat: 23.4607, lng: 91.1809 },
+            "নারায়ণগঞ্জ": { count: 35, lat: 23.6238, lng: 90.4992 },
+            "গাজীপুর": { count: 30, lat: 23.9999, lng: 90.4203 },
+            "টাঙ্গাইল": { count: 22, lat: 24.2513, lng: 89.9167 }
+        };
+
+        // Initialize map
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [90.4125, 23.6850], // Bangladesh center
+            zoom: 6.5
+        });
+
+        // Color scheme for heatmap
+        function getColor(count) {
+            const maxCount = Math.max(...Object.values(participantsData).map(d => d.count));
+            const intensity = count / maxCount;
+            
+            if (intensity > 0.8) return '#e63946'; // Red
+            if (intensity > 0.6) return '#ff8500'; // Orange
+            if (intensity > 0.4) return '#ffd60a'; // Yellow
+            if (intensity > 0.2) return '#06d6a0'; // Green
+            return '#3b82f6'; // Blue
+        }
+
+        // Create markers and populate data
+        function createMarkers() {
+            let totalParticipants = 0;
+            let totalDistricts = 0;
+            let maxParticipation = 0;
+
+            Object.entries(participantsData).forEach(([district, data]) => {
+                totalParticipants += data.count;
+                totalDistricts++;
+                maxParticipation = Math.max(maxParticipation, data.count);
+
+                // Create marker
+                const marker = new mapboxgl.Marker({
+                    color: getColor(data.count),
+                    scale: 0.8 + (data.count / 100) * 0.7 // Dynamic size based on count
+                })
+                .setLngLat([data.lng, data.lat])
+                .addTo(map);
+
+                // Create popup
+                const popup = new mapboxgl.Popup({ offset: 25 })
+                    .setHTML(`
+                        <div class="p-3">
+                            <h3 class="font-bold text-lg text-gray-800">${district}</h3>
+                            <p class="text-gray-600">অংশগ্রহণকারী: <span class="font-semibold">${data.count} জন</span></p>
+                            <div class="mt-2">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: ${(data.count / maxParticipation) * 100}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+
+                marker.setPopup(popup);
+            });
+
+            // Update statistics
+            document.getElementById('total-participants').textContent = totalParticipants;
+            document.getElementById('total-districts').textContent = totalDistricts;
+            document.getElementById('max-participation').textContent = maxParticipation;
+            document.getElementById('avg-participation').textContent = Math.round(totalParticipants / totalDistricts);
+        }
+
+        // Populate district list
+        function populateDistrictList() {
+            const districtList = document.getElementById('district-list');
+            const sortedDistricts = Object.entries(participantsData)
+                .sort(([,a], [,b]) => b.count - a.count);
+
+            districtList.innerHTML = sortedDistricts.map(([district, data], index) => `
+                <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition cursor-pointer" 
+                     onclick="flyToDistrict('${district}', ${data.lng}, ${data.lat})">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-semibold text-gray-800">${index + 1}. ${district}</h4>
+                            <p class="text-sm text-gray-600">${data.count} জন অংশগ্রহণকারী</p>
+                        </div>
+                        <div class="w-8 h-8 rounded-full" style="background-color: ${getColor(data.count)}"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Fly to district
+        function flyToDistrict(district, lng, lat) {
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 10,
+                duration: 2000
+            });
+        }
+
+        // Map view toggle
+        document.getElementById('map-view').addEventListener('change', function(e) {
+            // This would switch between district and upazila views
+            // For now, we'll just show an alert
+            if (e.target.value === 'upazila') {
+                alert('উপজেলাভিত্তিক ভিউ শীঘ্রই আসছে!');
+                e.target.value = 'district';
+            }
+        });
+
+        // Initialize when map loads
+        map.on('load', function() {
+            createMarkers();
+            populateDistrictList();
+        });
+
+        // Navigation controls
+        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(new mapboxgl.FullscreenControl());
+    </script>
+</body>
+</html>

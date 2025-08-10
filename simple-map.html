@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants Map - Justice Half Marathon 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .header-bg {
+            background: linear-gradient(135deg, #1E42B2 0%, #3B82F6 100%);
+        }
+        .map-container {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Simple Header -->
+    <header class="header-bg shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4">
+                    <img src="photos/logo3.png" alt="Marathon Logo" class="h-12 w-auto">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-2xl md:text-3xl font-bold text-white">Participants Map</h1>
+                        <p class="text-white/90">Justice Half Marathon 2025</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <a href="index.html" class="bg-white/10 backdrop-blur-sm text-white px-6 py-2 rounded-lg hover:bg-white/20 transition">
+                        Home
+                    </a>
+                    <a href="register.html" class="bg-white text-blue-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition font-medium">
+                        Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Participant Distribution Across Bangladesh</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                Explore the geographic distribution of participants from different districts of Bangladesh 
+                for Justice Half Marathon 2025.
+            </p>
+        </div>
+
+        <!-- Map Container -->
+        <div class="bg-white rounded-xl map-container overflow-hidden mb-8">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                <h3 class="text-white font-semibold text-lg flex items-center justify-between">
+                    <span>🗺️ Interactive Map</span>
+                    <span class="text-sm bg-white/20 px-3 py-1 rounded-full">Live Data</span>
+                </h3>
+            </div>
+            <div class="p-6">
+                <iframe 
+                    width='100%' 
+                    height='600px' 
+                    src="https://api.mapbox.com/styles/v1/gmrafiweb/cmdwfxyzc00da01sb6uzig0yj.html?title=false&access_token=pk.eyJ1IjoiZ21yYWZpd2ViIiwiYSI6ImNtZHdlM29oZzAzZzIydXIzMXQyenBuMGcifQ.Y6LpUT3WYUpY6ScQW2pq1A&zoomwheel=false#5.78/24.037/89.79" 
+                    title="JHM2025" 
+                    style="border:none; border-radius: 8px;"
+                    class="shadow-md">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white rounded-lg p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="text-4xl mb-4">🔍</div>
+                <h4 class="font-semibold text-gray-800 mb-2">Zoom & Navigate</h4>
+                <p class="text-gray-600">Use zoom controls to explore different regions in detail</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="text-4xl mb-4">�</div>
+                <h4 class="font-semibold text-gray-800 mb-2">Click to Explore</h4>
+                <p class="text-gray-600">Click on any district to view detailed participant information</p>
+            </div>
+            <div class="bg-white rounded-lg p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="text-4xl mb-4">📊</div>
+                <h4 class="font-semibold text-gray-800 mb-2">View Statistics</h4>
+                <p class="text-gray-600">See participant counts and distribution patterns</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- About -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="photos/logo3.png" alt="Marathon Logo" class="h-8 w-auto">
+                        <h3 class="text-lg font-semibold">Justice Half Marathon 2025</h3>
+                    </div>
+                    <p class="text-gray-300">
+                        Join Bangladesh's premier half marathon. Run for justice, run for health.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition">Home</a></li>
+                        <li><a href="register.html" class="text-gray-300 hover:text-white transition">Registration</a></li>
+                        <li><a href="race-day.html" class="text-gray-300 hover:text-white transition">Race Day</a></li>
+                        <li><a href="map.html" class="text-gray-300 hover:text-white transition">Participants Map</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>📍 Army IBA, Sylhet</li>
+                        <li>📞 +880-XXX-XXXXX</li>
+                        <li>✉️ info@jhm2025.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p class="text-gray-400">© 2025 Justice Half Marathon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
