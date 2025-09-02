@@ -29,7 +29,7 @@ Disallow: /index copy.html
 Disallow: /README copy.md
 
 # Sitemap location
-Sitemap: https://justicehalfmarathon.com/sitemap.xml
+Sitemap: https://aiba-halfmarathon.gmrafi.com/sitemap.xml
 
 # Crawl delay (optional - 1 second between requests)
 Crawl-delay: 1
